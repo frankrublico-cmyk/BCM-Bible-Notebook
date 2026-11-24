@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="ceb"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BCM Notebook &amp; Bible</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Poppins:wght@400;600&family=Nunito:wght@400;700&family=Montserrat:wght@400;600&family=Quicksand:wght@400;600&family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&family=Lora:wght@400;700&family=Caveat:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#34246e"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="BCM Bible"><script src="cebuano_bible.js"></script>
+<style>
+:root{--bg:#f6f1e7;--card:rgba(255,255,255,.82);--tx:#2a2118;--mu:#7a6a58;--ac:#b4571f;--bd:rgba(120,90,50,.22);--g1:#f3d9a8;--g2:#cfe6e0;--g3:#f1c6c0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--f:Outfit,'Segoe UI',system-ui,sans-serif;--fs:17px}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#14121c;--card:rgba(32,28,46,.82);--tx:#efe8f7;--mu:#a99bc0;--ac:#ffb454;--bd:rgba(180,160,230,.22);--g1:#3b2a6b;--g2:#0f4a5a;--g3:#5a2450}}
+:root[data-theme=dark]{--bg:#14121c;--card:rgba(32,28,46,.82);--tx:#efe8f7;--mu:#a99bc0;--ac:#ffb454;--bd:rgba(180,160,230,.22);--g1:#3b2a6b;--g2:#0f4a5a;--g3:#5a2450}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px Outfit,'Segoe UI',system-ui,sans-serif;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:var(--bgi);background-size:var(--bs,auto)}
+body.bg0{--bgi:radial-gradient(circle at 15% 10%,var(--g1),transparent 45%),radial-gradient(circle at 85% 20%,var(--g2),transparent 45%),radial-gradient(circle at 50% 95%,var(--g3),transparent 50%)}
+body.bg1{--bgi:radial-gradient(var(--bd) 1.5px,transparent 1.6px);--bs:22px 22px}
+body.bg2{--bgi:repeating-linear-gradient(135deg,var(--g1) 0 2px,transparent 2px 26px),linear-gradient(180deg,transparent,var(--g2))}
+body.bg3{--bgi:linear-gradient(160deg,var(--g1),var(--g3) 55%,var(--g2))}
+body.bg4{--bgi:conic-gradient(from 200deg at 50% 120%,var(--g2),var(--g1),var(--g3),var(--g2))}
+body.bg5{--bgi:linear-gradient(var(--bd) 1px,transparent 1px),linear-gradient(90deg,var(--bd) 1px,transparent 1px);--bs:28px 28px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--card);backdrop-filter:blur(10px);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:8px;padding:8px 12px}
+h1{font-size:17px;margin:0;flex:1;font-weight:600}
+button,select,input{font:inherit;color:var(--tx)}
+button{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:7px 11px;cursor:pointer}
+button:hover{border-color:var(--ac)}button.on,button.pri{background:var(--ac);color:#fff;border-color:var(--ac)}
+select,input[type=text],input[type=search]{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:8px 10px;min-width:0}
+nav{display:flex;gap:6px;padding:10px 12px 0;max-width:860px;margin:auto}nav button{flex:1}
+main{max-width:860px;margin:auto;padding:10px 12px 140px}
+.bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}.bar select{flex:1}
+.card{background:var(--card);backdrop-filter:blur(8px);border:1px solid var(--bd);border-radius:14px;padding:6px 14px}
+.v{padding:7px 8px;margin:2px -8px;border-radius:8px;font-family:var(--f);font-size:var(--fs);line-height:1.6;cursor:pointer}
+.v sup{color:var(--ac);font:600 .6em system-ui;margin-right:5px}.v .r{display:block;color:var(--ac);font:600 13px system-ui}
+.v.s{outline:2px dashed var(--ac)}.v mark{background:#ffe066;color:#222;border-radius:3px}
+.h0{background:rgba(255,255,51,.7)}.h4{background:rgba(255,138,0,.7)}.h5{background:rgba(255,40,70,.65)}.h1{background:rgba(57,255,20,.6)}.h2{background:rgba(255,16,240,.5)}.h3{background:rgba(31,100,255,.55)}
+.act{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--card);backdrop-filter:blur(12px);border-top:1px solid var(--bd);padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px));display:none;gap:6px;flex-wrap:wrap;justify-content:center;align-items:center}
+.act.show{display:flex}.dot{width:28px;height:28px;border-radius:50%;padding:0}
+.note{display:block;width:100%;text-align:left;margin-bottom:8px;padding:12px}.note b{display:block}.note small{color:var(--mu)}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px}.chips button{white-space:nowrap}
+#ed{position:fixed;inset:0;z-index:20;background:var(--bg);display:none;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}#ed.show{display:flex}
+#ed::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--bgi);background-size:var(--bs,auto)}
+.tb{display:flex;gap:5px;flex-wrap:wrap;padding:8px 10px;background:var(--card);border-bottom:1px solid var(--bd)}
+#body{flex:1;overflow:auto;padding:16px;font-family:var(--f);font-size:var(--fs);line-height:1.7;outline:none;margin:10px;background:var(--card);border:1px solid var(--bd);border-radius:14px}
+#body blockquote{margin:8px 0;padding:6px 12px;border-left:4px solid var(--ac);background:rgba(128,128,128,.1);border-radius:6px}
+.modal{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;padding:16px}.modal.show{display:flex}
+.modal>div{background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:16px;padding:16px;width:min(420px,100%);display:grid;gap:10px;max-height:90vh;overflow:auto}
+label{font-size:13px;color:var(--mu);display:grid;gap:4px}
+#toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ac);color:#fff;padding:8px 16px;border-radius:20px;z-index:50;opacity:0;transition:.3s;pointer-events:none}#toast.show{opacity:1}
+
+/* ===== Verse sheet (m4): mas dako, mabasa, responsive ===== */
+#m4>div{width:min(760px,100%);max-height:94vh;max-height:94dvh;padding:20px;gap:14px;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+#m4 #sTitle{font-size:20px}
+#m4 #sTxt{font-size:16px;line-height:1.65}
+#m4 label{font-size:15px;font-weight:600;color:var(--tx)}
+.nlab .bt{display:flex;gap:6px;flex-wrap:wrap}.nlab{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+#sMax,#sTidy{padding:6px 12px;font-size:14px;white-space:nowrap}
+#sNote{font-weight:400;font-size:18px;line-height:1.9;padding:16px 18px;min-height:240px;border-radius:14px;border:2px solid var(--bd);box-shadow:inset 0 2px 8px rgba(0,0,0,.06);resize:vertical;transition:border-color .2s,box-shadow .2s}
+#sNote:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 4px rgba(150,90,40,.18)}
+#sNote::placeholder{opacity:.6}
+#m4 .sg{font-size:16px;line-height:1.6;padding:12px 14px}
+#m4 input[type=text]{font-size:16px;padding:10px 12px}
+#m4 button{min-height:44px}
+#m4.max{padding:0}
+#m4.max>div{width:100%;height:100%;max-height:100%;border-radius:0;padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom));display:flex;flex-direction:column}
+#m4.max #sNote{flex:1;min-height:55vh;font-size:20px;resize:none}
+@media(max-width:600px){#m4{padding:0}#m4>div{width:100%;max-height:100%;height:100%;border-radius:0;padding:max(14px,env(safe-area-inset-top)) 14px max(14px,env(safe-area-inset-bottom))}#sNote{font-size:18px;min-height:46vh}}
+@media(min-width:1000px){#m4>div{width:min(860px,92%)}#sNote{min-height:300px}}
+.sg .gt{margin-top:6px;line-height:1.75;clear:both}.sg .gt.clamp{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.vn{display:inline-block;font-size:.72em;font-weight:700;color:var(--ac);vertical-align:super;margin-right:2px}.sg .gm{float:none;margin:6px 0 0;padding:4px 12px;font-size:14px;min-height:36px}
+#sTxt.multi{max-height:32vh;overflow:auto;padding:10px 12px;border-radius:10px;background:rgba(128,128,128,.1);border-left:4px solid var(--ac)}
+#meta .lsel{display:block;width:100%;margin-bottom:4px;font-weight:600;color:var(--ac)}
+/* ===== Notebook: mobile layout, Bible panel, AI sermon ===== */
+#body{min-height:0}.lg{display:inline}
+#dl{display:block}#eMore{display:none}
+#bp{position:fixed;z-index:25;background:var(--bg);color:var(--tx);border:1px solid var(--bd);display:none;flex-direction:column;gap:6px;padding:10px;box-shadow:0 8px 30px rgba(0,0,0,.35)}#bp.show{display:flex}
+#bp .bph{display:flex;align-items:center;justify-content:space-between;font-size:17px}
+#bp .bar{padding:0}#bp .bar select{flex:1;min-width:0}#bp input,#bp select{font-size:16px}
+#bpL{flex:1;min-height:0;overflow:auto;padding:2px 2px 8px}
+.bv{padding:8px 10px;border-radius:10px;margin:4px 0;line-height:1.7;cursor:pointer;border:1px solid transparent;font-size:16px}.bv sup{color:var(--ac);font-weight:700;margin-right:3px}.bv.on{background:rgba(255,190,80,.28);border-color:var(--ac)}
+#bp .bpa{align-items:center;padding-bottom:env(safe-area-inset-bottom,0px)}#bpN{margin-right:auto}
+@media(min-width:701px){#ed.bpo{right:min(440px,42vw)}#bp{top:0;right:0;bottom:0;width:min(440px,42vw)}}
+@media(max-width:700px){
+#ed.bpo{bottom:58dvh}#bp{left:0;right:0;bottom:0;height:58dvh;border-radius:16px 16px 0 0;border-top:2px solid var(--ac)}
+.lg{display:none}
+#ed .tb{padding:6px 8px;gap:4px}#ed .tb button,#ed .tb select{padding:6px 10px;min-height:40px;font-size:14px}
+#ed>.tb:first-child{flex-wrap:nowrap}#ed #et{min-width:0!important;font-size:16px}
+#tb2{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}#tb2::-webkit-scrollbar{display:none}#tb2>*{flex:0 0 auto}
+#dl{display:none}#ed.more #dl{display:block}#eMore{display:inline-flex;align-items:center}
+#body{margin:6px;padding:12px}
+}
+#m6>div{width:min(760px,100%);max-height:94vh;max-height:94dvh;padding:16px}
+#m6 input,#m6 select{font-size:16px}#m6 label{display:grid;gap:4px;font-weight:600}
+#srOut{max-height:48vh;overflow:auto;line-height:1.75;padding:2px 4px}#srOut:empty{display:none}
+#srOut blockquote{margin:8px 0;padding:6px 12px;border-left:4px solid var(--ac);background:rgba(128,128,128,.1);border-radius:6px}
+#m6 .bar{padding:0}
+@media(max-width:600px){#m6{padding:0}#m6>div{width:100%;height:100%;max-height:100%;border-radius:0;padding:max(12px,env(safe-area-inset-top)) 12px max(12px,env(safe-area-inset-bottom))}#srOut{max-height:none;flex:1}}
+/* scrollbar + jump buttons sa notebook */
+#ed{overflow-y:auto}
+#body{min-height:180px;overflow-y:scroll;scrollbar-width:auto;scrollbar-color:var(--ac) rgba(128,128,128,.25)}
+#body::-webkit-scrollbar{width:14px}#body::-webkit-scrollbar-track{background:rgba(128,128,128,.18);border-radius:10px}#body::-webkit-scrollbar-thumb{background:var(--ac);border-radius:10px;border:3px solid transparent;background-clip:padding-box}
+#esc{position:fixed;right:26px;bottom:22px;z-index:21;display:none;flex-direction:column;gap:8px}#ed.show #esc{display:flex}#ed.locked #esc{display:flex}
+#esc button{width:44px;height:44px;border-radius:50%;padding:0;font-size:18px;background:var(--card);border:1px solid var(--bd);box-shadow:0 3px 12px rgba(0,0,0,.25);opacity:.92}
+@media(min-width:701px){#ed.bpo #esc{right:calc(min(440px,42vw) + 26px)}}
+@media(max-width:700px){#ed.bpo #esc{bottom:calc(58dvh + 18px)}#esc{right:14px}#esc button{width:40px;height:40px}}
+/* Pasabot nga nahimutang sa Note */
+.pasabot{margin:14px 0;padding:14px 18px 16px;border-radius:14px;border:1px solid rgba(180,110,40,.35);border-left:6px solid var(--ac);background:linear-gradient(135deg,rgba(255,180,84,.20),rgba(150,90,40,.07));box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.pasabot .ph{display:block;font-weight:700;font-size:.9em;letter-spacing:.08em;text-transform:uppercase;color:var(--ac);margin-bottom:6px;padding-bottom:6px;border-bottom:1px dashed rgba(180,110,40,.45)}
+.pasabot .pt{display:block;white-space:pre-wrap;line-height:1.8;font-size:1.02em}
+.mu{color:var(--mu);font-size:14px}.hide{display:none!important}
+#ed.locked .eo{display:none!important}#body img{max-width:100%;height:auto;border-radius:10px;margin:8px 0;display:block}#et:disabled{opacity:1;font-weight:600;background:transparent;border-color:transparent}#ed.locked #body{cursor:default}
+#tgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}#tgrid button{text-align:left;padding:12px;line-height:1.35}#tgrid small{display:block;color:var(--mu);margin-top:3px}#meta{padding:6px 10px}#meta label{flex:1 1 130px}#meta input{width:100%}
+.bd{display:inline-block;margin-left:6px;padding:0 7px;border-radius:10px;background:var(--ac);color:#fff;font:600 12px system-ui;cursor:pointer;vertical-align:middle}textarea{background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:10px;padding:8px;font:inherit;width:100%;resize:vertical}.sg{padding:8px 10px;margin:5px 0;border:1px solid var(--bd);border-radius:10px;font-size:15px;line-height:1.45}.sg b{color:var(--ac)}.sg button{margin-left:8px;padding:1px 9px;float:right}
+.pg{height:14px;border-radius:9px;background:var(--bd);overflow:hidden;margin:8px 0}#pgb{height:100%;width:0;background:linear-gradient(90deg,#6a4cb5,#ffb454);transition:width .4s}.ai-s{margin:10px 0;padding:10px 12px;border-radius:12px;background:var(--card);border:1px solid var(--bd);font-size:15px;line-height:1.5}.ai-s h4{margin:0 0 6px;color:var(--ac);font-size:15px}
+.pdfatt{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0;padding:10px 12px;border-radius:14px;border:1px solid var(--bd);border-left:6px solid #d9381e;background:var(--card);user-select:none;-webkit-user-select:none}.pdfatt .pi{font-size:28px}.pdfatt .pn{flex:1 1 140px;min-width:0}.pdfatt .pn b{display:block;overflow-wrap:anywhere;font-size:.95em}.pdfatt small{color:var(--mu)}.pdfatt button{padding:6px 11px}
+#vw{position:fixed;inset:0;z-index:40;background:#1b1a1f;display:none;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}#vw.show{display:flex}
+#vw .vh{display:flex;gap:6px;align-items:center;padding:8px 10px;background:var(--bg);color:var(--tx);border-bottom:1px solid var(--bd);overflow-x:auto;flex:0 0 auto}#vw .vh b{flex:1 1 90px;min-width:70px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#vw .vh button{flex:0 0 auto;padding:6px 11px}#vP{white-space:nowrap;font-size:13px}
+#vB{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding:8px;text-align:center;touch-action:pan-x pan-y pinch-zoom;color:#ddd}#vB canvas{display:block;margin:0 auto 10px;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.5)}#vB img{max-width:none;height:auto;border-radius:6px}#vB iframe{width:100%;height:75%;border:0;background:#fff;border-radius:8px}
+.chk{display:flex;align-items:center;gap:6px;font-size:14px}.chk input{width:18px;height:18px}
+
+/* Daily devotional */
+nav button.dvB{flex:0 0 auto;font-size:13px;padding:8px 10px;white-space:nowrap}
+nav button.dvB.dn::after{content:" ✓";color:#3cb371}
+#mDev>div{width:min(440px,100%);text-align:center}
+#mDev .dvD{font-size:.95em;opacity:.8;margin:0}
+#mDev .dvI{font-size:.92em;opacity:.85;margin:0}
+#mDev .dvR{display:flex;align-items:center;gap:10px;text-align:left;padding:10px 12px;border:1px solid var(--bd);border-radius:12px}
+#mDev .dvR>span{flex:1}
+#mDev .dvR small{display:block;opacity:.7;font-size:.78em}
+#mDev .dvR b{font-size:1.1em}
+#qk{display:none}@media(max-width:900px),(pointer:coarse){#qk{display:flex}#ed>.tb#qk{position:sticky;top:0;z-index:3;flex-wrap:nowrap;overflow-x:auto}#qk>*{flex:0 0 auto}}
+</style></head><body class="bg0">
+<header><svg width="32" height="32" viewBox="0 0 100 100" aria-label="Logo"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34246e"/><stop offset="1" stop-color="#be5a23"/></linearGradient></defs><rect width="100" height="100" rx="22" fill="url(#lg)"/><path d="M50 77 14 67V42l36 10zM50 77l36-10V42L50 52z" fill="#fff6e0"/><path d="M50 52v25" stroke="#be8c50" stroke-width="1.5"/><rect x="46" y="13" width="8" height="38" rx="2" fill="#ffd670"/><rect x="37" y="21" width="26" height="8" rx="2" fill="#ffd670"/></svg><h1>BCM Notebook &amp; Bible</h1><button id="bTh" title="Dark/Light">🌓</button><button id="bSet">⚙️</button></header>
+<nav><button data-t="read" class="on">📖 Bibliya</button><button data-t="find">🔍 Pangita</button><button data-t="note">📒 Notebook</button><button id="bDev" class="dvB" title="Daily Devotional">🙏 Karon</button></nav>
+<main>
+<section id="read"><div class="bar"><select id="sV" title="Bersyon"><option value="ceb">Cebuano</option><option value="tgl">Tagalog (Ang Malayang Biblia)</option><option value="tab">Bible Tagalog</option><option value="kjv">KJV (English)</option><option value="niv">NIV (English)</option><option value="nlt">NLT (English, online)</option></select><select id="sB"></select><select id="sC" style="max-width:90px"></select><button id="pv">◀</button><button id="nx">▶</button></div><div class="card" id="vs"></div></section>
+<section id="find" class="hide"><div class="bar"><input type="search" id="q" placeholder="Pangita: pulong o verse (pananglit: gugma, o Juan 3:16)" style="flex:1"><button class="pri" id="go">Pangita</button></div><p class="mu" id="qi">Pagsulat og usa o daghang pulong nga imong hinumdoman gikan sa verse. Dili kinahanglan tul-id ang spelling sa mga asoy (accent).</p><div class="card hide" id="rs"></div></section>
+<section id="note" class="hide"><div class="chips" id="fc"></div><div class="bar"><button class="pri" id="nn">＋ Bag-ong Note</button><button id="nPdf" title="Mag-upload og PDF nga gipadala sa friends">📎 Upload PDF</button><input type="file" id="nPdfF" accept="application/pdf,.pdf" multiple class="hide"><button id="aiSer">🎤 Biblical Sermon</button><button id="rf">✏️ Ilis ngalan</button><button id="df">🗑 Papas folder</button><input type="search" id="ns" placeholder="Pangita sa notes…" style="flex:1"></div><div id="nl"></div></section>
+</main>
+<div class="act" id="act"><b id="sc"></b><button class="dot h0" data-h="0"></button><button class="dot h1" data-h="1"></button><button class="dot h2" data-h="2"></button><button class="dot h3" data-h="3"></button><button class="dot h4" data-h="4"></button><button class="dot h5" data-h="5"></button><button data-h="-1">Ewa highlight</button><button id="sp" class="hide">📎 Kaabag</button><button id="cp">📋 Copy</button><button class="pri" id="tn">📒 Sa Note</button><button id="cl">✕</button></div>
+<div id="ed"><div class="tb"><button id="eb">←</button><input type="text" id="et" placeholder="Titulo sa note" style="flex:1;min-width:70px"><button id="eBib" class="eo" title="Bibliya">📖<span class="lg"> Bibliya</span></button><button id="eLock">🔒 Lock</button><button id="eFs" title="Full screen">⛶</button><button id="eTool" class="eo" title="Ipakita/tagoa ang tools">🛠 Tools</button></div>
+<div class="tb eo" id="qk"><button data-c="bold" title="Bold"><b>B</b></button><button data-c="italic" title="Italic"><i>I</i></button><button data-c="underline" title="Underline"><u>U</u></button><button class="pri" id="qS">💾 Save</button><button class="pri" id="qSP">💾📄 Save + PDF</button></div>
+<div class="tb" id="meta"></div>
+<div class="tb eo" id="tb2"><button id="eAi" title="Biblical Sermon">🎤<span class="lg"> Biblical Sermon</span></button><button id="eMore">⬇ Download ▾</button><select id="eType" title="Klase sa note"></select><select id="ef" title="Folder"></select><select id="eFont" title="Font style"></select><button data-c="bold"><b>B</b></button><button data-c="italic"><i>I</i></button><button data-c="underline"><u>U</u></button><button class="dot h0" data-hc="#ffff33" title="Neon yellow"></button><button class="dot h1" data-hc="#39ff14" title="Neon green"></button><button class="dot h4" data-hc="#ff8a00" title="Neon orange"></button><button class="dot h5" data-hc="#ff2846" title="Neon red"></button><button class="dot h3" data-hc="#3d7bff" title="Neon blue"></button><button class="dot h2" data-hc="#ff10f0" title="Neon pink"></button><button data-hc="transparent">✕</button><button id="eImg">🖼 Hulagway</button><input type="file" id="eImgF" accept="image/*" multiple class="hide"><button id="eCp">📋 Copy</button><button id="ePa">📥 Paste</button><button class="pri" id="eS" title="I-save lang sa notebook (dili PDF)">💾 Save</button><button class="pri" id="eSP" title="I-save ug i-download dayon isip PDF">💾📄 Save + PDF</button><button id="ePdfA" title="Mag-attach og PDF nga gikan sa uban">📎 PDF</button><input type="file" id="ePdfF" accept="application/pdf,.pdf" multiple class="hide"><button id="ed1">🗑</button></div>
+<div id="dl"><div class="tb"><select id="eFmt" title="Klase sa file"><option value="pdf">📄 PDF (patindog)</option><option value="spdf">🎤 Sermon PDF (pahiluna)</option><option value="pptx">📊 PowerPoint (pahiluna)</option><option value="jpg">🖼 JPG (patindog)</option><option value="sjpg">🖼 Sermon JPG (pahiluna)</option><option value="mjpg">💬 Messenger JPG (GC)</option><option value="mpdf">💬 Messenger PDF (GC)</option></select><button class="pri" id="eP">⬇ I-download</button><button id="eSh">📤 Share</button></div>
+<div class="hide"><input type="checkbox" id="eStudy"><button id="eGen" type="button"></button></div></div>
+<div id="body" contenteditable="true"></div><div id="esc"><button type="button" id="escT" title="Sa taas">▲</button><button type="button" id="escB" title="Sa ubos">▼</button></div></div>
+
+<div id="bp"><div class="bph"><b>📖 Bibliya</b><button id="bpX" title="Isira">✕</button></div><div class="bar"><select id="bpV"></select><select id="bpB"></select><select id="bpC"></select></div><div class="bar"><input type="text" id="bpQ" placeholder="Adto sa verse: Juan 3:16-18" style="flex:1"><button id="bpGo" class="pri">Adto</button></div><div id="bpL"></div><div class="bar bpa"><b id="bpN" class="mu"></b><button id="bpAll">☑ Tanan</button><button id="bpCp">📋 Copy</button><button id="bpIns" class="pri">＋ Ibutang sa note</button></div></div>
+<div class="modal" id="m6"><div><div class="nlab"><b>🎤 Biblical Sermon</b><button id="m6x" title="Isira">✕</button></div><label>Titulo / hilisgutan sa sermon<input type="text" id="srT" placeholder="Pananglitan: Teamwork sa Bulohaton sa Dios"></label><label>Main verse (opsyonal)<input type="text" id="srV" placeholder="Pananglitan: Acts 2:42-47"></label><label>Gidak-on<select id="srL"><option value="s">Mubo (mga 5 minuto)</option><option value="m" selected>Medyo (mga 15 minuto)</option><option value="l">Taas (mga 30 minuto)</option></select></label><label>Dugang nga sugo (opsyonal)<input type="text" id="srX" placeholder="Pananglitan: para sa mga batan-on, yano ra ang pulong"></label><button class="pri" id="srGo">✨ Himoa ang Sermon</button><div class="pg hide" id="srPgW"><div id="srB" style="height:100%;width:0;background:linear-gradient(90deg,#6a4cb5,#ffb454);transition:width .4s"></div></div><div class="mu" id="srS"></div><div id="srOut"></div><div id="srAct" class="hide"><div class="bar"><input type="text" id="srR" placeholder="Ingna dinhi: pananglit, 'pamub-a', 'dugangi og pananglit sa point 2'…" style="flex:1"><button id="srRe">↻ Ipadapat</button></div><div class="bar"><button id="srLong">📈 Pataasa</button><button id="srShort">✂️ Pamub-a</button></div><div class="bar"><button class="pri" id="srNote">📒 Himoa nga Note</button><button id="srIns" class="hide">⤵ Ibutang sa bukas nga note</button><button id="srCp">📋 Copy</button></div></div></div></div>
+<div class="modal" id="m3"><div><b>Unsay himoon nimo?</b><div id="tgrid"></div><button id="m3x">Kanselahon</button></div></div>
+<div class="modal" id="m5"><div><b>📚 Gisusi ang kasayoran sa mga verse</b><p id="gT" class="mu"></p><div class="pg"><div id="gB" style="height:100%;width:0;background:linear-gradient(90deg,#6a4cb5,#ffb454);transition:width .4s"></div></div><p id="gP" class="mu"></p><div id="gE"></div><button id="gX">Hunonga</button></div></div>
+<div class="modal" id="m4"><div><b id="sTitle"></b><div id="sTxt" class="mu"></div>
+<label><span class="nlab"><span>✍️ Pasabot (sa imong kaugalingong pulong, sa karon nga Cebuano)</span><span class="bt"><button type="button" id="sTidy" title="Han-ayon ang pagkahan-ay sa sinulat">🧹 I-han-ay</button><button type="button" id="sMax" title="Palapdan / Pamubo">⛶ Palapdan</button></span></span><textarea id="sNote" rows="8" placeholder="Isulat dinhi ang pasabot sa verse..."></textarea></label>
+<b>Kaabag nga mga verse</b><div id="sList"></div>
+<div class="bar"><input type="text" id="sAdd" placeholder="Pananglitan: Juan 3:16 o Roma 8:14-20 (hangtod 8 ka verse)" style="flex:1"><button id="sAddB" class="pri">＋ Dugang</button></div>
+<button id="sSug">💡 Pangitag sugyot nga kaubang verse</button><button id="sAi">✨ Dugang Kasayoran</button><div id="sSugL"></div>
+<div class="bar"><button id="sNb">📒 Sa Note</button><button class="pri" id="sOk" style="flex:1">Human na</button></div></div></div>
+<div class="modal" id="m1"><div><b>Idugang sa Note</b><label>Folder<select id="mF"></select></label><label>Note<select id="mN"></select></label><button class="pri" id="mOk">Idugang</button><button id="mX">Kanselahon</button></div></div>
+<div class="modal" id="m2"><div><b>⚙️ Setting</b>
+<label>Klase sa letra<select id="oF"><option value="Outfit,'Segoe UI',system-ui,sans-serif">Outfit (modernong)</option><option value="Georgia,'Times New Roman',serif">Serif (klasiko)</option><option value="system-ui,sans-serif">Sans (limpyo)</option><option value="'Segoe Print','Bradley Hand','Comic Sans MS',cursive">Sulat-kamot</option><option value="ui-monospace,Consolas,monospace">Mono</option><option value="'Palatino Linotype',Palatino,serif">Palatino</option></select></label>
+<label>Gidak-on sa letra<input type="range" id="oS" min="14" max="30"></label>
+<label>Disenyo sa background<select id="oB"><option value="0">Aurora</option><option value="1">Tuldok</option><option value="2">Linya</option><option value="3">Sunset</option><option value="4">Rayos</option><option value="5">Grid (notebook)</option></select></label>
+<label>Tema<select id="oT"><option value="auto">Auto</option><option value="light">Light</option><option value="dark">Dark</option></select></label>
+<label>Ngalan sa ministry (letterhead sa sulat)<input type="text" id="oOrg" placeholder="Breaking Chain Ministry"></label><label>Address / tagline (letterhead)<input type="text" id="oAdd" placeholder="Cebu City, Philippines"></label>
+<label>Key para sa ✨ Dugang Kasayoran (naa ra sa kini nga device)<input type="password" id="oKey" placeholder="Idikit ang imong key" autocomplete="off"></label><label>Model (opsyonal)<input type="text" id="oModel" placeholder="Default (pinakamaayo)"></label><label>Key para sa NLT (English) — kung dili mugana ang default<input type="password" id="oNlt" placeholder="Naa na ang default key" autocomplete="off"></label>
+<button id="kLock" type="button"></button>
+<button id="bk">⬇ Download tanang notes (backup)</button><button id="ri">⬆ I-restore gikan sa backup</button><input type="file" id="rif" accept=".json" class="hide">
+<p class="mu">Ang notes ug highlights naka-save sa imong browser. Para sa Google Drive/Gmail: i-download ang file ug i-upload o i-share (sa phone, mogawas ang share sheet).</p><button id="o_x" class="pri">Human na</button></div></div>
+<div id="vw"><div class="vh"><b id="vT"></b><span id="vP" class="mu"></span><button id="vPr" title="Nauna">◀</button><button id="vNx" title="Sunod">▶</button><button id="vZo" title="Gamay">−</button><button id="vZi" title="Dako">＋</button><button id="vDl" title="I-download">⬇</button><button id="vSh" title="Share">📤</button><button id="vX" class="pri" title="Isira">✕</button></div><div id="vB"></div></div>
+<div class="modal" id="mDev"><div><b style="font-size:1.15em">🙏 Daily Devotional</b><p class="dvD" id="dvD"></p><p class="dvI">Mao kini ang imong basahon sa Bibliya karong adlawa:</p><div id="dvL" style="display:grid;gap:8px"></div><button class="pri" id="dvOk">✅ Nabasa na nako karong adlawa</button><button id="dvX">Sirado</button></div></div>
+<div id="toast"></div>
+<script>
+if(typeof myBibleData=='undefined'){document.body.innerHTML='<p style="padding:24px">Wala makita ang <b>cebuano_bible.js</b>. Ibutang kini sa parehas nga folder sa index.html.</p>';throw 0}
+const B=(()=>{const o=[];for(const b of myBibleData.books){const cs=[];for(const c of b.chapters){const a=[];for(const v of c.verses){const m=String(v.verse).match(/^(\d+)(?:\s*[-\u2013]\s*(\d+))?/),n=m?+m[1]:a.length+1,e=m&&m[2]?+m[2]:n;while(a.length<n-1)a.push('');a[n-1]=(v.text||'').trim();while(a.length<e)a.push('')}cs.push(a)}o.push({n:b.name,c:cs})}return o})();
+const CEBN=["Genesis", "Exodo", "Levitico", "Numeros", "Deuteronomio", "Josue", "Mga Maghuhukom", "Rut", "1 Samuel", "2 Samuel", "1 Mga Hari", "2 Mga Hari", "1 Cronica", "2 Cronica", "Esdras", "Nehemias", "Ester", "Job", "Salmo", "Panultion", "Eclesiastes", "Awit ni Solomon", "Isaias", "Jeremias", "Pagbangotan", "Ezequiel", "Daniel", "Oseas", "Joel", "Amos", "Obadias", "Jonas", "Miqueas", "Nahum", "Habakuk", "Zefanias", "Hagai", "Zacarias", "Malaquias", "Mateo", "Marcos", "Lucas", "Juan", "Buhat", "Roma", "1 Corinto", "2 Corinto", "Galacia", "Efeso", "Filipos", "Colosas", "1 Tesalonica", "2 Tesalonica", "1 Timoteo", "2 Timoteo", "Tito", "Filemon", "Hebreohanon", "Santiago", "1 Pedro", "2 Pedro", "1 Juan", "2 Juan", "3 Juan", "Judas", "Gipadayag"];B.forEach((b,i)=>{b.e=b.n;b.cn=CEBN[i];Object.defineProperty(b,'n',{get(){return window.__eng?this.e:this.cn},configurable:true})});
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let S={folders:[{id:'f1',name:'Mga Topic'}],notes:[],hl:{},sup:{},aic:{},set:{theme:'auto',font:"Outfit,'Segoe UI',system-ui,sans-serif",size:17,bg:0,fv:2}};
+try{const x=localStorage.getItem('bn1');if(x)S=Object.assign(S,JSON.parse(x))}catch(e){}
+S.sup=S.sup||{};S.aic=S.aic||{};if(S.aicv!==2){S.aic={};S.aicv=2}if(!S.set.fv){S.set.font="Outfit,'Segoe UI',system-ui,sans-serif";S.set.fv=2}
+const save=()=>{try{localStorage.setItem('bn1',JSON.stringify(S))}catch(e){}};
+const toast=t=>{const e=$('#toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1800)};
+const uid=()=>Math.random().toString(36).slice(2,9);
+function apply(){const r=document.documentElement,s=S.set;s.theme=='auto'?r.removeAttribute('data-theme'):r.dataset.theme=s.theme;r.style.setProperty('--f',s.font);r.style.setProperty('--fs',s.size+'px');document.body.className='bg'+s.bg;$('#oF').value=s.font;$('#oS').value=s.size;$('#oB').value=s.bg;$('#oT').value=s.theme;$('#oOrg').value=s.org||'';$('#oAdd').value=s.addr||'';$('#oKey').value=s.gkey||'';$('#oModel').value=s.gmodel||'';refreshK()}
+const OUT="Outfit,'Segoe UI',system-ui,sans-serif",FONTS=[['Outfit (default)',OUT],['Poppins',"Poppins,sans-serif"],['Nunito',"Nunito,sans-serif"],['Montserrat',"Montserrat,sans-serif"],['Quicksand',"Quicksand,sans-serif"],['Playfair Display (elegante)',"'Playfair Display',serif"],['Merriweather (klasiko)',"Merriweather,serif"],['Lora',"Lora,serif"],['Caveat (sulat-kamot)',"Caveat,cursive"],['Patrick Hand (sulat-kamot)',"'Patrick Hand',cursive"],['Georgia',"Georgia,'Times New Roman',serif"],['Mono',"ui-monospace,Consolas,monospace"]];
+const fopt=FONTS.map(([n,v])=>`<option value="${esc(v)}">${n}</option>`).join('');$('#oF').innerHTML=fopt;$('#eFont').innerHTML='<option value="">Default</option>'+fopt;
+const stored=new Set();const idb=(()=>{let p;const op=()=>p||(p=new Promise((ok,no)=>{try{const r=indexedDB.open('bibliya',1);r.onupgradeneeded=()=>r.result.createObjectStore('img');r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)}catch(e){no(e)}}));const tx=(m,f)=>op().then(d=>new Promise((ok,no)=>{const t=d.transaction('img',m),q=f(t.objectStore('img'));t.oncomplete=()=>ok(q&&q.result);t.onerror=()=>no(t.error)}));return{get:k=>tx('readonly',s=>s.get(k)),set:(k,v)=>tx('readwrite',s=>s.put(v,k)).then(r=>{stored.add(k);return r})}})();
+apply();
+['oF','oS','oB','oT'].forEach(i=>$('#'+i).oninput=()=>{S.set={...S.set,fv:2,font:$('#oF').value,size:+$('#oS').value,bg:+$('#oB').value,theme:$('#oT').value};apply();save()});
+$('#oOrg').oninput=()=>{S.set.org=$('#oOrg').value;save()};$('#oAdd').oninput=()=>{S.set.addr=$('#oAdd').value;save()};
+$('#bTh').onclick=()=>{const d=document.documentElement.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');S.set.theme=d=='dark'?'light':'dark';apply();save()};
+$('#bSet').onclick=()=>$('#m2').classList.add('show');$('#o_x').onclick=()=>$('#m2').classList.remove('show');
+$$('nav button').forEach(b=>b.onclick=()=>{$$('nav button').forEach(x=>x.classList.toggle('on',x==b));['read','find','note'].forEach(t=>$('#'+t).classList.toggle('hide',t!=b.dataset.t));clearSel();if(b.dataset.t=='note')notes()});
+// reader
+const ENGV=v=>v=='kjv'||v=='niv'||v=='nlt';const relabel=(sel,eng)=>$$(sel+' option').forEach((o,i)=>{if(B[i])o.textContent=eng?B[i].e:B[i].cn});
+let bi=0,ci=0,sel=new Set();
+$('#sB').innerHTML=B.map((b,i)=>`<option value="${i}">${esc(b.n)}</option>`).join('');
+const key=(b,c,v)=>b+'.'+c+'.'+v,ref=(b,c,v)=>B[b].n+' '+(c+1)+':'+(v+1);
+function row(b,c,v,showRef,terms){if(!T(b,c,v))return '';let t=esc(T(b,c,v));if(terms)terms.forEach(w=>{try{t=t.replace(new RegExp('('+w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>')}catch(e){}});const k=key(b,c,v),h=S.hl[k];return `<div class="v ${h!=null?'h'+h:''} ${sel.has(k)?'s':''}" data-k="${k}">${showRef?`<span class="r">${esc(ref(b,c,v))}</span>`:`<sup>${v+1}</sup>`}${t}${bdg(k)}</div>`}
+const NLT_DEF='a9f61949-741f-4e98-9afe-66ef5183fa4b',nltKey=()=>(S.set.nlt||'').trim()||NLT_DEF,NLTN={'Song of Solomon':'Song','Revelation of John':'Rev'};
+const VS=['ceb','tgl','tab','kjv','niv','nlt'],VSH={ceb:'Cebuano',tgl:'AMB',tab:'TAB',kjv:'KJV',niv:'NIV',nlt:'NLT'},VCR={tab:'Bible Tagalog \u2014 Philippine Bible Society. Kompleto nga 66 ka libro.',tgl:'Ang Malayang Biblia (AMB) \u2014 CC BY-SA 4.0. Bag-ong Tipan ug Genesis 1\u20135:9 lang ang naa.',kjv:'King James Version (1769) \u2014 public domain.',niv:'NIV \u00A9 Biblica. Para lang sa pribadong gamit.',nlt:'New Living Translation \u00A9 Tyndale House. Gikan sa NLT API.'};
+let VER=VS.includes(S.set.ver)?S.set.ver:'ceb',NLE=null;const NL={},LV={},LP={};
+const getCh=(ver,b,c)=>ver=='nlt'?NL[b+'.'+c]:(LV[ver]&&LV[ver][b]&&LV[ver][b][c]);
+const T=(b,c,v)=>{if(VER!='ceb'){const a=getCh(VER,b,c);if(a)return a[v]||''}return B[b].c[c][v]||''};
+function loadVer(ver){return LP[ver]||(LP[ver]=new Promise((ok,no)=>{if(window['BV_'+ver]){LV[ver]=window['BV_'+ver];return ok()}const e=document.createElement('script');e.src='ver_'+ver+'.js';e.onload=()=>{LV[ver]=window['BV_'+ver];ok()};e.onerror=()=>{delete LP[ver];no(new Error('Wala makita ang file sa bersyon (ver_'+ver+'.js)'))};document.head.appendChild(e)}))}
+function nltParse(h){h=String(h);const m=[...h.matchAll(/<span[^>]*class="[^"]*\bvn\b[^"]*"[^>]*>\s*(\d+)\s*<\/span>/g)];if(!m.length)return null;const out=[];m.forEach((x,i)=>{const seg=h.slice(x.index+x[0].length,i+1<m.length?m[i+1].index:h.length),d=document.createElement('div');d.innerHTML=seg;d.querySelectorAll('.tn,.a-tn,.vn,.footnote,h1,h2,h3,h4,h5,h6,.subhead,.chapter-number,script,style').forEach(e=>e.remove());const t=d.textContent.replace(/\s+/g,' ').trim(),n=+x[1];while(out.length<n-1)out.push('');out[n-1]=((out[n-1]||'')+' '+t).trim()});return out}
+async function nltLoad(b,c){const k=b+'.'+c;if(NL[k])return;try{const q=await idb.get('nlt:'+k);if(q&&q.length){NL[k]=q;return}}catch(e){}const nm=NLTN[B[b].e]||B[b].e.replace(/^III /,'3').replace(/^II /,'2').replace(/^I /,'1').replace(/\s+/g,''),r=await fetch('https://api.nlt.to/api/passages?ref='+encodeURIComponent(nm+'.'+(c+1))+'&version=NLT&key='+encodeURIComponent(nltKey()));if(!r.ok)throw new Error('HTTP '+r.status);const a=nltParse(await r.text());if(!a||!a.some(x=>x))throw new Error('Wala mabasa ang format sa NLT');NL[k]=a;try{await idb.set('nlt:'+k,a)}catch(e){}}
+async function verLoad(ver,b,c){if(ver=='nlt')return nltLoad(b,c);await loadVer(ver);if(!getCh(ver,b,c))throw new Error('Wala pa ang '+B[b].n+' '+(c+1)+' sa '+VSH[ver])}
+function renderVs(){const a=VER!='ceb'&&getCh(VER,bi,ci),n=Math.max(B[bi].c[ci].length,a?a.length:0);let h='',hide=0;if(VER!='ceb'&&!a){if(NLE)h='<p class="mu">\u26A0\uFE0F '+esc(NLE)+'. Cebuano ang gipakita.</p>';else{h='<p class="mu">\u23F3 Gikuha ang '+VSH[VER]+'\u2026</p>';hide=1}}$('#vs').innerHTML=h+(hide?'':Array.from({length:n},(_,v)=>row(bi,ci,v)).join(''))+(VER!='ceb'&&a?'<p class="mu" style="font-size:12px;margin-top:14px">'+esc(VCR[VER]||'')+'</p>':'')}
+function chap(){window.__eng=ENGV(VER);relabel('#sB',window.__eng);$('#sC').innerHTML=B[bi].c.map((_,i)=>`<option value="${i}">${i+1}</option>`).join('');$('#sC').value=ci;$('#sB').value=bi;$('#sV').value=VER;NLE=null;renderVs();scrollTo(0,0);if(VER!='ceb'&&!getCh(VER,bi,ci)){const b0=bi,c0=ci,v0=VER;verLoad(v0,b0,c0).then(()=>{if(bi==b0&&ci==c0&&VER==v0)renderVs()},e=>{NLE=String(e.message||e);if(bi==b0&&ci==c0&&VER==v0)renderVs()})}}
+$('#sV').onchange=e=>{VER=VS.includes(e.target.value)?e.target.value:'ceb';S.set.ver=VER;save();clearSel();chap()};$('#oNlt').value=S.set.nlt||'';$('#oNlt').oninput=()=>{S.set.nlt=$('#oNlt').value.trim();save()};
+$('#sB').onchange=e=>{bi=+e.target.value;ci=0;clearSel();chap()};$('#sC').onchange=e=>{ci=+e.target.value;clearSel();chap()};
+$('#nx').onclick=()=>{if(ci<B[bi].c.length-1)ci++;else if(bi<B.length-1){bi++;ci=0}clearSel();chap()};
+$('#pv').onclick=()=>{if(ci>0)ci--;else if(bi>0){bi--;ci=B[bi].c.length-1}clearSel();chap()};
+chap();
+// selection
+function upd(){const a=$('#act');a.classList.toggle('show',sel.size>0);$('#sp').classList.toggle('hide',sel.size<1);$('#sc').textContent=sel.size+' verse'}
+function clearSel(){sel.clear();$$('.v.s').forEach(e=>e.classList.remove('s'));upd()}
+document.addEventListener('click',e=>{const bd=e.target.closest('.bd');if(bd){openSup(bd.dataset.k);return}const v=e.target.closest('.v');if(!v)return;const k=v.dataset.k;sel.has(k)?sel.delete(k):sel.add(k);v.classList.toggle('s');upd()});
+const sorted=()=>[...sel].map(k=>k.split('.').map(Number)).sort((a,b)=>a[0]-b[0]||a[1]-b[1]||a[2]-b[2]);
+const selText=()=>sorted().map(([b,c,v])=>ref(b,c,v)+' — '+T(b,c,v)).join('\n');
+function copy(t){return(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).catch(()=>{const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove()})}
+$$('[data-h]').forEach(b=>b.onclick=()=>{const h=+b.dataset.h;sel.forEach(k=>h<0?delete S.hl[k]:S.hl[k]=h);save();redraw();clearSel();toast(h<0?'Gikuha ang highlight':'Na-highlight')});
+function redraw(){$$('.v').forEach(e=>{const h=S.hl[e.dataset.k];e.className=e.className.replace(/h\d/g,'').trim();if(h!=null)e.classList.add('h'+h)})}
+$('#cp').onclick=()=>copy(selText()).then(()=>toast('Na-copy'));$('#cl').onclick=clearSel;
+// search
+let idx=null;function ensureIdx(){if(!idx){idx=[];B.forEach((b,i)=>b.c.forEach((c,j)=>c.forEach((t,k)=>t&&idx.push([i,j,k,norm(t)]))))}}
+// ---- Kaabag nga verse / Pasabot ----
+const nb=s=>norm(s).replace(/\./g,'').replace(/\s+/g,' ').trim().replace(/^iii\b/,'3').replace(/^ii\b/,'2').replace(/^i\b/,'1');
+const XA=[['henesis'],['exodo'],['levitico'],['numeros'],['deuteronomio'],['josue'],['mga maghuhukom','maghuhukom','hukom'],['rut'],['1 samuel'],['2 samuel'],['1 mga hari','1 hari'],['2 mga hari','2 hari'],['1 cronica','1 mga cronica'],['2 cronica','2 mga cronica'],['esdras'],['nehemias'],['ester'],[],['salmo','mga salmo','awit'],['panultihon','proverbios'],['magwawali','eclesiastes'],['awit ni solomon','awit sa mga awit','cantares'],['isaias'],['jeremias'],['pagbangotan'],['ezequiel'],[],['oseas'],[],[],['obadias','abdias'],['jonas'],['miqueas','mikas'],[],['habakuk'],['zefanias','sofonias'],['hagai','ageo'],['zacarias'],['malaquias'],['mateo'],['marcos'],['lucas'],['juan'],['mga buhat','buhat','binuhatan'],['roma'],['1 corinto','1 corintiano'],['2 corinto','2 corintiano'],['galacia','galasya'],['efeso'],['filipos','filipense'],['colosas'],['1 tesalonica'],['2 tesalonica'],['1 timoteo'],['2 timoteo'],['tito'],['filemon'],['hebreohanon','hebreo'],['santiago'],['1 pedro'],['2 pedro'],['1 juan'],['2 juan'],['3 juan'],['judas'],['pinadayag','apocalipsis']];
+const BKM=[];B.forEach((b,i)=>{BKM.push([nb(b.n),i]);BKM.push([nb(b.e),i]);(XA[i]||[]).forEach(a=>BKM.push([nb(a),i]))});
+[['panultion',19],['gipadayag',65],['psalm',18],['mga salmo',18]].forEach(x=>BKM.push([nb(x[0]),x[1]]));
+function bookIdx(s){const n=nb(s);if(!n)return -1;const e=BKM.find(x=>x[0]==n);if(e)return e[1];const c=BKM.filter(x=>x[0].startsWith(n));return c.length?Math.min(...c.map(x=>x[1])):-1}
+let REFCAP=false;function parseRef(s,MX){MX=MX||100;const m=s.trim().match(/^(.+?)\s+(\d+)(?::(\d+)(?:\s*[-\u2013]\s*(\d+))?)?$/);if(!m)return[];const bk=bookIdx(m[1]);if(bk<0)return[];const c=m[2]-1,ch=B[bk].c[c];if(!ch)return[];const v1=m[3]?m[3]-1:0,v2r=m[3]?(m[4]?m[4]-1:v1):ch.length-1,v2=Math.min(v2r,v1+MX-1),o=[];REFCAP=v2r>v2;for(let v=v1;v<=v2;v++)if(ch[v])o.push(key(bk,c,v));return o}
+function bdg(k){const x=S.sup&&S.sup[k];return x&&((x.r&&x.r.length)||x.n)?'<span class="bd" data-k="'+k+'">\u{1F4CE}'+(x.r&&x.r.length?x.r.length:'')+'</span>':''}
+const kp=k=>k.split('.').map(Number),vref=k=>ref(...kp(k)),vtxt=k=>{const[b,c,v]=kp(k);return T(b,c,v)};
+let sk=null,inv=null,skM=null;const akey=k=>skM&&k==sk?k+'#'+skM.length:k;const inSk=k=>skM?skM.includes(k):k==sk;
+const supGet=k=>S.sup[k]||(S.sup[k]={n:'',r:[]});
+function redrawBd(){$$('.v').forEach(e=>{const o=e.querySelector('.bd');if(o)o.remove();e.insertAdjacentHTML('beforeend',bdg(e.dataset.k))})}
+const grp=ks=>{const a=[...new Set(ks)].map(k=>k.split('.').map(Number)).sort((x,y)=>x[0]-y[0]||x[1]-y[1]||x[2]-y[2]),g=[];a.forEach(t=>{const l=g[g.length-1];if(l&&l.b==t[0]&&l.c==t[1]&&l.v[l.v.length-1]==t[2]-1)l.v.push(t[2]);else g.push({b:t[0],c:t[1],v:[t[2]]})});return g};
+const gref=g=>B[g.b].n+' '+(g.c+1)+':'+(g.v[0]+1)+(g.v.length>1?'-'+(g.v[g.v.length-1]+1):'');
+const gkeys=g=>g.v.map(v=>key(g.b,g.c,v));
+const gtxt=g=>g.v.length>1?g.v.map(v=>'<span class="vn">'+(v+1)+'</span>'+esc(T(g.b,g.c,v))).join(' '):esc(T(g.b,g.c,g.v[0]));
+function supRender(){const x=supGet(sk);if(skM){$('#sTitle').textContent=grp(skM).map(gref).join(' \u00B7 ');$('#sTxt').innerHTML=grp(skM).map(g=>gtxt(g)).join(' ');$('#sTxt').classList.add('multi')}else{$('#sTitle').textContent=vref(sk);$('#sTxt').textContent=vtxt(sk);$('#sTxt').classList.remove('multi')}$('#sNote').value=x.n||'';const G=grp(x.r);$('#sList').innerHTML=G.length?G.map((g,i)=>{const long=g.v.length>1||T(g.b,g.c,g.v[0]).length>170;return `<div class="sg"><b>${esc(gref(g))}</b>${g.v.length>1?` <span class="mu">(${g.v.length} ka verse)</span>`:''}<button data-rg="${i}" title="Tangtanga">\u2715</button><div class="gt clamp">${gtxt(g)}</div>${long?'<button type="button" class="gm" data-gm="1">Basaha tanan \u25BE</button>':''}</div>`}).join(''):'<p class="mu">Wala pay kaabag nga verse.</p>';$$('#sList [data-rg]').forEach(b=>b.onclick=()=>{const ks=gkeys(G[+b.dataset.rg]);x.r=x.r.filter(z=>!ks.includes(z));save();supRender();redrawBd()});$$('#sList [data-gm]').forEach(b=>b.onclick=()=>{const t=b.previousElementSibling,on=t.classList.toggle('clamp');b.textContent=on?'Basaha tanan \u25BE':'Pamubo \u25B4'})}
+function openSup(k,ks){sk=k;skM=ks&&ks.length>1?ks:null;$('#sSugL').innerHTML='';supRender();$('#m4').classList.add('show')}
+function supAdd(ks){const x=supGet(sk);ks.forEach(k=>{if(!inSk(k)&&!x.r.includes(k))x.r.push(k)});save();supRender();redrawBd()}
+function similar(k){ensureIdx();if(!inv){inv=new Map();idx.forEach((x,i)=>{new Set(x[3].split(/[^a-z0-9]+/).filter(w=>w.length>=4)).forEach(w=>{let a=inv.get(w);if(!a)inv.set(w,a=[]);a.push(i)})})}
+const[b,c,v]=kp(k),i0=idx.findIndex(x=>x[0]==b&&x[1]==c&&x[2]==v);if(i0<0)return[];const sc=new Map();new Set(idx[i0][3].split(/[^a-z0-9]+/).filter(w=>w.length>=4)).forEach(w=>{const a=inv.get(w);if(!a||a.length>400||a.length<2)return;const wt=Math.log(31100/a.length);a.forEach(i=>{if(i==i0)return;const e=sc.get(i)||[0,0];e[0]+=wt;e[1]++;sc.set(i,e)})});
+return[...sc.entries()].filter(([i,e])=>e[1]>=2).sort((p,q)=>q[1][0]-p[1][0]).slice(0,8).map(([i])=>idx[i])}
+$('#sp').onclick=()=>{if(!sel.size)return;const a=sorted().map(t=>key(...t));openSup(a[0],a)};
+$('#sNote').oninput=()=>{supGet(sk).n=$('#sNote').value;save()};
+$('#sAddB').onclick=()=>{const ks=parseRef($('#sAdd').value,8);if(!ks.length)return toast('Wala makita. Pananglitan: Juan 3:16 o Roma 8:14-16');supAdd(ks);toast('Nadugang: '+ks.length+' ka verse'+(REFCAP?' (hangtod 8 ra matag dugang)':''));$('#sAdd').value=''};$('#sAdd').onkeydown=e=>{if(e.key=='Enter')$('#sAddB').click()};
+$('#sSug').onclick=()=>{const x=supGet(sk),r=similar(sk).filter(z=>!x.r.includes(key(z[0],z[1],z[2])));$('#sSugL').innerHTML=r.length?r.map(z=>{const k=key(z[0],z[1],z[2]);return `<div class="sg"><b>${esc(vref(k))}</b> ${esc(vtxt(k))}<button data-ad="${k}">\uFF0B</button></div>`}).join(''):'<p class="mu">Walay nakitang sugyot.</p>';$$('#sSugL [data-ad]').forEach(b=>b.onclick=()=>{supAdd([b.dataset.ad]);b.parentElement.remove()})};
+const KB="X+LULnMTZzHXDL1LpJ6HtIutHtHdf+0MF6uFdGkyj/BSIGvP/ORSCzwibgPids7urS7lMABm5gj8+hf/uKWdfm4xv7x1Lb8EcUsU4cQEYxvW9zjvnbJbQ9rzjRUGmuMD2A==";
+async function kUnlock(pw){const d=Uint8Array.from(atob(KB),c=>c.charCodeAt(0)),salt=d.slice(0,16),iv=d.slice(16,28),ct=d.slice(28),km=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']),k=await crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:1000000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv},k,ct))}
+function refreshK(){const b=$('#kLock');if(b)b.textContent=S.set.gkey?'\u{1F512} I-lock ang Dugang Kasayoran (tangtangon ang key sa kini nga device)':'\u{1F513} I-unlock ang Dugang Kasayoran (password)'}
+async function getKey(){let key=(S.set.gkey||'').trim();if(key)return key;if(KB){const pw=prompt('Password para sa Dugang Kasayoran:');if(!pw)return null;toast('Gi-check ang password\u2026');try{key=await kUnlock(pw);S.set.gkey=key;save();refreshK();$('#oKey').value=key;return key}catch(e){toast('Sayop ang password');return null}}toast('Ibutang una ang key sa \u2699\uFE0F Setting');return null}
+$('#kLock').onclick=async()=>{if(S.set.gkey){if(confirm('I-lock ang Dugang Kasayoran sa kini nga device? Mangayo na usab kini og password.')){delete S.set.gkey;$('#oKey').value='';save();refreshK()}}else{await getKey()}};
+let VTXOFF=0;function chkV(e){const m=String((e&&e.message)||e);if(/^403/.test(m)&&/aiplatform|Agent Platform|has not been used/i.test(m))VTXOFF=1}
+function jparse(t){t=String(t).replace(/^\s*```(?:json)?|```\s*$/g,'').trim();try{return JSON.parse(t)}catch(e){let o=[],q=0,x=0;for(const ch of t){if(q){if(x)x=0;else if(ch=='\\')x=1;else if(ch=='"')q=0}else if(ch=='"')q=1;else if(ch=='{')o.push('}');else if(ch=='[')o.push(']');else if(ch=='}'||ch==']')o.pop()}let r=t+(q?'"':'');r=r.replace(/[,:]\s*$/,'');r=r.replace(/,\s*"[^"]*"\s*$/,'');try{return JSON.parse(r+o.reverse().join(''))}catch(e2){throw new Error('Naputol ang tubag sa serbisyo. Sulayi usab.')}}}
+async function aiStream(att,prompt,onP,mx,tp){const ac=new AbortController(),t0=Date.now(),to=setTimeout(()=>ac.abort(),mx>8000?290000:170000);
+const r=await fetch(att.url,{method:'POST',signal:ac.signal,headers:{'Content-Type':'application/json',...att.h},body:JSON.stringify({contents:[{role:'user',parts:[{text:prompt}]}],generationConfig:{temperature:tp==null?.3:tp,maxOutputTokens:mx||8000,responseMimeType:'application/json'}})});
+if(!r.ok){clearTimeout(to);let m='';try{m=(await r.json()).error.message}catch(e){}throw new Error(r.status+' '+m)}
+const rd=r.body.getReader(),dec=new TextDecoder();let buf='',txt='';const tick=setInterval(()=>{if(!txt)onP(Math.min(30,Math.round(30*(1-Math.exp(-(Date.now()-t0)/25000)))))},400);
+try{for(;;){const{done,value}=await rd.read();if(done)break;buf+=dec.decode(value,{stream:true});let i;while((i=buf.indexOf('\n'))>=0){const ln=buf.slice(0,i).trim();buf=buf.slice(i+1);if(ln.startsWith('data:')){try{const j=JSON.parse(ln.slice(5));txt+=((j.candidates&&j.candidates[0]&&j.candidates[0].content&&j.candidates[0].content.parts)||[]).map(p=>p.text||'').join('')}catch(e){}}}onP(Math.min(96,30+Math.round(66*Math.min(1,txt.length/((mx||5000)*.34)))))}}finally{clearInterval(tick);clearTimeout(to)}
+const R=jparse(txt);onP(100);return R}
+async function aiSup(k,onP,M){const key=await getKey();if(!key)return null;M=M&&M.length>1?M:null;const[b,c,v]=kp(k),[b2,c2,v2]=M?kp(M[M.length-1]):[b,c,v],pv=B[b].c[c][v-1]||'',nx=B[b2].c[c2][v2+1]||'',RF=M?grp(M).map(gref).join(', '):vref(k),TX=M?M.map(vtxt).join(' '):vtxt(k);
+const prompt='You are a careful, warm Bible study helper for Cebuano-speaking church members. Help an ordinary person understand this verse or passage. If it is a passage of several verses (for example a parable or story), treat it as ONE connected whole: explain the full story and its main lesson together, do not split it verse by verse, and use "pulong" for hard words from anywhere in the passage.\nBook: '+B[b].e+' chapter '+(c+1)+'.\nPrevious verse: '+pv+'\nVERSE'+(M?' (passage of '+M.length+' verses)':'')+' '+RF+': "'+TX+'"\nNext verse: '+nx+'\n\nReturn ONLY valid JSON in exactly this shape:\n{"buot_ipasabot":"2-3 short sentences in simple, modern Cebuano (Bisaya) saying what this verse means, no difficult words","pulong":[{"pulong":"a hard or old-fashioned word from the verse","pasabot":"simple meaning in everyday Cebuano"}],"refs":[{"ref":"Romans 5:8","why":"max 12 words, simple Cebuano, why this verse supports or explains it"}],"pananglit":"one short everyday example in simple Cebuano (1-2 sentences)","aplikasyon":"one practical sentence in Cebuano: how to apply it today"}\nRules: give 0-4 items in "pulong" (only words that are truly hard); give exactly 6 real cross-references in "refs" using English book names (e.g. John, I Corinthians, Psalms); never invent verses; stay faithful to Scripture and the context; keep the language simple and warm.';
+const dev=m=>({url:'https://generativelanguage.googleapis.com/v1beta/models/'+m+':streamGenerateContent?alt=sse',h:{'x-goog-api-key':key}}),vtx=m=>({url:'https://aiplatform.googleapis.com/v1/publishers/google/models/'+m+':streamGenerateContent?alt=sse&key='+encodeURIComponent(key),h:{}});
+const one=S.set.gmodel?[S.set.gmodel.trim()]:null,dM=one||['gemini-flash-latest','gemini-3.8-flash','gemini-flash-lite-latest','gemini-pro-latest'],vM=one||['gemini-3.8-flash','gemini-2.5-pro'];
+const order=[...dM.map(dev),...((key.startsWith('AQ.')&&!VTXOFF)?vM.map(vtx):[])];
+const errs=[];for(const a of order){try{return await aiStream(a,prompt,onP)}catch(e){errs.push(e.name=='AbortError'?'Dugay kaayo ang tubag':String(e.message||e));chkV(e);onP(0)}}
+const er=new Error(errs[errs.length-1]||'');er.all=errs;throw er}
+const clean=s=>String(s).replace(/AQ\.[\w.-]+|AIza[\w-]+/g,'[key]').replace(/gemini/ig,'serbisyo').replace(/\bAI\b/g,'serbisyo').slice(0,240);
+function errHint(e){const a=(e.all||[String(e.message||e)]).join(' ');if(/429|quota/i.test(a))return 'Naubos ang libre nga limit (quota) sa imong key karon. Hulat og pipila ka minuto o ugma, o i-enable ang billing sa Google AI Studio, o ibutang ang bag-ong key.';if(/403|disabled|permission/i.test(a))return 'Dili gitugotan ang key. Susiha nga husto ug aktibo ang key sa Google AI Studio.';if(/404/.test(a))return 'Wala na ang usa ka model. Gisulayan ang uban; kung mubalik ang sayop, i-update ang model sa Setting.';return 'Gisulayan ang daghang paagi apan wala mugana. Ang detalye anaa sa ubos.'}
+function errBox(e){const a=(e.all||[String(e.message||e)]).map((m,i)=>(i+1)+') '+clean(m)).join('\n');return '<div class="ai-s"><h4>Wala mahuman ang pagsusi</h4><p>'+esc(errHint(e))+'</p><details><summary>Detalye sa sayop</summary><pre style="white-space:pre-wrap;font-size:12px">'+esc(a)+'</pre></details></div>'}
+const SRL={s:{w:450,p:3,mx:6000},m:{w:1000,p:3,mx:9000},l:{w:1800,p:4,mx:14000}};
+const srShape='{"title":"sermon title in Cebuano","main_verse":"Acts 2:42-47","intro":"opening in Cebuano, 1-2 short paragraphs separated by \\n","points":[{"title":"point title in Cebuano","verse":"Acts 2:42","body":"2-4 short paragraphs separated by \\n","illustration":"one everyday example in Cebuano","application":"one practical sentence in Cebuano"}],"conclusion":"closing summary in Cebuano","altar_call":"invitation in Cebuano (salvation / recommitment / prayer)","prayer":"short closing prayer in Cebuano"}';
+let SER=null,srBusy=false;
+async function aiGen(prompt,onP,mx){const key=await getKey();if(!key)return null;
+const dev=m=>({url:'https://generativelanguage.googleapis.com/v1beta/models/'+m+':streamGenerateContent?alt=sse',h:{'x-goog-api-key':key}}),vtx=m=>({url:'https://aiplatform.googleapis.com/v1/publishers/google/models/'+m+':streamGenerateContent?alt=sse&key='+encodeURIComponent(key),h:{}});
+const one=S.set.gmodel?[S.set.gmodel.trim()]:null,dM=one||['gemini-flash-latest','gemini-3.8-flash','gemini-flash-lite-latest','gemini-pro-latest'],vM=one||['gemini-3.8-flash','gemini-2.5-pro'];
+const order=[...dM.map(dev),...((key.startsWith('AQ.')&&!VTXOFF)?vM.map(vtx):[])];
+const errs=[];for(const a of order){try{return await aiStream(a,prompt,onP,mx,.7)}catch(e){errs.push(e.name=='AbortError'?'Dugay kaayo ang tubag':String(e.message||e));chkV(e);onP(0)}}
+const er=new Error(errs[errs.length-1]||'');er.all=errs;throw er}
+function srPrompt(o){return 'You are an experienced, Bible-faithful pastor and preacher writing for a Cebuano-speaking evangelical church (Breaking Chain Ministry, Philippines). Write a complete sermon in simple, warm, modern Cebuano (Bisaya) that ordinary church members and young people understand. Avoid deep or old-fashioned words.\nTOPIC / TITLE: '+o.t+'\nMAIN VERSE: '+(o.v||'(choose the best fitting passage)')+'\nEXTRA INSTRUCTIONS: '+(o.x||'none')+'\nLENGTH: about '+o.w+' words in total, with exactly '+o.p+' main points.\n\nReturn ONLY valid JSON in exactly this shape:\n'+srShape+'\nRules: every "verse" and "main_verse" must be a real Bible reference written with the English book name (for example "Acts 2:42-47"), one passage only, at most 8 verses. Do NOT write out Bible verse text yourself; the app inserts it. Be faithful to the Bible and sound doctrine; do not present invented stories as true facts. Put \\n between paragraphs inside a text field. Use real, everyday Filipino/Cebuano situations for illustrations.'}
+function srRePrompt(inst){return 'You are the same Bible-faithful Cebuano preacher. Below is a sermon as JSON. '+inst+'\nKeep the same JSON shape, the same language (simple, modern Cebuano) and the same Bible-reference rules (real references with English book names only, never write out verse text). Return the FULL revised sermon as ONLY valid JSON.\n\nSHAPE:\n'+srShape+'\n\nSERMON:\n'+JSON.stringify(SER)}
+const srNorm=d=>({title:String(d.title||'').trim(),main_verse:String(d.main_verse||'').trim(),intro:String(d.intro||''),points:(Array.isArray(d.points)?d.points:[]).map(p=>({title:String((p&&p.title)||''),verse:String((p&&p.verse)||''),body:String((p&&p.body)||''),illustration:String((p&&p.illustration)||''),application:String((p&&p.application)||'')})),conclusion:String(d.conclusion||''),altar_call:String(d.altar_call||''),prayer:String(d.prayer||'')});
+function srVerse(ref){ref=String(ref||'').trim();if(!ref)return'';const ks=parseRef(ref);if(!ks.length)return'<div>\u{1F4D6} '+esc(ref)+'</div>';return grp(ks).map(g=>`<blockquote><b>${esc(gref(g))}</b><br>${g.v.map(v=>(g.v.length>1?'<sup>'+(v+1)+'</sup> ':'')+esc(B[g.b].c[g.c][v]||'')).join(' ')}</blockquote>`).join('')}
+function srHtml(d){const P=x=>String(x||'').split(/\n+/).map(s=>s.trim()).filter(Boolean).map(s=>'<div>'+esc(s)+'</div>').join(''),br='<div><br></div>',RM=['I','II','III','IV','V','VI','VII','VIII','IX','X'];
+return '<div><b>\u{1F4D6} SERMON TITLE:</b></div><div><b>\u201C'+esc(String(d.title||'').toUpperCase())+'\u201D</b></div>'+br+(d.main_verse?'<div><b>\u{1F4DC} Main Verse:</b></div>'+srVerse(d.main_verse)+br:'')+(d.intro?'<div><b>\u{1F539} PASIUNA</b></div>'+P(d.intro)+br:'')+d.points.map((p,i)=>'<div><b>'+(RM[i]||i+1)+'. '+esc(p.title)+'</b></div>'+srVerse(p.verse)+P(p.body)+(p.illustration?'<div><i>\u{1F4A1} Pananglit: '+esc(p.illustration)+'</i></div>':'')+(p.application?'<div>\u2705 <b>Aplikasyon:</b> '+esc(p.application)+'</div>':'')+br).join('')+(d.conclusion?'<div><b>\u{1F3C1} KONKLUSYON</b></div>'+P(d.conclusion)+br:'')+(d.altar_call?'<div><b>\u{1F525} ALTAR CALL</b></div>'+P(d.altar_call)+br:'')+(d.prayer?'<div><b>\u{1F64F} PAG-AMPO</b></div>'+P(d.prayer):'')}
+function srShow(){$('#srOut').innerHTML=srHtml(SER);$('#srAct').classList.remove('hide');$('#srIns').classList.toggle('hide',!($('#ed').classList.contains('show')&&cur&&!cur.lock));const w=($('#srOut').innerText.match(/\S+/g)||[]).length;$('#srS').textContent='Human na \u2713 \u2014 mga '+w+' ka pulong';$('#srOut').scrollTop=0}
+async function srRun(prompt,mx){if(srBusy)return;srBusy=true;$$('#m6 button').forEach(b=>b.disabled=true);$('#srS').textContent='Gihimo ang sermon\u2026 palihog hulat (mga 20\u201390 segundo).';$('#srPgW').classList.remove('hide');$('#srB').style.width='2%';
+try{const d=await aiGen(prompt,p=>{$('#srB').style.width=p+'%'},mx);if(d){if(!Array.isArray(d.points)||!d.points.length)throw new Error('Wala kompleto ang sermon nga nadawat. Sulayi balik.');SER=srNorm(d);srShow()}else $('#srS').textContent=''}
+catch(e){$('#srS').innerHTML=errBox(e)}finally{srBusy=false;$$('#m6 button').forEach(b=>b.disabled=false);$('#srPgW').classList.add('hide')}}
+function openSer(){const t=$('#srT');if(!t.value.trim()&&$('#ed').classList.contains('show')&&cur&&cur.t)t.value=cur.t;$('#m6').classList.add('show');if(SER)srShow()}
+$('#aiSer').onclick=openSer;$('#eAi').onclick=openSer;$('#m6x').onclick=()=>$('#m6').classList.remove('show');
+$('#srGo').onclick=()=>{const t=$('#srT').value.trim();if(!t)return toast('Isulat una ang titulo o hilisgutan');const L=SRL[$('#srL').value]||SRL.m;srRun(srPrompt({t,v:$('#srV').value.trim(),x:$('#srX').value.trim(),w:L.w,p:L.p}),L.mx)};
+const srRef=inst=>{if(!SER)return toast('Himoa una ang sermon');srRun(srRePrompt(inst),14000)};
+$('#srLong').onclick=()=>srRef('Make it about 40% longer: explain each point more deeply, add more Scripture support (more real references) and one more concrete everyday example where helpful.');
+$('#srShort').onclick=()=>srRef('Make it about 40% shorter: keep the main message and every main point, but tighten the wording and remove repetition.');
+$('#srRe').onclick=()=>{const x=$('#srR').value.trim();if(!x)return toast('Isulat una ang gusto nimong usbon');srRef('Apply this request from the pastor (it may be in Cebuano or English): "'+x+'"');};
+$('#srNote').onclick=()=>{if(!SER)return;if($('#ed').classList.contains('show')&&cur&&!cur.lock)sv(1);const n={id:uid(),f:fa=='all'?S.folders[0].id:fa,t:SER.title||'Sermon',h:srHtml(SER),type:'sermon',meta:{verse:SER.main_verse||''},ts:Date.now()};S.notes.unshift(n);save();$('#m6').classList.remove('show');openNote(n.id);notes()};
+$('#srIns').onclick=()=>{if(!SER||!cur||cur.lock)return;$('#body').insertAdjacentHTML('beforeend','<div><br></div>'+srHtml(SER));sv(1);$('#m6').classList.remove('show');toast('Nadugang sa note')};
+$('#srCp').onclick=()=>{navigator.clipboard.writeText($('#srOut').innerText).then(()=>toast('Na-copy \u2713'),()=>toast('Wala ma-copy'))};
+const secH=(t,b)=>b?`<div class="ai-s"><h4>${t}</h4>${b}</div>`:'';
+function aiRender(d,k){const L=$('#sSugL'),x=supGet(k),items=[];for(const f of d.refs||[]){for(const kk of parseRef(String(f.ref||'')).slice(0,3))if(!inSk(kk)&&!x.r.includes(kk)&&!items.some(i=>i[0]==kk))items.push([kk,String(f.why||'')])}
+const ps=String(d.buot_ipasabot||d.pasabot||''),pl=(d.pulong||[]).filter(w=>w&&w.pulong);
+L.innerHTML=secH('\u{1F4D6} Pasabot sa yano nga pulong',esc(ps))+secH('\u{1F524} Mga pulong nga gipasabot',pl.map(w=>`<div><b>${esc(String(w.pulong))}</b> \u2014 ${esc(String(w.pasabot||''))}</div>`).join(''))+secH('\u{1F517} Kaabag nga mga verse',items.length?items.map(([kk,w])=>`<div class="sg"><b>${esc(vref(kk))}</b> ${esc(vtxt(kk))}<button data-ad="${kk}">\uFF0B</button><div class="mu">${esc(w)}</div></div>`).join(''):'<p class="mu">Walay verse nga nakit-an sa imong Bibliya gikan sa tubag.</p>')+secH('\u{1F4A1} Pananglit',esc(String(d.pananglit||'')))+secH('\u{1F64F} Aplikasyon',esc(String(d.aplikasyon||'')))+'<div class="bar"><button id="aiUse">\u{1F4CB} Ibutang sa Pasabot</button><button id="aiAll">\uFF0B Tanang verse</button><button id="aiNew">\u21BB Bag-o</button></div><p class="mu">Dugang kasayoran ra kini. Susiha una sa Bibliya. Ang teksto sa verse gikan sa imong Bibliya.</p>';
+$$('#sSugL [data-ad]').forEach(b=>b.onclick=()=>{supAdd([b.dataset.ad]);b.parentElement.remove()});
+$('#aiUse').onclick=()=>{const c=supGet(k);const t=psText([{k:'pasabot',l:[ps]},{k:'pulong',l:pl.map(w=>w.pulong+' = '+(w.pasabot||''))},{k:'pananglit',l:[d.pananglit||'']},{k:'aplikasyon',l:[d.aplikasyon||'']}].map(z=>({k:z.k,l:z.l.map(String).filter(x=>x.trim())})).filter(z=>z.l.length));c.n=(c.n?c.n+'\n\n':'')+t;save();$('#sNote').value=c.n;toast('Gibutang sa Pasabot')};
+$('#aiAll').onclick=()=>{supAdd(items.map(i=>i[0]));$$('#sSugL [data-ad]').forEach(b=>b.parentElement.remove())};$('#aiNew').onclick=()=>{delete S.aic[akey(k)];save();$('#sAi').click()}}
+$('#sAi').onclick=async()=>{const bt=$('#sAi'),L=$('#sSugL'),k=sk,c=S.aic[akey(k)];if(c){aiRender(c,k);return}
+bt.disabled=true;L.innerHTML='<div class="pg"><div id="pgb"></div></div><p class="mu" id="pgt">Gisusi ang kasayoran\u2026 0%</p><p class="mu">Mahimong molungtad og mga 1 ka minuto aron mas klaro ug tarong ang resulta.</p>';
+const onP=p=>{const b=$('#pgb'),t=$('#pgt');if(b)b.style.width=p+'%';if(t)t.textContent='Gisusi ang kasayoran\u2026 '+p+'% (nahabilin pa '+(100-p)+'%)';bt.textContent='\u23F3 Gisusi\u2026 '+p+'%'};
+try{const d=await aiSup(k,onP,skM);if(!d){L.innerHTML='';return}d.v=2;S.aic[akey(k)]=d;save();aiRender(d,k)}
+catch(e){const m=String(e.message||e);L.innerHTML=errBox(e);toast(e.name=='AbortError'?'Dugay kaayo ang tubag. Sulayi pag-usab':e instanceof SyntaxError?'Wala mahuman ang tubag. Sulayi pag-usab':/^(400|403)/.test(m)?'Sayop o dili mugana ang key':/^429/.test(m)?'Naubos ang quota sa key. Sulayi unya':/^404/.test(m)?'Dili makita ang model. Usba sa Setting':'Wala maka-konekta. Susiha ang internet');console.error(m)}
+finally{bt.disabled=false;bt.textContent='\u2728 Dugang Kasayoran'}};
+function crc32(u){const t=crc32.t||(crc32.t=Array.from({length:256},(_,n)=>{let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;return c>>>0}));let r=-1;for(let i=0;i<u.length;i++)r=t[(r^u[i])&255]^(r>>>8);return(r^-1)>>>0}
+function mkzip(files){const enc=new TextEncoder(),parts=[],cd=[];let off=0;const w=a=>{parts.push(a);off+=a.length},le=(n,b)=>{const a=new Uint8Array(b);for(let i=0;i<b;i++)a[i]=(n>>>(8*i))&255;return a};
+for(const[f,u]of files){const nm=enc.encode(f),c=crc32(u),o=off;[le(0x04034b50,4),le(20,2),le(0,2),le(0,2),le(0,2),le(0x21,2),le(c,4),le(u.length,4),le(u.length,4),le(nm.length,2),le(0,2),nm,u].forEach(w);cd.push([nm,c,u.length,o])}
+const cs=off;for(const[nm,c,n,o]of cd)[le(0x02014b50,4),le(20,2),le(20,2),le(0,2),le(0,2),le(0,2),le(0x21,2),le(c,4),le(n,4),le(n,4),le(nm.length,2),le(0,2),le(0,2),le(0,2),le(0,2),le(0,4),le(o,4),nm].forEach(w);
+const ce=off-cs;[le(0x06054b50,4),le(0,2),le(0,2),le(cd.length,2),le(cd.length,2),le(ce,4),le(cs,4),le(0,2)].forEach(w);return new Blob(parts,{type:'application/zip'})}
+
+$('#oKey').oninput=()=>{S.set.gkey=$('#oKey').value.trim();save()};$('#oModel').oninput=()=>{S.set.gmodel=$('#oModel').value.trim();save()};
+$('#sOk').onclick=()=>{const x=S.sup[sk];if(x&&!x.n.trim()&&!x.r.length)delete S.sup[sk];save();$('#m4').classList.remove('show','max');skM=null;$('#sMax').textContent='\u26F6 Palapdan';redrawBd()};
+const PS_T={pasabot:['\u{1F4D6}','Pasabot','#b8651b','255,180,84'],pulong:['\u{1F524}','Mga Pulong','#2f7d5b','80,190,130'],pananglit:['\u{1F4A1}','Pananglit','#a67c00','255,210,80'],aplikasyon:['\u{1F64F}','Aplikasyon','#6a4cb5','140,110,220']};
+function psParse(t){const hd=/^\s*(?:[\u{1F300}-\u{1FAFF}\u2600-\u27BF]\uFE0F?\s*)?(pasabot|mga\s*pulong|pananglit|aplikasyon)\s*:\s*(.*)$/iu;const out=[];let cur=null;
+String(t||'').replace(/\r/g,'').split('\n').forEach(l=>{const m=l.match(hd);if(m){const k=m[1].toLowerCase().replace(/\s+/g,'');cur={k:k=='mgapulong'?'pulong':k,l:[]};out.push(cur);if(m[2].trim())cur.l.push(m[2].trim())}else{if(!cur){if(!l.trim())return;cur={k:'pasabot',l:[]};out.push(cur)}cur.l.push(l.trim())}});
+return out.map(s=>{if(s.k=='pulong'){const it=[];s.l.forEach(x=>x.split(';').forEach(y=>{y=y.replace(/^[\u2022\-\*]\s*/,'').trim();if(y)it.push(y)}));s.l=it}else{const p=[];let b=[];s.l.forEach(x=>{if(x)b.push(x);else if(b.length){p.push(b.join(' '));b=[]}});if(b.length)p.push(b.join(' '));s.l=p}return s}).filter(s=>s.l.length)}
+function psText(a){return a.map(s=>{const T=PS_T[s.k];return T[0]+' '+T[1]+':\n'+(s.k=='pulong'?s.l.map(x=>'\u2022 '+x).join('\n'):s.l.join('\n\n'))}).join('\n\n')}
+function psHtml(a){return '<div class="pasabot" style="margin:14px 0;padding:16px 18px;border-radius:16px;border:1px solid rgba(180,110,40,.35);border-left:6px solid #b8651b;background:linear-gradient(135deg,rgba(255,180,84,.18),rgba(150,90,40,.06))"><div class="ph" style="font-weight:800;letter-spacing:.1em;color:#b8651b;margin-bottom:10px;padding-bottom:8px;border-bottom:1px dashed rgba(180,110,40,.45)">\u{1F4D6} PASABOT SA VERSE</div>'+a.map(s=>{const T=PS_T[s.k];const body=s.k=='pulong'?s.l.map(x=>{const m=x.match(/^(.*?)\s*[=\u2014\u2013]\s*(.*)$/);return '<div style="margin:5px 0;padding:7px 11px;border-radius:8px;background:rgba('+T[3]+',.16);line-height:1.6">'+(m?'<b>'+esc(m[1])+'</b> = '+esc(m[2]):esc(x))+'</div>'}).join(''):s.l.map(x=>'<div style="margin:0 0 8px;line-height:1.85">'+esc(x)+'</div>').join('');return '<div style="margin:12px 0 0;padding:10px 14px;border-radius:12px;border-left:4px solid '+T[2]+';background:rgba('+T[3]+',.12)"><div style="font-weight:700;font-size:.85em;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;color:'+T[2]+'">'+T[0]+' '+T[1]+'</div>'+body+'</div>'}).join('')+'</div><div><br></div>'}
+$('#sTidy').onclick=()=>{const v=$('#sNote').value;if(!v.trim())return;const t=psText(psParse(v));$('#sNote').value=t;supGet(sk).n=t;save();toast('Nahan-ay na')};
+$('#sMax').onclick=()=>{const m=$('#m4'),on=m.classList.toggle('max');$('#sMax').textContent=on?'⤡ Pamubo':'⛶ Palapdan';if(on)$('#sNote').focus()};
+$('#sNb').onclick=()=>{const x=supGet(sk);sel.clear();[sk,...x.r].forEach(k=>sel.add(k));window.__xh=x.n.trim()?psHtml(psParse(x.n)):'';$('#m4').classList.remove('max');$('#sMax').textContent='\u26F6 Palapdan';$('#m4').classList.remove('show');upd();$('#tn').click()};
+
+function find(){const q=$('#q').value.trim(),o=$('#rs');if(!q)return;o.classList.remove('hide');
+const m=q.match(/^(.+?)\s+(\d+)(?::(\d+))?(?:-\d+)?$/);if(m){const bk=bookIdx(m[1]);if(bk>=0&&B[bk].c[m[2]-1]){const c=m[2]-1;if(m[3]&&B[bk].c[c][m[3]-1]){o.innerHTML=row(bk,c,m[3]-1,1)+`<button onclick="openCh(${bk},${c})">Ablihi ang tibuok kapitulo</button>`}else openCh(bk,c);$('#qi').textContent='';return}}
+ensureIdx();
+const w=norm(q).split(/\s+/).filter(x=>x.length>1);const r=[];for(const x of idx){if(w.every(y=>x[3].includes(y))){r.push(x);if(r.length>=150)break}}
+$('#qi').textContent=r.length?(r.length>=150?'Una nga 150 ka resulta (pagdugang og pulong aron mas pig-ot).':r.length+' ka resulta'):'Walay nakita. Sulayi ang lain nga pulong o mas mubo.';
+o.innerHTML=r.map(x=>row(x[0],x[1],x[2],1,w)).join('')}
+window.openCh=(b,c)=>{bi=b;ci=c;chap();$$('nav button')[0].click()};
+$('#go').onclick=find;$('#q').onkeydown=e=>{if(e.key=='Enter')find()};
+// add to note
+const fopts=()=>S.folders.map(f=>`<option value="${f.id}">${esc(f.name)}</option>`).join('');
+function mn(){const f=$('#mF').value;$('#mN').innerHTML='<option value="">＋ Bag-ong note</option>'+S.notes.filter(n=>n.f==f&&!n.lock).map(n=>`<option value="${n.id}">${esc(n.t||'Walay titulo')}</option>`).join('')}
+$('#tn').onclick=()=>{$('#mF').innerHTML=fopts();mn();$('#m1').classList.add('show')};$('#mF').onchange=mn;$('#mX').onclick=()=>$('#m1').classList.remove('show');
+$('#mOk').onclick=()=>{const s=sorted();if(!s.length)return;const h=grp(s.map(t=>key(...t))).map(g=>`<blockquote><b>${esc(gref(g))}${VER!='ceb'?' ('+VSH[VER]+')':''}</b><br>${g.v.length>1?g.v.map(v=>'<sup>'+(v+1)+'</sup> '+esc(T(g.b,g.c,v))).join(' '):esc(T(g.b,g.c,g.v[0]))}</blockquote>`).join('')+(window.__xh||'');window.__xh='';let n=S.notes.find(x=>x.id==$('#mN').value);if(!n){n={id:uid(),f:$('#mF').value,t:ref(...s[0]),h:'',ts:Date.now()};S.notes.unshift(n)}n.h+=h;n.ts=Date.now();save();$('#m1').classList.remove('show');clearSel();toast('Nadugang sa note')};
+// notebook
+let fa='all',cur=null;
+function notes(){const q=norm($('#ns').value||'');$('#fc').innerHTML=`<button data-f="all" class="${fa=='all'?'on':''}">Tanan</button>`+S.folders.map(f=>`<button data-f="${f.id}" class="${fa==f.id?'on':''}">📁 ${esc(f.name)}</button>`).join('')+'<button id="af">＋ Folder</button>';
+$$('#fc [data-f]').forEach(b=>b.onclick=()=>{fa=b.dataset.f;notes()});$('#af').onclick=()=>{const n=prompt('Ngalan sa bag-ong folder:');if(n){const f={id:uid(),name:n};S.folders.push(f);fa=f.id;save();notes()}};
+const l=S.notes.filter(n=>(fa=='all'||n.f==fa)&&(!q||norm(n.t+' '+n.h.replace(/<[^>]+>/g,' ')).includes(q)));
+$('#nl').innerHTML=l.length?l.map(n=>`<button class="note card" data-n="${n.id}"><b>${TE[n.type]||'\u{1F4DD}'} ${n.lock?'🔒 ':''}${/data-pdf=/.test(n.h)?'📎 ':''}${esc(n.t||'Walay titulo')}</b><small>${esc(S.folders.find(f=>f.id==n.f)?.name||'')} · ${new Date(n.ts).toLocaleDateString()}</small></button>`).join(''):'<p class="mu">Wala pay note. Pindota ang “Bag-ong Note”, o pili og verse ug i-“Sa Note”.</p>';
+$$('[data-n]').forEach(b=>b.onclick=()=>openNote(b.dataset.n))}
+$('#ns').oninput=notes;
+$('#nn').onclick=()=>$('#m3').classList.add('show');
+$('#rf').onclick=()=>{const f=S.folders.find(x=>x.id==fa);if(!f)return toast('Pili anang folder una');const n=prompt('Bag-ong ngalan:',f.name);if(n){f.name=n;save();notes()}};
+$('#df').onclick=()=>{const f=S.folders.find(x=>x.id==fa);if(!f)return toast('Pili anang folder una');if(S.folders.length<2)return toast('Kinahanglan naay usa ka folder');if(S.notes.some(n=>n.f==fa&&n.lock))return toast('Naay naka-lock nga note niini nga folder. I-unlock una.');if(confirm('Papason ang folder “'+f.name+'” ug ang tanan niyang notes?')){S.notes=S.notes.filter(n=>n.f!=fa);S.folders=S.folders.filter(x=>x.id!=fa);fa='all';save();notes()}};
+const NFONT=()=>(cur&&cur.font)||S.set.font;
+function applyEd(){const L=!!cur.lock;$('#ed').classList.toggle('locked',L);$('#body').contentEditable=!L;$('#et').disabled=L;$('#eLock').innerHTML=L?'🔓<span class="lg"> Unlock</span>':'🔒<span class="lg"> Lock</span>';$('#tb2').classList.toggle('hide',L||S.set.tools===false);$('#eTool').innerHTML=S.set.tools===false?'🛠<span class="lg"> Ipakita</span>':'🛠<span class="lg"> Tagoa</span>';$('#body').style.fontFamily=NFONT();$('#eType').value=cur.type||'note';metaUI()}
+function hydrate(){$$('#body img[data-img]').forEach(i=>{if(!i.getAttribute('src'))idb.get(i.dataset.img).then(u=>{if(u){i.src=u;stored.add(i.dataset.img)}}).catch(()=>{})})}
+const fsEl=()=>document.fullscreenElement||document.webkitFullscreenElement;
+function fs(){const e=document.documentElement,f=e.requestFullscreen||e.webkitRequestFullscreen;if(f){try{const p=f.call(e);p&&p.catch&&p.catch(()=>{})}catch(x){}}else if(/iPhone|iPod/.test(navigator.userAgent))toast('Sa iPhone: i-install ang app (Add to Home Screen) para full screen')}
+function exitFs(){if(fsEl()){const f=document.exitFullscreen||document.webkitExitFullscreen;f&&f.call(document)}}
+function openNote(id){cur=S.notes.find(n=>n.id==id);$('#et').value=cur.t;$('#body').innerHTML=cur.h;decoPdf($('#body'));$('#ef').innerHTML=fopts();$('#ef').value=cur.f;$('#eFont').value=cur.font||'';$('#ed').classList.add('show');applyEd();selFmt();hydrate();if(cur.lock)fs()}
+function sv(q){const c=$('#body').cloneNode(true);c.querySelectorAll('img[data-img]').forEach(i=>{if(stored.has(i.dataset.img))i.removeAttribute('src')});c.querySelectorAll('.pdfatt').forEach(e=>e.innerHTML='');cur.t=$('#et').value;cur.h=c.innerHTML;cur.f=$('#ef').value;cur.font=$('#eFont').value;cur.ts=Date.now();save();if(!q)toast('Na-save ✓')}
+let tm;['#et','#body'].forEach(s=>$(s).oninput=()=>{clearTimeout(tm);tm=setTimeout(()=>sv(1),600)});$('#ef').onchange=()=>sv(1);$('#eFont').onchange=()=>{sv(1);applyEd()};
+$('#eS').onclick=()=>sv();$('#eb').onclick=()=>{if(!cur.lock)sv(1);exitFs();$('#ed').classList.remove('show');notes()};
+$('#ed1').onclick=()=>{if(cur.lock)return toast('I-unlock una ang note');if(confirm('Papason kini nga note?')){S.notes=S.notes.filter(n=>n!=cur);save();$('#ed').classList.remove('show');notes()}};
+const TYPES=[['note','\u{1F4DD}','Topic / Sermon Note','Ordinaryong note ug sermon outline'],['letter','\u2709\uFE0F','Sulat (Letter)','Letterhead, petsa, para kang'],['reminder','\u{1F514}','Paalala (Reminder)','Petsa, oras, lugar'],['invite','\u{1F389}','Imbitasyon','Elegante nga imbitasyon'],['announce','\u{1F4E2}','Pahibalo','Announcement nga naay detalye'],['sermon','\u{1F3A4}','Sermon (Outline)','Pasiuna, mga punto, konklusyon, altar call'],['thanks','\u{1F49B}','Pasalamat','Thank-you nga sulat'],['msgr','\u{1F4AC}','Messenger (GC)','Mubo nga mensahe para sa group chat (JPG/PDF)']];
+const TE=Object.fromEntries(TYPES.map(t=>[t[0],t[1]])),TT={note:'',letter:'Sulat',reminder:'Paalala',invite:'Imbitasyon',announce:'Pahibalo',thanks:'Pasalamat',sermon:'Bag-ong Sermon',msgr:'Mensahe sa GC'};
+const MF={letter:[['date','Petsa'],['to','Para kang'],['subj','Hilisgutan'],['from','Gikan kang']],reminder:[['date','Petsa'],['time','Oras'],['place','Lugar'],['contact','Kontak']],invite:[['date','Petsa'],['time','Oras'],['place','Lugar'],['contact','Kontak'],['from','Gihangyo sa']],announce:[['date','Petsa'],['time','Oras'],['place','Lugar'],['contact','Kontak']],thanks:[['date','Petsa'],['to','Para kang'],['from','Gikan kang']],sermon:[['verse','Main Text'],['who','Magwawali'],['date','Petsa'],['place','Serbisyo / Lugar']]};
+const dv=a=>a.map(t=>'<div>'+(t||'<br>')+'</div>').join('');
+const TPL={note:'',msgr:dv(['\u{1F64F} Maayong adlaw, mga igsoon!','','Roma 8:14 "Isulat dinhi ang verse."','','[Isulat dinhi ang mubo nga pagpamalandong o mensahe.]','','\u{1F4CC} Hinumdomi: [isulat ang mubo nga aplikasyon]','','Dios nga mopanalangin kanato tanan! \u{1F49B}','','#BCM #Pagpamalandong']),sermon:dv(['"Isulat dinhi ang mubo nga tema sa sermon"','','Main Text:','Roma 8:14 "Isulat dinhi ang verse."','','PASIUNA','Isulat dinhi ang pasiuna.','','I. UNANG PUNTO','Isulat dinhi ang verse (pananglit: Roma 8:16)','"Ang verse..."','Isulat dinhi ang pasabot sa unang punto.','Illustration','Isulat dinhi ang pananglit o istorya.','','II. IKADUHANG PUNTO','Isulat dinhi ang ikaduha nga punto.','','III. IKATULONG PUNTO','Isulat dinhi ang ikatulo nga punto.','','KONKLUSYON','Isulat dinhi ang katapusan nga mensahe.','','ALTAR CALL','Isulat dinhi ang pag-aghat.','','Closing Quote','"Isulat dinhi ang katapusang kinutlo."']),letter:dv(['Minahal nga igsoon,','','Pagyukbo ug pangomusta diha sa ngalan sa Ginoong Jesu-Cristo. [Isulat dinhi ang sulod sa sulat.]','','Hinaut nga kanunay kang gipanalanginan sa Ginoo.','','Sa Ginoo,','']),reminder:dv(['Mga igsoon, kini usa ka mubo nga pahinumdom:','','[Isulat dinhi ang importante nga mensahe o buluhaton.]','','Palihog dad-a ang inyong Bibliya ug ayaw kalimti ang pag-ampo.']),invite:dv(['Uban sa kalipay, gihangyo ka namo nga mopakigbahin sa among espesyal nga panghitabo.','','[Isulat dinhi ang mubo nga paghulagway sa panghitabo.]','','Kami maghulat kanimo ug sa imong pamilya.']),announce:dv(['Kini usa ka pahibalo alang sa tanang miyembro:','','[Isulat dinhi ang tibuok pahibalo.]','','Salamat ug Dios nga mopanalangin kanato tanan.']),thanks:dv(['Minahal nga igsoon,','','Among gipasalamatan ka gikan sa kinahiladman sa among kasingkasing alang sa imong gugma, pag-ampo, ug tabang.','','[Isulat dinhi ang dugang nga mensahe.]','','Dios nga mopanalangin kanimo.'])};
+const today=()=>new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+function newNote(type){const n={id:uid(),f:fa=='all'?S.folders[0].id:fa,t:TT[type]||'',h:TPL[type]||'',type,meta:(type=='letter'||type=='thanks')?{date:today()}:{},ts:Date.now()};S.notes.unshift(n);save();$('#m3').classList.remove('show');openNote(n.id)}
+$('#tgrid').innerHTML=TYPES.map(t=>`<button data-ty="${t[0]}"><b>${t[1]} ${t[2]}</b><small>${t[3]}</small></button>`).join('');$$('#tgrid [data-ty]').forEach(b=>b.onclick=()=>newNote(b.dataset.ty));$('#m3x').onclick=()=>$('#m3').classList.remove('show');
+$('#eType').innerHTML=TYPES.map(t=>`<option value="${t[0]}">${t[1]} ${t[2]}</option>`).join('');$('#eType').onchange=()=>{cur.type=$('#eType').value;cur.meta=cur.meta||{};sv(1);applyEd();selFmt()};
+const LBL={to:['Para kang','Para sa mga','Para sa','Para sa tanan','Kang','Sa mga','Ngadto sa','Mga minahal nga','To'],subj:['Hilisgutan','Mahitungod sa','Sulod sa','Subject','Re'],from:['Gihangyo sa','Gikan kang','Gikan sa','Gikan sa mga']};
+const lblOf=(k,m)=>m[k+'L']||LBL[k][0],lblHas=(k,t)=>k=='to'||k=='subj'||(k=='from'&&t=='invite');
+function metaUI(){const t=cur.type||'note',f=MF[t]||[],m=cur.meta||{},e=$('#meta');e.classList.toggle('hide',!f.length);S.set.lbl=S.set.lbl||{};e.innerHTML=f.map(([k,l])=>{if(!lblHas(k,t))return `<label>${l}<input type="text" data-m="${k}" value="${esc(m[k]||'')}"></label>`;const cs=(S.set.lbl[k]||[]).filter(x=>!LBL[k].includes(x)),cu=lblOf(k,m),ops=[...LBL[k],...cs];if(!ops.includes(cu))ops.push(cu);return `<label><select data-l="${k}" class="lsel">${ops.map(o=>`<option${o==cu?' selected':''}>${esc(o)}</option>`).join('')}<option value="__add">\uFF0B Dugang label\u2026</option></select><input type="text" data-m="${k}" value="${esc(m[k]||'')}"></label>`}).join('');$$('#meta input').forEach(i=>{i.disabled=!!cur.lock;i.oninput=()=>{cur.meta={...cur.meta,[i.dataset.m]:i.value};clearTimeout(tm);tm=setTimeout(()=>sv(1),600)}});$$('#meta select').forEach(x=>{x.disabled=!!cur.lock;x.onchange=()=>{const k=x.dataset.l;let v=x.value;if(v=='__add'){v=(prompt('Isulat ang bag-ong label (pananglitan: Para sa mga Vanguard)')||'').trim().slice(0,22);if(!v){metaUI();return}const L=S.set.lbl[k]=S.set.lbl[k]||[];if(!L.includes(v)&&!LBL[k].includes(v))L.push(v)}cur.meta={...cur.meta,[k+'L']:v};save();metaUI();sv(1)}})}
+$('#eLock').onclick=()=>{if(cur.lock){if(!confirm('I-unlock ang note aron ma-edit ug ma-delete?'))return;cur.lock=false;save();applyEd();exitFs();toast('Na-unlock')}else{sv(1);cur.lock=true;save();applyEd();getSelection().removeAllRanges();fs();toast('Na-lock ang note 🔒')}};
+$('#eFs').onclick=()=>fsEl()?exitFs():fs();
+$('#eTool').onclick=()=>{S.set.tools=S.set.tools===false;save();applyEd()};
+let sr=null;document.addEventListener('selectionchange',()=>{if(!cur||cur.lock)return;const s=getSelection();if(s.rangeCount&&$('#body').contains(s.anchorNode))sr=s.getRangeAt(0).cloneRange()});
+const rest=()=>{$('#body').focus({preventScroll:true});if(sr){const s=getSelection();s.removeAllRanges();s.addRange(sr)}};
+const ex=(c,v)=>{if(cur.lock)return;if(!sr||sr.collapsed)toast('I-hold ug pili una ang teksto nga usbon');rest();document.execCommand(c,false,v);sv(1)};
+$$('#ed [data-c]').forEach(b=>{b.onpointerdown=e=>e.preventDefault();b.onclick=()=>ex(b.dataset.c)});$('#qS').onclick=()=>$('#eS').click();$('#qSP').onclick=()=>$('#eSP').click();$$('#qk button').forEach(b=>b.onpointerdown=e=>e.preventDefault());
+$$('#ed [data-hc]').forEach(b=>{b.onpointerdown=e=>e.preventDefault();b.onclick=()=>ex('hiliteColor',b.dataset.hc)});
+const shrink=f=>new Promise((ok,no)=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const s=Math.min(1,1400/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);const g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);g.drawImage(im,0,0,c.width,c.height);ok(c.toDataURL('image/jpeg',.85))};im.onerror=no;im.src=r.result};r.onerror=no;r.readAsDataURL(f)});
+async function addImgs(fl){if(cur.lock)return;for(const f of fl){try{const u=await shrink(f),id=uid();try{await idb.set(id,u)}catch(x){}rest();document.execCommand('insertHTML',false,'<div><img data-img="'+id+'" src="'+u+'"></div><div><br></div>');sv(1)}catch(x){toast('Wala ma-attach ang hulagway')}}}
+$('#eImg').onclick=()=>$('#eImgF').click();$('#eImgF').onchange=e=>{addImgs([...e.target.files]);e.target.value=''};
+$('#eCp').onclick=()=>copy($('#body').innerText).then(()=>toast('Na-copy'));
+$('#ePa').onclick=()=>{(navigator.clipboard&&navigator.clipboard.readText?navigator.clipboard.readText():Promise.reject()).then(t=>{rest();pasteTxt(t);sv(1)}).catch(()=>toast('I-long press o Ctrl+V sa sulod sa note'))};
+async function dl(name,data){try{if(window.claude){const d=await claude.use('downloads');if(d){await d.save({filename:name,data});return}}const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data]));a.download=name;document.body.appendChild(a);a.click();a.remove()}catch(e){if(!e||e.code!='declined')toast('Wala na-save')}}
+const fn=()=>(($('#et').value||'note').replace(/[^\w\- ]+/g,'').trim()||'note');
+
+// ---- PDF attachments + Save/Save+PDF ----
+const fsz=b=>b>1048576?(b/1048576).toFixed(1)+' MB':Math.max(1,Math.round(b/1024))+' KB';
+const rdU=f=>new Promise((ok,no)=>{const r=new FileReader();r.onload=()=>ok(r.result);r.onerror=()=>no(r.error);r.readAsDataURL(f)});
+const u2b=u=>{const i=u.indexOf(','),bin=atob(u.slice(i+1)),a=new Uint8Array(bin.length);for(let k=0;k<bin.length;k++)a[k]=bin.charCodeAt(k);return new Blob([a],{type:'application/pdf'})};
+const pdfHtml=(id,name,size)=>'<div class="pdfatt" contenteditable="false" data-pdf="'+id+'" data-name="'+esc(name)+'" data-size="'+esc(size)+'"></div>';
+function decoPdf(root){root.querySelectorAll('.pdfatt').forEach(e=>{e.setAttribute('contenteditable','false');e.innerHTML='<span class="pi">📄</span><span class="pn"><b>'+esc(e.dataset.name||'PDF')+'</b><small>PDF · '+esc(e.dataset.size||'')+'</small></span><button type="button" data-a="o">👁 Ablihi</button><button type="button" data-a="d" title="I-download">⬇</button><button type="button" data-a="s" title="Share">📤</button><button type="button" data-a="x" class="eo" title="Tangtanga">✕</button>'})}
+async function addPdfs(fl){if(cur.lock)return;for(const f of fl){if(!/\.pdf$/i.test(f.name)&&!/pdf/i.test(f.type)){toast('PDF ra ang pwede');continue}if(f.size>25*1048576){toast(f.name+': sobra sa 25 MB');continue}try{const u=(await rdU(f)).replace(/^data:[^,]*,/,'data:application/pdf;base64,'),id=uid();await idb.set(id,u);const h=pdfHtml(id,f.name,fsz(f.size));rest();try{document.execCommand('insertHTML',false,h+'<div><br></div>')}catch(x){}if(!$('#body').querySelector('[data-pdf="'+id+'"]'))$('#body').insertAdjacentHTML('beforeend',h+'<div><br></div>');decoPdf($('#body'));sv(1);toast('Na-attach: '+f.name)}catch(x){toast('Wala ma-attach ang PDF')}}}
+$('#ePdfA').onclick=()=>{if(cur.lock)return toast('I-unlock una ang note');$('#ePdfF').click()};$('#ePdfF').onchange=e=>{const fl=[...e.target.files];e.target.value='';if(fl.length)addPdfs(fl)};
+$('#nPdf').onclick=()=>$('#nPdfF').click();$('#nPdfF').onchange=async e=>{const fl=[...e.target.files];e.target.value='';if(!fl.length)return;newNote('note');cur.t=fl[0].name.replace(/\.pdf$/i,'');$('#et').value=cur.t;await addPdfs(fl)};
+$('#body').addEventListener('click',async e=>{const b=e.target.closest&&e.target.closest('.pdfatt button,.pdfatt .pn,.pdfatt .pi');if(!b)return;e.preventDefault();e.stopPropagation();const box=b.closest('.pdfatt'),a=b.dataset.a||'o',name=box.dataset.name||'file.pdf';
+if(a=='x'){if(cur.lock)return;if(confirm('Tangtangon ang PDF gikan niini nga note?')){box.remove();sv(1)}return}
+let u;try{u=await idb.get(box.dataset.pdf)}catch(x){}if(!u)return toast('Wala makita ang PDF niini nga device (i-restore ang backup o i-attach pag-usab)');const bl=u2b(u);
+if(a=='d')return dl(name,bl);
+if(a=='s'){const f=new File([bl],name,{type:'application/pdf'});if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],title:name})}catch(x){}}else dl(name,bl);return}
+vwPdf(bl,name)});
+$('#eSP').onclick=async()=>{sv();toast('Gihimo ang PDF…');try{const b=await makePdf();await dl(fn()+'.pdf',b);toast('Na-save ug na-download ang PDF ✓')}catch(e){toast('Na-save ang note, apan wala nahimo ang PDF')}};
+
+// ---- In-app viewer (PDF + hulagway) ----
+const PDFJS='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';let VWk='',VWz=1,VWdoc=null,VWimgs=[],VWi=0,VWblob=null,VWname='',VWtok=0,VWio=null,PJP=null;
+function loadPdfjs(){if(window.pdfjsLib)return Promise.resolve();return PJP||(PJP=new Promise((ok,no)=>{const e=document.createElement('script');e.src=PDFJS+'pdf.min.js';e.onload=()=>{try{pdfjsLib.GlobalWorkerOptions.workerSrc=PDFJS+'pdf.worker.min.js';fetch(PDFJS+'pdf.worker.min.js',{mode:'no-cors'}).catch(()=>{})}catch(x){}ok()};e.onerror=()=>{PJP=null;no(new Error('offline'))};document.head.appendChild(e)}))}
+function vwShow(t){$('#vw').classList.add('show');$('#vT').textContent=t;$('#vP').textContent='';$('#vB').scrollTop=0}
+function vwClose(){$('#vw').classList.remove('show');VWtok++;if(VWio){VWio.disconnect();VWio=null}try{VWdoc&&VWdoc.destroy&&VWdoc.destroy()}catch(x){}VWdoc=null;VWblob=null;VWimgs=[];$('#vB').innerHTML=''}
+async function vwPdf(bl,name){VWk='pdf';VWblob=bl;VWname=name;VWz=1;vwShow(name);$('#vB').innerHTML='<p>⏳ Gikuha ang PDF…</p>';try{await loadPdfjs();const buf=await bl.arrayBuffer();VWdoc=await pdfjsLib.getDocument({data:buf}).promise;await vwPages()}catch(e){const u=URL.createObjectURL(bl);$('#vB').innerHTML='<p>Kinahanglan og internet sa unang higayon aron mabuksan ang PDF sulod sa app. Human niana, mugana na gani offline. Pwede ra ka mo-<b>⬇ Download</b> o <b>📤 Share</b> sa ibabaw.</p><iframe src="'+u+'"></iframe>'}}
+async function vwPages(){const B=$('#vB'),tok=++VWtok,f=B.scrollHeight?B.scrollTop/B.scrollHeight:0;if(VWio){VWio.disconnect();VWio=null}const p1=await VWdoc.getPage(1),v1=p1.getViewport({scale:1}),sc=Math.max(.2,(B.clientWidth-16)/v1.width)*VWz,n=VWdoc.numPages;B.innerHTML='';for(let i=1;i<=n;i++){const c=document.createElement('canvas');c.dataset.p=i;c.style.width=Math.round(v1.width*sc)+'px';c.style.height=Math.round(v1.height*sc)+'px';B.appendChild(c)}
+VWio=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting&&!en.target._d){en.target._d=1;vwDraw(en.target,sc,tok)}}),{root:B,rootMargin:'700px 0px'});B.querySelectorAll('canvas').forEach(c=>VWio.observe(c));B.scrollTop=f*B.scrollHeight;vwPg()}
+async function vwDraw(c,sc,tok){try{const pg=await VWdoc.getPage(+c.dataset.p);if(tok!=VWtok)return;let r=Math.min(window.devicePixelRatio||1,2),vp=pg.getViewport({scale:sc*r});while(vp.width*vp.height>16e6&&r>.5){r-=.25;vp=pg.getViewport({scale:sc*r})}c.width=vp.width;c.height=vp.height;c.style.width=Math.round(vp.width/r)+'px';c.style.height=Math.round(vp.height/r)+'px';await pg.render({canvasContext:c.getContext('2d'),viewport:vp}).promise}catch(x){}}
+function vwPg(){if(VWk!='pdf'||!VWdoc)return;const B=$('#vB'),cs=B.querySelectorAll('canvas');let k=1;const y=B.scrollTop+B.clientHeight/3;cs.forEach(c=>{if(c.offsetTop-B.offsetTop<=y)k=+c.dataset.p});$('#vP').textContent=k+' / '+cs.length}
+$('#vB').addEventListener('scroll',vwPg);
+function vwImg(){const B=$('#vB');B.innerHTML='';const i=new Image();i.src=VWimgs[VWi];i.style.width=(100*VWz)+'%';B.appendChild(i);$('#vP').textContent=(VWi+1)+' / '+VWimgs.length;VWname=fn()+'-hulagway'+(VWi+1)+'.jpg'}
+function vwImgs(l,i){if(!l.length)return;VWk='img';VWimgs=l;VWi=Math.max(0,i);VWz=1;vwShow($('#et').value||'Hulagway');vwImg()}
+const du2b=u=>{const m=u.match(/^data:([^;,]*)/),i=u.indexOf(','),bin=atob(u.slice(i+1)),a=new Uint8Array(bin.length);for(let k=0;k<bin.length;k++)a[k]=bin.charCodeAt(k);return new Blob([a],{type:m&&m[1]||'image/jpeg'})};
+async function vwBlob(){if(VWk=='pdf')return VWblob;const u=VWimgs[VWi];return u.startsWith('data:')?du2b(u):await (await fetch(u)).blob()}
+$('#vX').onclick=vwClose;
+$('#vZi').onclick=()=>{VWz=Math.min(4,+(VWz+.5).toFixed(2));VWk=='pdf'?VWdoc&&vwPages():vwImg()};$('#vZo').onclick=()=>{VWz=Math.max(.5,+(VWz-.5).toFixed(2));VWk=='pdf'?VWdoc&&vwPages():vwImg()};
+$('#vNx').onclick=()=>{if(VWk=='img'){if(VWi<VWimgs.length-1){VWi++;vwImg()}}else{const B=$('#vB');B.scrollBy({top:B.clientHeight*.85,behavior:'smooth'})}};$('#vPr').onclick=()=>{if(VWk=='img'){if(VWi>0){VWi--;vwImg()}}else{const B=$('#vB');B.scrollBy({top:-B.clientHeight*.85,behavior:'smooth'})}};
+$('#vDl').onclick=async()=>{try{dl(VWname,await vwBlob())}catch(x){toast('Wala na-download')}};
+$('#vSh').onclick=async()=>{try{const b=await vwBlob(),f=new File([b],VWname,{type:b.type});if(navigator.canShare&&navigator.canShare({files:[f]}))await navigator.share({files:[f],title:VWname});else dl(VWname,b)}catch(x){if(!x||x.name!='AbortError')toast('Wala na-share')}};
+$('#body').addEventListener('click',e=>{const i=e.target;if(!i||i.tagName!='IMG')return;const all=[...$('#body').querySelectorAll('img')].filter(x=>x.getAttribute('src'));const k=all.indexOf(i);if(k>=0)vwImgs(all.map(x=>x.src),k)});
+document.addEventListener('keydown',e=>{if(e.key=='Escape'&&$('#vw').classList.contains('show'))vwClose()});
+
+$('#bk').onclick=async()=>{const imgs={};for(const n of S.notes)for(const m of n.h.matchAll(/data-(?:img|pdf)="([^"]+)"/g)){try{const u=await idb.get(m[1]);if(u)imgs[m[1]]=u}catch(e){}}dl('bcm-notebook-backup.json',JSON.stringify({folders:S.folders,notes:S.notes,hl:S.hl,sup:S.sup,imgs}))};
+$('#ri').onclick=()=>$('#rif').click();
+$('#rif').onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(t=>{const d=JSON.parse(t);if(d.folders&&d.notes){S.folders=d.folders;S.notes=d.notes;S.hl=d.hl||{};S.sup=d.sup||{};if(d.imgs)for(const k in d.imgs){idb.set(k,d.imgs[k]).catch(()=>{})}save();redraw();notes();toast('Na-restore')}}).catch(()=>toast('Sayop ang file'))};
+// ---- PDF ----
+function mkpdf(jpgs,W,H,pw,ph){W=W||1240;H=H||1754;pw=pw||595.28;ph=ph||841.89;const enc=new TextEncoder(),parts=[],xr=[];let off=0;const push=b=>{const u=typeof b=='string'?enc.encode(b):b;parts.push(u);off+=u.length};const obj=(n,fn)=>{xr[n]=off;push(n+' 0 obj\n');fn();push('\nendobj\n')};
+push('%PDF-1.4\n');const n=jpgs.length;
+obj(1,()=>push('<< /Type /Catalog /Pages 2 0 R >>'));
+obj(2,()=>push('<< /Type /Pages /Count '+n+' /Kids ['+jpgs.map((_,i)=>(5+3*i)+' 0 R').join(' ')+'] >>'));
+jpgs.forEach((j,i)=>{obj(3+3*i,()=>{push('<< /Type /XObject /Subtype /Image /Width '+W+' /Height '+H+' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length '+j.length+' >>\nstream\n');push(j);push('\nendstream')});
+const c='q '+pw+' 0 0 '+ph+' 0 0 cm /Im0 Do Q';obj(4+3*i,()=>push('<< /Length '+c.length+' >>\nstream\n'+c+'\nendstream'));
+obj(5+3*i,()=>push('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 '+pw+' '+ph+'] /Resources << /XObject << /Im0 '+(3+3*i)+' 0 R >> >> /Contents '+(4+3*i)+' 0 R >>'))});
+const tot=3*n+3,x=off;push('xref\n0 '+tot+'\n0000000000 65535 f \n');for(let k=1;k<tot;k++)push(String(xr[k]).padStart(10,'0')+' 00000 n \n');
+push('trailer\n<< /Size '+tot+' /Root 1 0 R >>\nstartxref\n'+x+'\n%%EOF');return new Blob(parts,{type:'application/pdf'})}
+const PW=1240,PH=1754,PM=130,CW=PW-2*PM,SANS="Outfit,'Segoe UI',system-ui,sans-serif",SERIF="Outfit,'Segoe UI',system-ui,sans-serif",FS=26,LH=FS*1.7;
+const BLK=/^(DIV|P|H[1-6]|LI|UL|OL|SECTION|ARTICLE|TABLE|TR|PRE|HEADER|FOOTER|FIGURE|DL|DD|DT|ASIDE|MAIN|NAV|FORM)$/;
+function blocks(root){const bl=[];let cur=[],cq=0;const fl=()=>{if(cur.length&&cur.some(r=>r.t!=' '&&(r.t.trim()||r.t=='\n')))bl.push({q:cq,r:cur});cur=[]};
+(function w(n,st,q){n.childNodes.forEach(c=>{if(c.nodeType==3){if(c.nodeValue){if(!cur.length)cq=q;cur.push({t:c.nodeValue.replace(/\u00a0/g,' '),...st})}return}
+if(c.nodeType!=1)return;const tg=c.tagName;if(tg=='BR'){if(!cur.length)cq=q;cur.push({t:'\n',...st});return}if(tg=='IMG'){fl();bl.push({q:0,r:[],img:c});return}if(/^(SCRIPT|STYLE|SVG)$/.test(tg))return;
+const cs=getComputedStyle(c),s={...st};if(+cs.fontWeight>=600)s.b=1;if(cs.fontStyle=='italic')s.i=1;if((cs.textDecorationLine||'').includes('underline'))s.u=1;
+const bg=cs.backgroundColor;if(cs.display.startsWith('inline')&&bg&&bg!='transparent'&&bg!='rgba(0, 0, 0, 0)'&&!/^rgb\((2[45]\d), (2[45]\d), (2[45]\d)\)$/.test(bg))s.h=bg;
+const iq=tg=='BLOCKQUOTE';if(iq||BLK.test(tg)){fl();if(tg=='LI'){cq=q;cur.push({t:'\u2022 ',...s})}w(c,s,iq?1:q);fl()}else w(c,s,q)})})(root,{},0);fl();return bl}
+const pasteTxt=t=>document.execCommand('insertHTML',false,t.split(/\r?\n/).map(l=>'<div>'+(l.trim()?esc(l):'<br>')+'</div>').join(''));
+$('#body').addEventListener('paste',e=>{const fl=[...(e.clipboardData&&e.clipboardData.files||[])].filter(f=>/^image\//.test(f.type));if(fl.length){e.preventDefault();addImgs(fl);return}const t=e.clipboardData&&e.clipboardData.getData('text/plain');if(t!=null&&t!==''){e.preventDefault();pasteTxt(t);sv(1)}});
+function parseNote(title,noInj){
+const ROM=/^(XV|XIV|XIII|XII|XI|X|IX|VIII|VII|VI|V|IV|III|II|I)\.\s+\S/,RF=String.raw`(?:[1-3]\s)?[A-Za-z\u00C0-\u00FF'\u2019]+(?:\s[A-Za-z\u00C0-\u00FF'\u2019]+)?\s\d+:\d+(?:[-\u2013]\d+)?`,REF=new RegExp('^'+RF+'$'),REFQ=new RegExp('^('+RF+')\\s*(["\\u201C].*)$'),
+LAB=/^(main text|illustration|lesson|powerful truth|importanteng kamatuoran|closing quote|key point|key verse|application|aplikasyon|summary|prayer|panalangin|pag-ampo|story|sugilanon|pananglitan|leksyon)$/;
+const EM=/^(?:\p{Extended_Pictographic}\uFE0F?(?:\u200D\p{Extended_Pictographic}\uFE0F?)*)\s*/u,ARRS=t=>(t.match(/\u27A1\uFE0F?|\u2192/g)||[]).length>=2,STAT=t=>{const e=t.match(/\p{Extended_Pictographic}\uFE0F?/gu)||[];if(e.length<2)return false;const sg=t.split(/\s*\p{Extended_Pictographic}\uFE0F?\s*/u).filter(Boolean);return sg.length>=2&&sg.every(s=>/^[^:]{2,32}:\s*\S/.test(s))},TAGS=t=>{const w=t.trim().split(/\s+/);return w.length>=2&&w.every(x=>x[0]=='#')};
+const CAPS=t=>t.length<=70&&/[A-Z\u00D1]{3}/.test(t)&&t===t.toUpperCase()&&!/[.!]$/.test(t)&&!/^\p{Extended_Pictographic}/u.test(t)&&!/:/.test(t.replace(/\d{1,2}:\d{2}/g,''))&&!/[\u2022#]/.test(t),nt=s=>s.toLowerCase().replace(/\s+/g,' ');
+const list=blocks($('#body')).map(b=>({...b,tx:b.r.map(r=>r.t).join('').replace(/\s+/g,' ').trim()}));
+for(let i=list.length-2;i>=0;i--){const a=list[i],c=list[i+1];if(a.tx&&c.tx&&!a.q&&!c.q&&!CAPS(a.tx)&&!/[.?!:;"\u201D)]$/.test(a.tx)&&/^[a-z\u00E0-\u00FF]/.test(c.tx)){a.r=[...a.r,{t:' '},...c.r];a.tx=a.tx+' '+c.tx;list.splice(i+1,1)}}
+const f1=list.findIndex(b=>b.tx);if(f1>=0&&nt(list[f1].tx)==nt(title))list.splice(f1,1);
+{const o2=[],mk=t=>({q:0,r:[{t}],tx:t});for(const b of list){const t=b.tx;if(b.img||b.q||!t){o2.push(b);continue}let tx=t,tail='';const mt=tx.match(/^(.*?)((?:\s+#[\p{L}\p{N}_]+){2,})\s*$/u);if(mt&&mt[1].trim()){tx=mt[1].trim();tail=mt[2].trim()}else if(TAGS(tx)){tail=tx;tx=''}
+const bp=tx.split('\u2022').map(s=>s.trim());if(tx&&bp.length>=3){if(bp[0])o2.push(mk(bp[0]));bp.slice(1).filter(Boolean).forEach(s=>o2.push(mk('\u2022 '+s)))}else if(tx&&tx!==t)o2.push(mk(tx));else if(tx)o2.push(b);if(tail)o2.push(mk(tail))}list.splice(0,list.length,...o2)}
+let mode=0,pk='';const kinds=list.map(b=>{const t=b.tx;let k;
+if(b.img)k='img';else if(!t)k='sp';else if(b.q)k='vq';else if(ROM.test(t)){k='h1';mode=0}else if(CAPS(t)){k='h2';mode=0}else if(LAB.test(t.replace(/:$/,'').toLowerCase())){k='lab';mode=1}else if(REFQ.test(t.replace(EM,'')))k='v';else if(ARRS(t))k='steps';else if(STAT(t))k='stat';else if(TAGS(t))k='tags';else if(REF.test(t))k='vr';else if(/^["\u201C]/.test(t)&&pk=='vr')k='vt';else if(/^[\u2022*-]\s/.test(t))k='li';else if(EM.test(t))k='em';else if(/^["\u201C].{50,}["\u201D]$/.test(t))k='pq';else k=mode?'c':'p';
+if(k!='sp')pk=k;return k});
+list.forEach((b,i)=>{if(kinds[i]=='v'){const m=b.tx.replace(EM,'').match(REFQ);b.ref=m[1];b.vt=m[2]}});if(!noInj&&$('#eStudy')&&$('#eStudy').checked)injectStudy(list,kinds);return{list,kinds}}
+async function makePdf(mode){try{await Promise.all(['300','400','500','600'].map(w=>document.fonts.load(w+' 30px Outfit')))}catch(e){}const cv=document.createElement('canvas');cv.width=PW;cv.height=PH;const g=cv.getContext('2d');
+const EM=/^(?:\p{Extended_Pictographic}\uFE0F?(?:\u200D\p{Extended_Pictographic}\uFE0F?)*)\s*/u;const BF=(cur&&cur.font)||((cur.type=='invite')?"'Playfair Display',Georgia,serif":SERIF);try{await Promise.all(['400','600'].map(w=>document.fonts.load(w+' 30px '+BF.split(',')[0])))}catch(e){}
+const title=($('#et').value||'Walay titulo').trim(),fol=(S.folders.find(f=>f.id==cur.f)||{}).name||'',dt=new Date(cur.ts).toLocaleDateString();
+const{list,kinds}=parseNote(title);for(const b of list)if(b.img)b.im=await new Promise(ok=>{const i=new Image();i.onload=()=>ok(i);i.onerror=()=>ok(null);i.src=b.img.src});
+const T=cur.type||'note',MT=cur.meta||{},ORG=S.set.org||'Breaking Chain Ministry',ADDR=S.set.addr||'',A=T=='invite';let detOn=0;
+const rowsL=(T=='letter'?[[lblOf('to',MT),MT.to,0],[lblOf('subj',MT),MT.subj,1]]:T=='thanks'?[[lblOf('to',MT),MT.to,0]]:[]).filter(r=>r[1]);
+const cards=(T=='reminder'||T=='announce')?[['\u{1F4C5}','PETSA',MT.date],['\u{1F552}','ORAS',MT.time],['\u{1F4CD}','LUGAR',MT.place],['\u{1F4DE}','KONTAK',MT.contact]].filter(c=>c[2]):[];
+const TOP1=T=='letter'?330+rowsL.length*52+40:T=='thanks'?330+rowsL.length*52+30:(T=='reminder'||T=='announce')?(cards.length?630:430):T=='invite'?520:T=='sermon'?560:490;
+if(T=='invite'){[['PETSA',MT.date],['ORAS',MT.time],['LUGAR',MT.place],['KONTAK',MT.contact],[lblOf('from',MT).toUpperCase(),MT.from]].filter(x=>x[1]).forEach(d=>{list.push({q:0,r:[],tx:d[0]+d[1],det:d});kinds.push('det')})}
+if((T=='letter'||T=='thanks')&&MT.from){list.push({q:0,r:[],tx:''});kinds.push('sp');list.push({q:0,tx:MT.from,r:[{t:'\u2014 '+MT.from,b:1,col:'#34246e'}]});kinds.push('p')}
+const Z=T=='invite'?34:T=='note'?FS:30,ST={p:{z:Z,fam:BF,col:'#2a2118',gap:6},c:{z:Z,fam:BF,col:'#2a2118',gap:14,ind:54},v:{z:Z,fam:BF,col:'#2a2118',gap:14,ind:54},vr:{z:26,fam:BF,col:'#b4571f',b:1,gap:6,ind:54},vt:{z:Z,fam:BF,col:'#5a3a12',gap:14,ind:54},vq:{z:Z,fam:BF,col:'#2a2118',gap:14,ind:54},li:{z:Z,fam:BF,col:'#2a2118',gap:5,ind:50},h1:{z:28,fam:SANS,col:'#fff',b:1,gap:22,ind:34},h2:{z:32,fam:BF,col:'#34246e',b:1,gap:16,ind:34}},CT={v:1,vr:1,vt:1,vq:1,c:2};
+const pages=[[]];let P=0,y=0,card=null,chip=null;const top=()=>P?(T=='invite'?150:170):TOP1,lim=PH-150;y=top();
+const np=()=>{pages.push([]);P++;y=top()},endCard=()=>{if(card){pages[P].splice(card.i,0,{k:'q',y:card.y-26,h:y-card.y+32,t:card.t});card=null;y+=40}},flush=x=>{if(chip){pages[P].push({k:'chip',x,y,t:chip});chip=null;y+=62}},startCard=t=>{y+=28;card={t,y,i:pages[P].length};flush(PM+30)};
+const fnt=(r,s)=>(s.i||r.i?'italic ':'')+(s.b||r.b?'600 ':'400 ')+s.z+'px '+s.fam;
+for(let bi=0;bi<list.length;bi++){const b=list[bi],k=kinds[bi];if(k=='sp'){y+=20;continue}if(k=='img'){endCard();const im=b.im;if(im&&im.naturalWidth){const sc=Math.min(CW/im.naturalWidth,760/im.naturalHeight),dw=im.naturalWidth*sc,dh=im.naturalHeight*sc;if(y+dh>lim&&y>top()+60)np();pages[P].push({k:'img',x:PM+(CW-dw)/2,y,w:dw,h:dh,im});y+=dh+30}continue}if(k=='det'){if(!detOn){detOn=1;endCard();if(y+420>lim)np();pages[P].push({k:'orn',y:y+24});y+=76}if(y+140>lim)np();pages[P].push({k:'ct',y,t:b.det[0],font:'600 22px '+SANS,col:'#b4872f',ls:6});y+=38;let z=38;g.font='500 '+z+'px '+BF;while(g.measureText(b.det[1]).width>CW&&z>22){z-=2;g.font='500 '+z+'px '+BF}pages[P].push({k:'ct',y,t:b.det[1],font:'500 '+z+'px '+BF,col:'#2a2118'});y+=68;continue}const tone=e=>({'\u2705':['#dff5e5','#2e9d57'],'\u23F0':['#fff0d4','#e0902e'],'\u{1F64F}':['#ece4f8','#6a4cb5'],'\u{1F525}':['#ffe3d6','#e0562e'],'\u{1F4CC}':['#ffe0e0','#d94444'],'\u{1F3AF}':['#ffe0ee','#d6457f'],'\u2764':['#ffe0e8','#d6455f'],'\u26A0':['#fff3cd','#d9a400'],'\u{1F4E2}':['#e8e0f8','#6a4cb5'],'\u{1F514}':['#fff0d4','#e0762e'],'\u2B50':['#fff3cd','#d9a400']})[e.replace(/\uFE0F/g,'')]||['#f3ead7','#c9722e'];
+const lerp=(a,b,t)=>{const p=s=>[1,3,5].map(i=>parseInt(s.slice(i,i+2),16)),A=p(a),B=p(b);return '#'+A.map((v,i)=>Math.round(v+(B[i]-v)*t).toString(16).padStart(2,'0')).join('')};
+const wrapRuns=(rs,s,w)=>{const lines=[];let ln=[],lx=0;const nl=()=>{lines.push(ln);ln=[];lx=0};for(const r of rs){if(r.t=='\n'){nl();continue}g.font=fnt(r,s);for(const tk of r.t.split(/(\s+)/)){if(!tk)continue;const tw=g.measureText(tk).width;if(lx+tw>w&&lx>0&&tk.trim())nl();if(lx==0&&!tk.trim())continue;ln.push({t:tk,x:lx,w:tw,r});lx+=tw}}if(ln.length||!lines.length)nl();return lines};
+const chk=h=>{if(y+h>lim&&y>top()+50){endCard();np()}};
+if(k=='em'){endCard();const m=b.tx.match(EM),emo=m?m[0].trim():'',tn=tone(emo),rs=b.r.map(r=>({...r}));const f0=rs.find(r=>r.t&&r.t.trim());if(f0)f0.t=f0.t.replace(EM,'');const s={z:Z,fam:BF,col:'#2a2118'},lines=wrapRuns(rs,s,CW-175),lh=Math.round(Z*1.6),h=Math.max(112,lines.length*lh+46);chk(h);
+pages[P].push({k:'card',x:PM,y,w:CW,h,r:22,fill:'#fff',stroke:'#efe4cf',sh:1,bar:tn[1]});pages[P].push({k:'ico',x:PM+86,y:y+h/2,r:42,bg:tn[0],e:emo});
+let yy=y+(h-lines.length*lh)/2;for(const L of lines){for(const sg of L)pages[P].push({k:'t',x:PM+150+sg.x,y:yy,w:sg.w,t:sg.t,font:fnt(sg.r,s),col:sg.r.col||s.col,h:sg.r.h,u:sg.r.u,lh});yy+=lh}y+=h+22;continue}
+if(k=='steps'){endCard();const parts=b.tx.replace(EM,'').split(/\s*(?:\u27A1\uFE0F?|\u2192)\s*/).map(s0=>s0.trim()).filter(Boolean);let ttl='';if(parts[0]&&parts[0].includes(':')){const i0=parts[0].indexOf(':');ttl=parts[0].slice(0,i0).trim();parts[0]=parts[0].slice(i0+1).trim()}
+g.font='500 28px '+BF;const rows=[];let row=[],rx=0;for(const pt of parts){const pw=Math.min(CW,g.measureText(pt).width+54);if(rx+pw>CW&&row.length){rows.push(row);row=[];rx=0}row.push([pt,pw,rx]);rx+=pw+46}if(row.length)rows.push(row);
+const th=ttl?58:0,h=th+rows.length*86+10;chk(h);if(ttl)pages[P].push({k:'t',x:PM,y,w:0,t:ttl.toUpperCase(),font:'600 24px '+SANS,col:'#b4571f',lh:40});
+let idx=0;rows.forEach((rw,ri)=>rw.forEach(([pt,pw,x],ci)=>{const ry=y+th+ri*86;pages[P].push({k:'pill',x:PM+x,y:ry,w:pw,h:64,t:pt,font:'500 28px '+BF,c1:lerp('#34246e','#be5a23',idx/parts.length),c2:lerp('#34246e','#be5a23',(idx+1)/parts.length)});if(ci<rw.length-1)pages[P].push({k:'arr',x:PM+x+pw+15,y:ry+32,c:'#c9722e'});idx++}));y+=h+16;continue}
+if(k=='stat'){endCard();const ems=b.tx.match(/\p{Extended_Pictographic}\uFE0F?/gu)||[],segs=b.tx.split(/\s*\p{Extended_Pictographic}\uFE0F?\s*/u).filter(Boolean).slice(0,4),n=segs.length,cw=(CW-(n-1)*22)/n,h=214;chk(h);
+segs.forEach((sg,i)=>{const x=PM+i*(cw+22),ix=sg.indexOf(':'),lb=sg.slice(0,ix).trim(),vl=sg.slice(ix+1).trim(),tn=tone(ems[i]||'');pages[P].push({k:'card',x,y,w:cw,h,r:22,fill:'#fff',stroke:'#efe4cf',sh:1,bar:tn[1]});
+pages[P].push({k:'t',x:x+36,y:y+20,w:0,t:ems[i]||'',font:'44px '+SANS,col:'#000',lh:60});pages[P].push({k:'t',x:x+36,y:y+88,w:0,t:lb.toUpperCase(),font:'600 21px '+SANS,col:tn[1],lh:30});
+let z=50;g.font='600 '+z+'px '+SANS;while(g.measureText(vl).width>cw-64&&z>24){z-=2;g.font='600 '+z+'px '+SANS}pages[P].push({k:'t',x:x+36,y:y+124,w:0,t:vl,font:'600 '+z+'px '+SANS,col:'#2a2118',lh:z+14})});y+=h+26;continue}
+if(k=='tags'){endCard();const ws=b.tx.trim().split(/\s+/);g.font='500 24px '+SANS;let rx=0,ry=0;const its=[];for(const w0 of ws){const pw=g.measureText(w0).width+40;if(rx+pw>CW&&rx>0){rx=0;ry+=60}its.push([w0,pw,rx,ry]);rx+=pw+12}const h=ry+50;chk(h);its.forEach(([w0,pw,x,yy])=>pages[P].push({k:'pill',x:PM+x,y:y+yy,w:pw,h:46,t:w0,font:'500 24px '+SANS,c1:'#ece4f8',c2:'#f6e6c6',tc:'#4a2f8a'}));y+=h+18;continue}
+if(k=='pq'){endCard();const s={z:30,fam:BF,col:'#3b2a78'},lines=wrapRuns([{t:b.tx}],s,CW-170),lh=50,h=lines.length*lh+72;chk(h);pages[P].push({k:'card',x:PM,y,w:CW,h,r:24,fill:'#f1ebfb',bar:'#6a4cb5'});pages[P].push({k:'t',x:PM+34,y:y+6,w:0,t:'\u201C',font:'600 130px '+SANS,col:'#cdbdf0',lh:140});
+let yy=y+36;for(const L of lines){for(const sg of L)pages[P].push({k:'t',x:PM+112+sg.x,y:yy,w:sg.w,t:sg.t,font:fnt(sg.r,s),col:s.col,lh});yy+=lh}y+=h+24;continue}
+if(k=='lab'){endCard();chip=b.tx.replace(/:$/,'');y+=16;continue}
+const ct=CT[k]||0;if(card&&card.t!=ct)endCard();
+const s={...ST[k]};if(k=='p'&&/^["\u201C].*["\u201D]$/.test(b.tx)){s.col='#4a2f8a'}
+let rs=b.r;if(k=='v'){rs=[{t:b.ref,b:1,col:'#b4571f'},{t:'\n'},{t:b.vt,col:'#5a3a12'}]}
+if(k=='li'){rs=rs.map(r=>({...r}));const f=rs.find(r=>r.t.trim());f.t=f.t.replace(/^\s*[\u2022*-]\s*/,'')}
+const ind=s.ind||0,w=k=='li'?CW-ind:CW-2*ind,x0=PM+ind,lh=Math.round(s.z*1.68),lines=[];let ln=[],lx=0;const nl=()=>{lines.push(ln);ln=[];lx=0};
+for(const r of rs){if(r.t=='\n'){nl();continue}g.font=fnt(r,s);for(const tk of r.t.split(/(\s+)/)){if(!tk)continue;const tw=g.measureText(tk).width;if(lx+tw>w&&lx>0&&tk.trim())nl();if(lx==0&&!tk.trim())continue;ln.push({t:tk,x:lx,w:tw,r});lx+=tw}}
+if(ln.length||!lines.length)nl();
+const keep=(k=='h1'||k=='h2')?lh*7:(k=='vr'?lh*3:0),need=lines.length*lh;if(y+(lines.length<=7?need:lh*2)+keep+(ct?90:0)>lim&&y>top()+lh){endCard();np()}
+if(ct&&!card)startCard(ct);else if(!ct)flush(PM);
+let bs=0,bi0=0;if(k=='h1'){y+=34;bs=y;bi0=pages[P].length;y+=22}let hs=0,hi0=0;if(k=='h2'){y+=34;hs=y;hi0=pages[P].length;y+=18}
+lines.forEach((L,li)=>{if(y+lh>lim){if(card){const t=card.t;endCard();np();startCard(t)}else np()}
+if(k=='li'&&li==0)pages[P].push({k:'dot',x:PM+18,y:y+lh/2});
+const lw=L.reduce((s0,s1)=>s0+s1.w,0)-(L.length&&!L[L.length-1].t.trim()?L[L.length-1].w:0),off=A&&k!='li'?(w-lw)/2:0;for(const sg of L)pages[P].push({k:'t',x:x0+off+sg.x,y,w:sg.w,t:sg.t,font:fnt(sg.r,s),col:k=='h1'?'#fff':(sg.r.col||(ct&&sg.r.b&&k!='vr'?'#b4571f':s.col)),h:sg.r.h,u:sg.r.u,lh});y+=lh});
+if(k=='h1'){pages[P].splice(bi0,0,{k:'band',y:bs,h:y-bs+14});y+=14}if(k=='h2'){pages[P].splice(hi0,0,{k:'hbar',y:hs,h:y-hs+12});y+=12}
+y+=s.gap}
+endCard();
+const rr=(x,yy,w,h,r)=>{g.beginPath();g.roundRect?g.roundRect(x,yy,w,h,r):g.rect(x,yy,w,h)};
+const logo=(x,yy,s)=>{g.save();g.translate(x,yy);g.scale(s/100,s/100);const gr=g.createLinearGradient(0,0,100,100);gr.addColorStop(0,'#34246e');gr.addColorStop(1,'#be5a23');g.fillStyle=gr;rr(0,0,100,100,22);g.fill();g.fillStyle='#fff6e0';g.beginPath();g.moveTo(50,77);g.lineTo(14,67);g.lineTo(14,42);g.lineTo(50,52);g.closePath();g.fill();g.beginPath();g.moveTo(50,77);g.lineTo(86,67);g.lineTo(86,42);g.lineTo(50,52);g.closePath();g.fill();g.fillStyle='#ffd670';rr(46,13,8,38,2);g.fill();rr(37,21,26,8,2);g.fill();g.restore()};
+const jp=[];g.textBaseline='top';try{await Promise.all(['300','400','500','600'].map(w=>document.fonts.load(w+' 30px Outfit')))}catch(e){}
+
+const wrapT=(t,font,mw,max)=>{g.font=font;const ls=[];let c='';for(const w of t.split(/\s+/)){const n=c?c+' '+w:w;if(g.measureText(n).width>mw&&c){ls.push(c);c=w}else c=n}if(c)ls.push(c);return ls.slice(0,max||9)};
+const heart=(x,yy,s,col)=>{g.fillStyle=col;g.beginPath();g.moveTo(x,yy+s*.38);g.bezierCurveTo(x-s*.75,yy-s*.05,x-s*.38,yy-s*.75,x,yy-s*.3);g.bezierCurveTo(x+s*.38,yy-s*.75,x+s*.75,yy-s*.05,x,yy+s*.38);g.fill()};
+const frame=()=>{if(T=='invite'){g.strokeStyle='#c9a24a';g.lineWidth=4;g.strokeRect(36,36,PW-72,PH-72);g.lineWidth=1.5;g.strokeRect(60,60,PW-120,PH-120);[[60,60],[PW-60,60],[60,PH-60],[PW-60,PH-60]].forEach(([x,yy])=>{g.fillStyle='#fffaf0';g.beginPath();g.arc(x,yy,17,0,7);g.fill();g.strokeStyle='#c9a24a';g.lineWidth=3;g.beginPath();g.arc(x,yy,17,0,7);g.stroke();g.fillStyle='#c9a24a';g.beginPath();g.arc(x,yy,5,0,7);g.fill()})}else{g.strokeStyle='#e6d3a8';g.lineWidth=3;g.strokeRect(36,36,PW-72,PH-72)}};
+const rowsDraw=()=>{g.font='600 22px '+SANS;const OX=PM+Math.max(230,...rowsL.map(r=>g.measureText(r[0].toUpperCase()).width+36));rowsL.forEach(([l,v,bd],i)=>{const yy=318+i*52;g.font='600 22px '+SANS;g.fillStyle='#9a7a52';g.fillText(l.toUpperCase(),PM,yy+6);g.font=(bd?'600 ':'400 ')+'30px '+SANS;g.fillStyle='#2a2118';g.fillText(v.slice(0,70),OX,yy)})};
+const head=()=>{
+if(T=='letter'){logo(PM,58,128);g.fillStyle='#34246e';g.font='600 46px '+SANS;g.fillText(ORG.slice(0,38),PM+156,70);if(ADDR){g.fillStyle='#8a7a62';g.font='300 25px '+SANS;g.fillText(ADDR.slice(0,70),PM+156,134)}g.fillStyle='#c9a24a';g.fillRect(PM,214,CW,4);g.fillStyle='#34246e';g.fillRect(PM,226,CW,2);g.textAlign='right';g.fillStyle='#4a3f30';g.font='400 28px '+SANS;g.fillText(MT.date||dt,PM+CW,262);g.textAlign='left';rowsDraw()}
+else if(T=='thanks'){const gr=g.createLinearGradient(0,0,PW,260);gr.addColorStop(0,'#c2456b');gr.addColorStop(1,'#e0762e');g.fillStyle=gr;g.fillRect(0,0,PW,260);heart(PM+60,110,150,'rgba(255,255,255,.95)');g.fillStyle='#fff';g.letterSpacing='8px';g.font='600 26px '+SANS;g.fillText('PASALAMAT',PM+190,66);g.letterSpacing='0px';let z=60;g.font='600 '+z+'px '+SANS;while(g.measureText(title).width>CW-190&&z>34){z-=2;g.font='600 '+z+'px '+SANS}g.fillText(title,PM+190,112);g.font='300 24px '+SANS;g.fillStyle='rgba(255,255,255,.88)';g.fillText(MT.date||dt,PM+190,196);rowsDraw()}
+else if(T=='reminder'||T=='announce'){const pal=T=='reminder'?['#e0762e','#be3a2a']:['#34246e','#6a4cb5'],gr=g.createLinearGradient(0,0,PW,330);gr.addColorStop(0,pal[0]);gr.addColorStop(1,pal[1]);g.fillStyle=gr;g.fillRect(0,0,PW,330);g.fillStyle='rgba(255,255,255,.07)';g.beginPath();g.arc(PW-120,70,190,0,7);g.fill();g.beginPath();g.arc(PW-360,310,110,0,7);g.fill();g.fillStyle='#fffaf0';g.beginPath();g.moveTo(0,346);for(let x=0;x<=PW;x+=20)g.lineTo(x,320+Math.sin(x/110)*11);g.lineTo(PW,346);g.fill();g.fillStyle='rgba(255,255,255,.2)';g.beginPath();g.arc(PM+85,165,85,0,7);g.fill();g.fillStyle='#fff';g.font='84px '+SANS;g.textAlign='center';g.textBaseline='middle';g.fillText(T=='reminder'?'\u{1F514}':'\u{1F4E2}',PM+85,170);g.textAlign='left';g.textBaseline='top';
+g.letterSpacing='8px';g.font='600 28px '+SANS;g.fillText(T=='reminder'?'PAALALA':'PAHIBALO',PM+210,78);g.letterSpacing='0px';const tl=wrapT(title,'600 60px '+SANS,CW-230,2);let z=tl.length>1?46:60;g.font='600 '+z+'px '+SANS;tl.forEach((s,i)=>g.fillText(s,PM+210,128+i*(z+8)));logo(PW-PM-76,34,76);
+if(cards.length){const cw=(CW-(cards.length-1)*20)/cards.length;cards.forEach((c,i)=>{const x=PM+i*(cw+20);g.save();g.shadowColor='rgba(60,40,100,.2)';g.shadowBlur=26;g.shadowOffsetY=9;g.fillStyle='#fff';rr(x,372,cw,200,20);g.fill();g.restore();g.save();rr(x,372,cw,200,20);g.clip();g.fillStyle=pal[0];g.fillRect(x,372,cw,10);g.restore();g.font='46px '+SANS;g.fillStyle='#000';g.fillText(c[0],x+24,388);g.font='600 20px '+SANS;g.fillStyle='#9a7a52';g.letterSpacing='3px';g.fillText(c[1],x+24,452);g.letterSpacing='0px';const ls=wrapT(c[2],'500 30px '+SANS,cw-48,3);g.font='500 '+(ls.length>2?24:30)+'px '+SANS;g.fillStyle='#2a2118';ls.forEach((s,k)=>g.fillText(s,x+24,484+k*(ls.length>2?30:38)))})}}
+else if(T=='invite'){logo(PW/2-45,105,90);g.textAlign='center';g.letterSpacing='12px';g.font='500 26px '+SANS;g.fillStyle='#b4872f';g.fillText('IMBITASYON',PW/2+6,215);g.letterSpacing='0px';let z=84;const IF="'Playfair Display',Georgia,serif";let tl=wrapT(title,'700 '+z+'px '+IF,CW,1);while(g.measureText(title).width>CW&&z>46){z-=4;g.font='700 '+z+'px '+IF}tl=g.measureText(title).width>CW?wrapT(title,'700 46px '+IF,CW,2):[title];g.font='700 '+(tl.length>1?46:z)+'px '+IF;g.fillStyle='#34246e';tl.forEach((s,i)=>g.fillText(s,PW/2,265+i*60));g.textAlign='left'}
+else{const gr=g.createLinearGradient(0,0,PW,340);gr.addColorStop(0,'#34246e');gr.addColorStop(.55,'#6a3f9a');gr.addColorStop(1,'#be5a23');g.fillStyle=gr;g.fillRect(0,0,PW,340);
+g.fillStyle='rgba(255,255,255,.06)';g.beginPath();g.arc(PW-110,60,200,0,7);g.fill();g.beginPath();g.arc(PW-380,330,120,0,7);g.fill();for(let i=0;i<9;i++){const a=2.2+i*.12;g.fillStyle='rgba(255,230,170,.05)';g.beginPath();g.moveTo(PW-110,60);g.lineTo(PW-110+Math.cos(a)*900,60+Math.sin(a)*900);g.lineTo(PW-110+Math.cos(a+.05)*900,60+Math.sin(a+.05)*900);g.fill()}
+g.fillStyle='#fffaf0';g.beginPath();g.moveTo(0,356);for(let x=0;x<=PW;x+=20)g.lineTo(x,330+Math.sin(x/120)*12);g.lineTo(PW,356);g.fill();
+logo(PM,46,76);g.fillStyle='#fff';g.font='600 30px '+SANS;g.fillText('BCM Notebook & Bible',PM+96,52);g.font='300 22px '+SANS;g.fillStyle='rgba(255,255,255,.85)';g.fillText('Cebuano Bible \u2022 Mga Nota',PM+96,92);
+const tl=wrapT(title,'600 62px '+SANS,CW,2),z=tl.length>1?50:62;g.font='600 '+z+'px '+SANS;g.fillStyle='#fff';tl.forEach((s,i)=>g.fillText(s,PM,150+i*(z+10)));
+let px=PM,py=376;g.font='500 24px '+SANS;(T=='sermon'?[MT.verse&&'\u{1F4D6} '+MT.verse,MT.who&&'\u{1F3A4} '+MT.who,'\u{1F4C5} '+(MT.date||dt),MT.place&&'\u{1F4CD} '+MT.place]:[fol?'\u{1F4C1} '+fol:'','\u{1F4C5} '+dt]).filter(Boolean).forEach(t=>{const w=g.measureText(t).width+44;if(px+w>PW-PM){px=PM;py+=64}g.save();g.shadowColor='rgba(60,40,100,.18)';g.shadowBlur=14;g.shadowOffsetY=4;g.fillStyle='#fff';rr(px,py,w,50,25);g.fill();g.restore();g.fillStyle='#6a4a2a';g.fillText(t,px+22,py+14);px+=w+14})}};
+const mini=()=>{const pal=T=='reminder'?['#e0762e','#be3a2a']:T=='announce'?['#34246e','#6a4cb5']:T=='thanks'?['#c2456b','#e0762e']:['#34246e','#be5a23'],gr=g.createLinearGradient(0,0,PW,0);gr.addColorStop(0,pal[0]);gr.addColorStop(1,pal[1]);g.fillStyle=gr;g.fillRect(0,0,PW,104);g.fillStyle='rgba(255,255,255,.08)';g.beginPath();g.arc(PW-90,20,130,0,7);g.fill();logo(PM,24,56);g.fillStyle='#fff';g.font='600 26px '+SANS;g.fillText('BCM Notebook & Bible',PM+76,28);g.font='300 22px '+SANS;g.fillStyle='rgba(255,255,255,.88)';g.fillText(title.slice(0,58),PM+76,64)};
+const wm=()=>{if(T=='invite')return;g.save();g.globalAlpha=.05;g.fillStyle='#34246e';g.fillRect(PW-250,PH-560,64,380);g.fillRect(PW-322,PH-470,208,64);g.beginPath();g.arc(PW-218,PH-438,210,0,7);g.lineWidth=6;g.strokeStyle='#34246e';g.stroke();g.restore()};
+for(let p=0;p<pages.length;p++){{const bgG=g.createLinearGradient(0,0,0,PH);bgG.addColorStop(0,'#fffbf2');bgG.addColorStop(1,'#fff2dd');g.fillStyle=bgG;g.fillRect(0,0,PW,PH)}frame();wm();if(p==0)head();else if(T!='invite')mini();
+for(const o of pages[p]){if(o.k=='q'){g.fillStyle=o.t==1?'#f6e6c6':'#ece4f8';rr(PM,o.y,CW,o.h,16);g.fill();g.fillStyle=o.t==1?'#c9722e':'#6a4cb5';rr(PM,o.y,10,o.h,5);g.fill()}
+else if(o.k=='card'){g.save();if(o.sh){g.shadowColor='rgba(60,40,100,.17)';g.shadowBlur=24;g.shadowOffsetY=8}g.fillStyle=o.fill;rr(o.x,o.y,o.w,o.h,o.r);g.fill();g.restore();if(o.stroke){g.strokeStyle=o.stroke;g.lineWidth=2;rr(o.x,o.y,o.w,o.h,o.r);g.stroke()}if(o.bar){g.save();rr(o.x,o.y,o.w,o.h,o.r);g.clip();g.fillStyle=o.bar;g.fillRect(o.x,o.y,10,o.h);g.restore()}}else if(o.k=='hbar'){const gr=g.createLinearGradient(PM,0,PM+CW,0);gr.addColorStop(0,'#ebe3fb');gr.addColorStop(1,'#fbeedd');g.fillStyle=gr;rr(PM,o.y,CW,o.h,16);g.fill();g.save();rr(PM,o.y,CW,o.h,16);g.clip();g.fillStyle='#6a4cb5';g.fillRect(PM,o.y,12,o.h);g.restore()}else if(o.k=='band'){const gr=g.createLinearGradient(PM,0,PM+CW,0);gr.addColorStop(0,'#34246e');gr.addColorStop(1,'#a8501f');g.fillStyle=gr;rr(PM,o.y,CW,o.h,16);g.fill()}}
+for(const o of pages[p]){if(o.k=='t'){if(o.h){g.fillStyle=o.h;g.fillRect(o.x,o.y+4,o.w,o.lh-8)}g.font=o.font;g.fillStyle=o.col;g.fillText(o.t,o.x,o.y+(o.lh-parseInt(o.font.match(/(\d+)px/)[1]))/2);if(o.u)g.fillRect(o.x,o.y+o.lh-14,o.w,2)}
+else if(o.k=='img'){g.save();rr(o.x,o.y,o.w,o.h,14);g.clip();g.drawImage(o.im,o.x,o.y,o.w,o.h);g.restore()}else if(o.k=='dot'){g.fillStyle='#c9722e';g.beginPath();g.arc(o.x,o.y,7,0,7);g.fill()}
+else if(o.k=='rule'){const l=g.createLinearGradient(PM,0,PM+CW,0);l.addColorStop(0,'#be5a23');l.addColorStop(1,'rgba(190,90,35,0)');g.fillStyle=l;g.fillRect(PM,o.y,CW,4)}
+else if(o.k=='ico'){g.fillStyle=o.bg;g.beginPath();g.arc(o.x,o.y,o.r,0,7);g.fill();g.fillStyle='#000';g.font='46px '+SANS;g.textAlign='center';g.textBaseline='middle';g.fillText(o.e,o.x,o.y+3);g.textAlign='left';g.textBaseline='top'}else if(o.k=='pill'){const gr=g.createLinearGradient(o.x,0,o.x+o.w,0);gr.addColorStop(0,o.c1);gr.addColorStop(1,o.c2);g.fillStyle=gr;rr(o.x,o.y,o.w,o.h,o.h/2);g.fill();g.fillStyle=o.tc||'#fff';g.font=o.font;g.textAlign='center';g.textBaseline='middle';g.fillText(o.t,o.x+o.w/2,o.y+o.h/2+2);g.textAlign='left';g.textBaseline='top'}else if(o.k=='arr'){g.fillStyle=o.c;g.beginPath();g.moveTo(o.x,o.y-10);g.lineTo(o.x+15,o.y);g.lineTo(o.x,o.y+10);g.fill()}else if(o.k=='ct'){g.textAlign='center';g.font=o.font;g.fillStyle=o.col;if(o.ls)g.letterSpacing=o.ls+'px';g.fillText(o.t,PW/2+(o.ls||0)/2,o.y);g.letterSpacing='0px';g.textAlign='left'}else if(o.k=='orn'){g.fillStyle='#c9a24a';g.fillRect(PM+120,o.y,CW/2-170,2);g.fillRect(PW/2+50,o.y,CW/2-170,2);g.beginPath();g.moveTo(PW/2,o.y-15);g.lineTo(PW/2+15,o.y+1);g.lineTo(PW/2,o.y+17);g.lineTo(PW/2-15,o.y+1);g.fill()}else if(o.k=='chip'){g.font='500 21px '+SANS;const t=o.t.toUpperCase(),tw=g.measureText(t).width;g.fillStyle='#c9722e';rr(o.x,o.y,tw+40,42,21);g.fill();g.fillStyle='#fff';g.fillText(t,o.x+20,o.y+9)}}
+g.fillStyle='#e6d3a8';g.fillRect(PM,PH-124,CW/2-30,2);g.fillRect(PW/2+30,PH-124,CW/2-30,2);g.fillStyle='#c9a24a';g.beginPath();g.moveTo(PW/2,PH-134);g.lineTo(PW/2+10,PH-123);g.lineTo(PW/2,PH-112);g.lineTo(PW/2-10,PH-123);g.fill();g.font='24px '+SANS;g.fillStyle='#9a8466';g.textAlign='center';g.fillText('BCM Notebook & Bible  \u2022  '+(p+1)+' / '+pages.length,PW/2,PH-92);g.textAlign='left';
+const b64=atob(cv.toDataURL('image/jpeg',.92).split(',')[1]),u=new Uint8Array(b64.length);for(let i=0;i<u.length;i++)u[i]=b64.charCodeAt(i);jp.push(u);await new Promise(r=>setTimeout(r))}
+return mode=='jpg'?jp:mkpdf(jp)}
+// ---- PowerPoint ----
+const loadLib=()=>window.PptxGenJS?Promise.resolve():new Promise((ok,no)=>{const s=document.createElement('script');s.src='pptxgen.bundle.js';s.onload=ok;s.onerror=()=>no(new Error('lib'));document.head.appendChild(s)});
+const THEMES=[['dove',/espiritu|balaang|salampati|kalayo|pentekostes|holy|spirit/],['light',/kahayag|kangitngit|flashlight|suga|lampara|silaw|light|nakita|timailhan|sign/],['ship',/barko|balod|timon|dagat|unos|bagyo|sakayan|lunod|storm|ship|boat/],['path',/dalan|giya|lakaw|lakwan|direksyon|pilian|desisyon|trabaho|relasyon|panaw|path|guide|lead/],['horizon',/umaabot|kaugmaon|oportunidad|paglaom|plano|buntag|sunrise|future|hope|bag-o/],['book',/pulong|biblia|bible|basahon|pagbasa|pagtuon|kasulatan|verse/],['cross',/krus|cristo|kristo|jesus|kaluwasan|dugo|kamatayon|banhaw|cross/],['heart',/gugma|kasingkasing|kalooy|grasya|fellowship|pakig-ambitay|igsoon|pagsimba|pamilya|panimalay|love/],['candle',/ampo|prayer|altar|itugyan|pagpaminaw|pagpamalandong|pagsunod/],['mountain',/kusog|gahum|limitado|imposible|kalig-on|pagtuo|kadaugan|daog|bukid|kapasidad|labaw|limitless/],['water',/kalinaw|hilum|kalma|tubig|suba|ilog|kahupayan|peace/]];
+function themeOf(t){t=norm(t);let best='horizon',bs=0;for(const[n,re]of THEMES){const m=t.match(new RegExp(re.source,'g'));if(m&&m.length>bs){bs=m.length;best=n}}return best}
+function art(type,w,h,seed,asCanvas){const c=document.createElement('canvas');c.width=w;c.height=h;const g=c.getContext('2d'),S=Math.min(w,h);let sd=seed*7919+13;const R=()=>(sd=(sd*9301+49297)%233280)/233280;
+const P=[['#1b1446','#5a2d82','#e0762e','#ffd58a'],['#0b2a3a','#1d6b7a','#e9a23b','#ffe9b0'],['#1a1240','#7a3a9a','#e8647a','#ffd0a8']][seed%3],D='#0e0a1f';
+const sk=g.createLinearGradient(0,0,0,h);sk.addColorStop(0,P[0]);sk.addColorStop(.5,P[1]);sk.addColorStop(1,P[2]);g.fillStyle=sk;g.fillRect(0,0,w,h);
+for(let i=0;i<70;i++){g.fillStyle='rgba(255,255,255,'+(.15+R()*.5)+')';g.beginPath();g.arc(R()*w,R()*h*.5,R()*2.2+.4,0,7);g.fill()}
+const glow=(x,y,r,a)=>{const q=g.createRadialGradient(x,y,0,x,y,r);q.addColorStop(0,'rgba(255,230,160,'+a+')');q.addColorStop(1,'rgba(255,200,120,0)');g.fillStyle=q;g.fillRect(0,0,w,h)};
+const rays=(x,y,n,len,a)=>{for(let i=0;i<n;i++){const t=i/n*6.283+R()*.1,d=.05+R()*.05;g.fillStyle='rgba(255,230,170,'+a+')';g.beginPath();g.moveTo(x,y);g.lineTo(x+Math.cos(t-d)*len,y+Math.sin(t-d)*len);g.lineTo(x+Math.cos(t+d)*len,y+Math.sin(t+d)*len);g.fill()}};
+const hills=(y0,amp,col,k)=>{g.fillStyle=col;g.beginPath();g.moveTo(0,h);for(let x=0;x<=w+1;x+=w/40)g.lineTo(x,y0-Math.abs(Math.sin(x/w*k+seed))*amp);g.lineTo(w,h);g.fill()};
+const cx=w/2;
+if(type=='mountain'){glow(w*.7,h*.22,S*.45,.6);g.fillStyle=P[3];g.beginPath();g.arc(w*.7,h*.22,S*.07,0,7);g.fill();g.fillStyle='#2a1850';g.beginPath();g.moveTo(-10,h);g.lineTo(w*.28,h*.55);g.lineTo(w*.45,h*.3);g.lineTo(w*.62,h*.55);g.lineTo(w*.8,h*.42);g.lineTo(w+10,h);g.fill();g.fillStyle='rgba(255,255,255,.85)';g.beginPath();g.moveTo(w*.45,h*.3);g.lineTo(w*.4,h*.4);g.lineTo(w*.435,h*.38);g.lineTo(w*.46,h*.42);g.lineTo(w*.5,h*.38);g.lineTo(w*.52,h*.41);g.closePath();g.fill();hills(h*.9,S*.08,D,3)}
+else if(type=='dove'){glow(cx,h*.4,S*.7,.75);rays(cx,h*.4,18,S*1.2,.08);const y=h*.42,u=S;g.save();g.translate(cx,y);g.fillStyle='rgba(255,255,255,.96)';g.beginPath();g.ellipse(0,0,u*.13,u*.06,-.2,0,7);g.fill();g.beginPath();g.arc(u*.12,-u*.05,u*.04,0,7);g.fill();g.fillStyle='#ffb454';g.beginPath();g.moveTo(u*.155,-u*.055);g.lineTo(u*.2,-u*.04);g.lineTo(u*.155,-u*.03);g.fill();g.fillStyle='rgba(255,255,255,.96)';g.beginPath();g.moveTo(-u*.1,0);g.lineTo(-u*.24,u*.05);g.lineTo(-u*.2,-u*.01);g.lineTo(-u*.26,-u*.03);g.lineTo(-u*.1,-u*.03);g.fill();
+for(const[a,o]of[[.75,0],[1,1]]){g.fillStyle='rgba(255,255,255,'+(o?.98:.7)+')';g.beginPath();g.moveTo(-u*.02,-u*.02);g.bezierCurveTo(-u*.1,-u*.24*a,-u*.3,-u*.28*a,-u*.36,-u*.12*a);g.bezierCurveTo(-u*.28,-u*.14*a,-u*.14,-u*.08,u*.04,u*.02);g.fill()}g.restore();hills(h*.95,S*.05,D,2)}
+else if(type=='light'){g.fillStyle='rgba(8,5,20,.55)';g.fillRect(0,0,w,h);const b=g.createLinearGradient(w*.1,h*.85,w*.9,h*.3);b.addColorStop(0,'rgba(255,240,180,.9)');b.addColorStop(1,'rgba(255,240,180,0)');g.fillStyle=b;g.beginPath();g.moveTo(w*.1,h*.85);g.lineTo(w,h*.05);g.lineTo(w,h*.75);g.closePath();g.fill();glow(w*.1,h*.85,S*.4,.95);for(let i=0;i<40;i++){g.fillStyle='rgba(255,240,200,'+R()*.6+')';g.beginPath();g.arc(w*(.2+R()*.8),h*(.15+R()*.7),R()*2.5+.5,0,7);g.fill()}hills(h*.97,S*.06,D,2.4)}
+else if(type=='ship'){glow(w*.72,h*.55,S*.5,.8);g.fillStyle=P[3];g.beginPath();g.arc(w*.72,h*.55,S*.09,0,7);g.fill();const y=h*.64;g.fillStyle=D;g.beginPath();g.moveTo(cx-S*.2,y);g.lineTo(cx+S*.2,y);g.lineTo(cx+S*.14,y+S*.07);g.lineTo(cx-S*.14,y+S*.07);g.fill();g.fillRect(cx-2,y-S*.32,4,S*.32);g.fillStyle='rgba(255,245,225,.93)';g.beginPath();g.moveTo(cx+5,y-S*.3);g.lineTo(cx+S*.17,y-S*.04);g.lineTo(cx+5,y-S*.04);g.fill();g.beginPath();g.moveTo(cx-5,y-S*.26);g.lineTo(cx-S*.13,y-S*.04);g.lineTo(cx-5,y-S*.04);g.fill();
+for(let k=0;k<5;k++){g.fillStyle='rgba('+(20+k*8)+',12,'+(50+k*10)+','+(.45+k*.1)+')';g.beginPath();g.moveTo(0,h);for(let x=0;x<=w+1;x+=w/60)g.lineTo(x,h*(.68+k*.065)+Math.sin(x/w*(9+k*2)+k*2+seed)*S*.018);g.lineTo(w,h);g.fill()}}
+else if(type=='path'){glow(cx,h*.5,S*.6,.85);g.fillStyle=P[3];g.beginPath();g.arc(cx,h*.5,S*.06,0,7);g.fill();hills(h*.62,S*.07,'#3a1f5c',5);g.fillStyle=D;g.beginPath();g.moveTo(w*.12,h);g.bezierCurveTo(w*.3,h*.8,w*.62,h*.78,cx-6,h*.56);g.lineTo(cx+6,h*.56);g.bezierCurveTo(w*.7,h*.78,w*.8,h*.85,w*.9,h);g.fill();g.strokeStyle='rgba(255,215,140,.7)';g.lineWidth=S*.008;g.setLineDash([S*.03,S*.03]);g.beginPath();g.moveTo(w*.5,h);g.bezierCurveTo(w*.45,h*.82,w*.55,h*.74,cx,h*.57);g.stroke();g.setLineDash([])}
+else if(type=='book'){glow(cx,h*.5,S*.65,.8);rays(cx,h*.5,16,S*1.1,.08);const y=h*.58;g.fillStyle='#fff6e0';g.beginPath();g.moveTo(cx,y+S*.1);g.lineTo(cx-S*.34,y);g.lineTo(cx-S*.34,y-S*.22);g.lineTo(cx,y-S*.12);g.fill();g.fillStyle='#fffbee';g.beginPath();g.moveTo(cx,y+S*.1);g.lineTo(cx+S*.34,y);g.lineTo(cx+S*.34,y-S*.22);g.lineTo(cx,y-S*.12);g.fill();g.strokeStyle='#c9a06a';g.lineWidth=3;g.beginPath();g.moveTo(cx,y-S*.12);g.lineTo(cx,y+S*.1);g.stroke();g.fillStyle=D;g.beginPath();g.moveTo(cx-S*.36,y+S*.01);g.lineTo(cx,y+S*.13);g.lineTo(cx+S*.36,y+S*.01);g.lineTo(cx+S*.36,y+S*.04);g.lineTo(cx,y+S*.16);g.lineTo(cx-S*.36,y+S*.04);g.fill()}
+else if(type=='cross'){glow(cx,h*.42,S*.6,.9);rays(cx,h*.42,20,S*1.2,.07);g.fillStyle=P[3];g.beginPath();g.arc(cx,h*.42,S*.13,0,7);g.fill();hills(h*.84,S*.05,D,2.2);g.fillStyle=D;g.fillRect(cx-S*.018,h*.22,S*.036,h*.55);g.fillRect(cx-S*.1,h*.33,S*.2,S*.035);g.beginPath();g.ellipse(cx,h*.82,S*.4,S*.07,0,0,7);g.fill()}
+else if(type=='heart'){glow(cx,h*.45,S*.6,.55);const s=S*.55,y=h*.48,q=g.createLinearGradient(0,y-s*.5,0,y+s*.4);q.addColorStop(0,'#ff9db8');q.addColorStop(1,'#e0762e');g.fillStyle=q;g.beginPath();g.moveTo(cx,y+s*.38);g.bezierCurveTo(cx-s*.75,y-s*.05,cx-s*.38,y-s*.75,cx,y-s*.3);g.bezierCurveTo(cx+s*.38,y-s*.75,cx+s*.75,y-s*.05,cx,y+s*.38);g.fill();for(let i=0;i<14;i++){g.fillStyle='rgba(255,200,210,'+(.2+R()*.5)+')';g.beginPath();g.arc(R()*w,R()*h,R()*5+2,0,7);g.fill()}hills(h*.98,S*.05,D,2)}
+else if(type=='candle'){g.fillStyle='rgba(8,5,20,.5)';g.fillRect(0,0,w,h);glow(cx,h*.42,S*.55,.95);g.fillStyle='#fff1d6';g.fillRect(cx-S*.05,h*.52,S*.1,h*.4);g.fillStyle='#e8d2a8';g.fillRect(cx+S*.02,h*.52,S*.03,h*.4);g.strokeStyle=D;g.lineWidth=4;g.beginPath();g.moveTo(cx,h*.52);g.lineTo(cx,h*.49);g.stroke();const f=g.createLinearGradient(0,h*.3,0,h*.5);f.addColorStop(0,'#fff3b0');f.addColorStop(1,'#e0762e');g.fillStyle=f;g.beginPath();g.moveTo(cx,h*.3);g.bezierCurveTo(cx+S*.07,h*.4,cx+S*.05,h*.49,cx,h*.49);g.bezierCurveTo(cx-S*.05,h*.49,cx-S*.07,h*.4,cx,h*.3);g.fill()}
+else if(type=='water'){glow(w*.5,h*.3,S*.5,.7);g.fillStyle=P[3];g.beginPath();g.arc(w*.5,h*.3,S*.09,0,7);g.fill();hills(h*.58,S*.1,'#2a1850',4);g.fillStyle='rgba(14,10,40,.75)';g.fillRect(0,h*.58,w,h);for(let i=0;i<14;i++){g.fillStyle='rgba(255,225,160,'+(.55-i*.035)+')';const ww=S*(.2-i*.01);g.fillRect(w*.5-ww/2,h*.6+i*S*.022,ww,S*.008)}}
+else{glow(cx,h*.62,S*.75,.85);rays(cx,h*.62,18,S*1.3,.07);g.fillStyle=P[3];g.beginPath();g.arc(cx,h*.62,S*.14,0,7);g.fill();hills(h*.78,S*.12,'#3a1f5c',5);hills(h*.88,S*.1,'#1e1038',3.3);hills(h*1.0,S*.08,D,2.4)}
+return asCanvas?c:c.toDataURL('image/jpeg',.82).replace(/^data:/,'')}
+function logoUrl(){const c=document.createElement('canvas');c.width=c.height=160;const g=c.getContext('2d');g.scale(1.6,1.6);const gr=g.createLinearGradient(0,0,100,100);gr.addColorStop(0,'#34246e');gr.addColorStop(1,'#be5a23');g.fillStyle=gr;g.beginPath();g.roundRect?g.roundRect(0,0,100,100,22):g.rect(0,0,100,100);g.fill();g.fillStyle='#fff6e0';g.beginPath();g.moveTo(50,77);g.lineTo(14,67);g.lineTo(14,42);g.lineTo(50,52);g.fill();g.beginPath();g.moveTo(50,77);g.lineTo(86,67);g.lineTo(86,42);g.lineTo(50,52);g.fill();g.fillStyle='#ffd670';g.fillRect(46,13,8,38);g.fillRect(37,21,26,8);return c.toDataURL('image/png').replace(/^data:/,'')}
+function deckModel(title){
+const{list,kinds}=parseNote(title);const secs=[];let sec={h:null,items:[]},label=null,sub='';secs.push(sec);const skip=new Set();
+const nx=i=>{for(let j=i+1;j<list.length;j++)if(kinds[j]!='sp')return j;return -1};
+list.forEach((b,i)=>{const k=kinds[i];if(k=='sp'||skip.has(i))return;if(k=='img'){sec.items.push({t:'img',src:b.img.src});return}
+if(k=='h1'||k=='h2'){if(k=='h2'&&secs.length==1&&!sec.items.length&&!sub){sub=b.tx;return}sec={h:b.tx,n:k=='h1'?(b.tx.match(/^([IVX]+)\./)||[])[1]:'',items:[]};secs.push(sec);label=null;return}
+if(k=='lab'){label=b.tx.replace(/:$/,'');return}
+if(k=='v'){sec.items.push({t:'v',ref:b.ref,tx:b.vt,label});label=null;return}
+if(k=='vr'){const j=nx(i);let tx='';if(j>=0&&kinds[j]=='vt'){tx=list[j].tx;skip.add(j)}sec.items.push({t:'v',ref:b.tx,tx,label});label=null;return}
+if(k=='vq'){const ix=b.r.findIndex(r=>r.t=='\n'),ref=b.r.slice(0,ix<0?1:ix).map(r=>r.t).join('').trim(),tx=ix<0?'':b.r.slice(ix+1).map(r=>r.t).join('').trim();sec.items.push({t:'v',ref,tx,label});label=null;return}
+if(k=='c'){sec.items.push({t:'c',tx:b.tx,label});return}
+label=null;sec.items.push({t:k=='li'?'li':'p',tx:b.tx.replace(/^[\u2022*-]\s*/,'')})});
+return{secs,sub,list}}
+async function makePptx(){await loadLib();try{await Promise.all(['400','600'].map(w=>document.fonts.load(w+' 30px Outfit')))}catch(e){}
+const title=($('#et').value||'Walay titulo').trim(),fol=(S.folders.find(f=>f.id==cur.f)||{}).name||'',dt=new Date(cur.ts).toLocaleDateString();
+const{secs,sub,list}=deckModel(title);
+const pres=new PptxGenJS();pres.layout='LAYOUT_WIDE';pres.title=title;
+const F=((cur&&cur.font)||'Outfit').split(',')[0].replace(/['"]/g,'').trim(),BG='14121C',PAN='221D33',TX='F4EFFA',MU='B9AED0',AM='FFB454',PU='6A4CB5',RT=pres.ShapeType.rect,RR=pres.ShapeType.roundRect,EL=pres.ShapeType.ellipse;
+const fz=n=>n<=170?30:n<=260?28:n<=300?26:24,all=norm(title+' '+list.map(b=>b.tx).join(' ')),lg=logoUrl();let sn=0;
+const full=(s,t,sd)=>s.addImage({data:art(t,1600,900,sd),x:0,y:0,w:13.33,h:7.5});
+// title
+{const s=pres.addSlide();s.background={color:BG};full(s,themeOf(all),0);s.addShape(RT,{x:0,y:0,w:8.8,h:7.5,fill:{color:BG,transparency:10},line:{type:'none'}});
+s.addImage({data:lg,x:.8,y:.7,w:.65,h:.65});s.addText('BCM Notebook & Bible',{x:1.6,y:.7,w:5,h:.65,fontFace:F,fontSize:16,color:MU,bold:true,valign:'middle',margin:0});
+s.addShape(RT,{x:.8,y:2.3,w:1.3,h:.08,fill:{color:AM},line:{type:'none'}});
+s.addText(title,{x:.8,y:2.55,w:7.6,h:2.2,fontFace:F,fontSize:title.length>38?36:46,bold:true,color:TX,valign:'top',margin:0});
+if(sub)s.addText(sub,{x:.8,y:4.85,w:7.6,h:1.2,fontFace:F,fontSize:18,color:AM,valign:'top',margin:0});
+s.addText((fol?fol+'   \u2022   ':'')+dt,{x:.8,y:6.55,w:7,h:.4,fontFace:F,fontSize:14,color:MU,margin:0})}
+secs.forEach((sc,si)=>{const th=themeOf((sc.h||'')+' '+sc.items.map(x=>x.tx||'').join(' ')),cap=(sc.h||'').replace(/^[IVX]+\.\s*/,'');
+if(sc.h){const s=pres.addSlide();s.background={color:BG};full(s,th,si);s.addShape(RT,{x:0,y:0,w:8.2,h:7.5,fill:{color:BG,transparency:18},line:{type:'none'}});
+if(sc.n){s.addShape(EL,{x:.9,y:1.9,w:1.4,h:1.4,fill:{color:AM},line:{type:'none'}});s.addText(sc.n,{x:.9,y:1.9,w:1.4,h:1.4,fontFace:F,fontSize:sc.n.length>2?30:40,bold:true,color:BG,align:'center',valign:'middle',margin:0});s.addText('SEKSYON',{x:2.55,y:2.3,w:4,h:.5,fontFace:F,fontSize:14,bold:true,color:AM,margin:0})}
+s.addText(cap,{x:.9,y:sc.n?3.65:2.6,w:6.9,h:2.8,fontFace:F,fontSize:cap.length>45?30:38,bold:true,color:TX,valign:'top',margin:0})}
+let i=0,cn=0;const its=sc.items;
+while(i<its.length){const it=its[i];cn++;if(it.t=='img'){if(it.src){const s=pres.addSlide();s.background={color:BG};s.addShape(RT,{x:0,y:0,w:.18,h:7.5,fill:{color:AM},line:{type:'none'}});s.addImage({data:it.src.replace(/^data:/,''),x:.9,y:.6,w:11.5,h:6.3,sizing:{type:'contain',w:11.5,h:6.3}})}i++;continue}
+if(it.t=='v'){const s=pres.addSlide();s.background={color:BG};full(s,th,si+cn);s.addShape(RT,{x:0,y:0,w:13.33,h:7.5,fill:{color:BG,transparency:22},line:{type:'none'}});
+s.addText('\u201C',{x:.9,y:.5,w:2,h:1.6,fontFace:F,fontSize:110,bold:true,color:AM,margin:0,valign:'top'});
+if(it.label)s.addText(it.label.toUpperCase(),{x:9.6,y:.7,w:2.9,h:.4,fontFace:F,fontSize:13,bold:true,color:AM,align:'right',margin:0});
+s.addText(it.tx||it.ref,{x:1.3,y:1.7,w:10.7,h:3.9,fontFace:F,fontSize:it.tx.length>230?26:it.tx.length>140?30:36,color:TX,align:'center',valign:'middle',margin:0});
+if(it.tx){const w=Math.max(2.6,it.ref.length*.2+.9);s.addShape(RR,{x:(13.33-w)/2,y:5.85,w,h:.62,rectRadius:.3,fill:{color:AM},line:{type:'none'}});s.addText(it.ref,{x:(13.33-w)/2,y:5.85,w,h:.62,fontFace:F,fontSize:18,bold:true,color:BG,align:'center',valign:'middle',margin:0})}
+i++;continue}
+if(it.t=='c'){const lb=it.label;let ch=[],n=0;while(i<its.length&&its[i].t=='c'&&its[i].label===lb&&(!ch.length||n+its[i].tx.length<330)&&ch.length<6){ch.push(its[i].tx);n+=its[i].tx.length;i++}
+const s=pres.addSlide();s.background={color:BG};s.addShape(EL,{x:10.2,y:-1.4,w:4.6,h:4.6,fill:{color:PU,transparency:82},line:{type:'none'}});s.addShape(EL,{x:-1.2,y:5.2,w:3.4,h:3.4,fill:{color:AM,transparency:88},line:{type:'none'}});
+s.addShape(RR,{x:.9,y:1.2,w:11.5,h:5.3,rectRadius:.2,fill:{color:PAN},line:{color:PU,width:1.5}});s.addShape(RT,{x:.9,y:1.5,w:.14,h:4.7,fill:{color:AM},line:{type:'none'}});
+if(lb){const w=lb.length*.17+.8;s.addShape(RR,{x:1.5,y:1.6,w,h:.5,rectRadius:.25,fill:{color:AM},line:{type:'none'}});s.addText(lb.toUpperCase(),{x:1.5,y:1.6,w,h:.5,fontFace:F,fontSize:14,bold:true,color:BG,align:'center',valign:'middle',margin:0})}
+s.addText(ch.map((t,k)=>({text:t,options:{breakLine:k<ch.length-1,paraSpaceAfter:12}})),{x:1.5,y:2.35,w:10.4,h:3.9,fontFace:F,fontSize:fz(n),color:TX,valign:lb?'top':'middle',margin:0});continue}
+let ch=[],n=0;while(i<its.length&&(its[i].t=='p'||its[i].t=='li')&&(!ch.length||n+its[i].tx.length<390)&&ch.length<8){ch.push(its[i]);n+=its[i].tx.length;i++}
+const s=pres.addSlide();s.background={color:BG};s.addShape(RT,{x:0,y:0,w:.18,h:7.5,fill:{color:AM},line:{type:'none'}});
+if(cap)s.addText(cap.toUpperCase(),{x:.9,y:.45,w:7.7,h:.4,fontFace:F,fontSize:12,bold:true,color:AM,margin:0});
+s.addText(ch.map((t,k)=>({text:t.tx,options:{breakLine:k<ch.length-1,paraSpaceAfter:14,bullet:t.t=='li'?{indent:22}:false}})),{x:.9,y:1.05,w:7.6,h:5.7,fontFace:F,fontSize:fz(n),color:TX,valign:'middle',margin:0});
+s.addImage({data:art(th,780,1220,si+cn),x:8.95,y:.75,w:3.9,h:6.0});s.addShape(RT,{x:8.95,y:.75,w:3.9,h:6.0,fill:{color:BG,transparency:100},line:{color:AM,width:1.25}})}});
+{const s=pres.addSlide();s.background={color:BG};full(s,'horizon',2);s.addShape(RT,{x:0,y:0,w:13.33,h:7.5,fill:{color:BG,transparency:30},line:{type:'none'}});s.addImage({data:lg,x:6.0,y:1.4,w:1.3,h:1.3});
+s.addText('Salamat',{x:1,y:3.0,w:11.33,h:1.2,fontFace:F,fontSize:56,bold:true,color:TX,align:'center',margin:0});s.addText(title,{x:1.5,y:4.3,w:10.33,h:.8,fontFace:F,fontSize:20,color:AM,align:'center',margin:0});s.addText('Gihimo gamit ang BCM Notebook & Bible',{x:1,y:6.5,w:11.33,h:.4,fontFace:F,fontSize:13,color:MU,align:'center',margin:0})}
+const o=await pres.write({outputType:'blob'});return o instanceof Blob?o:new Blob([o],{type:'application/vnd.openxmlformats-officedocument.presentationml.presentation'})}
+// ---- Sermon slides (pahiluna) ----
+function drawLogo(g,x,y,s){g.save();g.translate(x,y);g.scale(s/100,s/100);const gr=g.createLinearGradient(0,0,100,100);gr.addColorStop(0,'#34246e');gr.addColorStop(1,'#be5a23');g.fillStyle=gr;g.beginPath();g.roundRect?g.roundRect(0,0,100,100,22):g.rect(0,0,100,100);g.fill();g.fillStyle='#fff6e0';g.beginPath();g.moveTo(50,77);g.lineTo(14,67);g.lineTo(14,42);g.lineTo(50,52);g.fill();g.beginPath();g.moveTo(50,77);g.lineTo(86,67);g.lineTo(86,42);g.lineTo(50,52);g.fill();g.fillStyle='#ffd670';g.fillRect(46,13,8,38);g.fillRect(37,21,26,8);g.restore()}
+async function makeSlides(){try{await Promise.all(['400','600'].map(w=>document.fonts.load(w+' 30px Outfit')))}catch(e){}
+const title=($('#et').value||'Walay titulo').trim(),fol=(S.folders.find(f=>f.id==cur.f)||{}).name||'',dt=new Date(cur.ts).toLocaleDateString(),{secs,sub,list}=deckModel(title),all=norm(title+' '+list.map(b=>b.tx).join(' '));
+const W=1600,H=900,F=((cur&&cur.font)||'Outfit,\'Segoe UI\',system-ui,sans-serif'),BG='#14121C',PAN='#221D33',TX='#F4EFFA',MU='#B9AED0',AM='#FFB454',PU='#6A4CB5',out=[];
+const cv=document.createElement('canvas');cv.width=W;cv.height=H;const g=cv.getContext('2d');g.textBaseline='top';
+const rr=(x,y,w,h,r)=>{g.beginPath();g.roundRect?g.roundRect(x,y,w,h,r):g.rect(x,y,w,h)};
+const wr=(t,font,mw)=>{g.font=font;const ls=[];let c='';for(const w of String(t).split(/\s+/)){const n=c?c+' '+w:w;if(g.measureText(n).width>mw&&c){ls.push(c);c=w}else c=n}if(c)ls.push(c);return ls};
+const hh=(arr,font,mw,lh,gap)=>arr.reduce((a,t)=>a+wr(t,font,mw).length*lh+gap,0)-gap;
+const para=(arr,x,y,font,col,mw,lh,gap,al)=>{g.font=font;g.fillStyle=col;g.textAlign=al||'left';let yy=y;for(const t of arr){for(const l of wr(t,font,mw)){g.fillText(l,x,yy);yy+=lh}yy+=gap}g.textAlign='left';return yy};
+const start=()=>{g.fillStyle=BG;g.fillRect(0,0,W,H)},full=(t,sd)=>g.drawImage(art(t,W,H,sd,true),0,0),over=(w,a)=>{g.fillStyle='rgba(20,18,28,'+a+')';g.fillRect(0,0,w,H)};
+const emit=async()=>{const b=atob(cv.toDataURL('image/jpeg',.92).split(',')[1]),u=new Uint8Array(b.length);for(let i=0;i<u.length;i++)u[i]=b.charCodeAt(i);out.push(u);await new Promise(r=>setTimeout(r))};
+const fz=n=>n<=170?50:n<=260?47:n<=300?43:40;
+// title
+start();full(themeOf(all),0);over(1056,.9);drawLogo(g,108,84,78);g.fillStyle=MU;g.font='600 24px '+F;g.fillText('BCM Notebook & Bible',204,108);g.fillStyle=AM;g.fillRect(108,276,156,10);
+{const z=title.length>38?54:66;para([title],108,312,'600 '+z+'px '+F,TX,912,z+16,0);}
+if(sub)para([sub],108,624,'400 28px '+F,AM,912,40,0);g.fillStyle=MU;g.font='400 22px '+F;g.fillText((fol?fol+'   \u2022   ':'')+dt,108,786);await emit();
+for(let si=0;si<secs.length;si++){const sc=secs[si],th=themeOf((sc.h||'')+' '+sc.items.map(x=>x.tx||'').join(' ')),cap=(sc.h||'').replace(/^[IVX]+\.\s*/,'');
+if(sc.h){start();full(th,si);over(984,.82);if(sc.n){g.fillStyle=AM;g.beginPath();g.arc(192,312,84,0,7);g.fill();g.fillStyle=BG;g.font='600 '+(sc.n.length>2?44:60)+'px '+F;g.textAlign='center';g.fillText(sc.n,192,312-(sc.n.length>2?28:38));g.textAlign='left';g.fillStyle=AM;g.font='600 22px '+F;g.fillText('SEKSYON',306,296)}
+para([cap],108,sc.n?438:312,'600 '+(cap.length>45?46:58)+'px '+F,TX,828,(cap.length>45?46:58)+18,0);await emit()}
+let i=0,cn=0;const its=sc.items;
+while(i<its.length){const it=its[i];cn++;
+if(it.t=='img'){if(it.src){start();g.fillStyle=AM;g.fillRect(0,0,22,H);const im=await new Promise(ok=>{const m=new Image();m.onload=()=>ok(m);m.onerror=()=>ok(null);m.src='data:'+it.src});if(im){const s=Math.min(1380/im.naturalWidth,756/im.naturalHeight),dw=im.naturalWidth*s,dh=im.naturalHeight*s;g.drawImage(im,108+(1380-dw)/2,72+(756-dh)/2,dw,dh)}await emit()}i++;continue}
+if(it.t=='v'){start();full(th,si+cn);over(W,.78);g.fillStyle=AM;g.font='600 170px '+F;g.fillText('\u201C',108,36);if(it.label){g.fillStyle=AM;g.font='600 20px '+F;g.textAlign='right';g.fillText(it.label.toUpperCase(),1500,84);g.textAlign='left'}
+const tx=it.tx||it.ref,z=tx.length>230?40:tx.length>140?48:58,hgt=hh([tx],'400 '+z+'px '+F,1284,Math.round(z*1.4),0);para([tx],W/2,204+(468-hgt)/2,'400 '+z+'px '+F,TX,1284,Math.round(z*1.4),0,'center');
+if(it.tx){g.font='600 30px '+F;const pw=Math.max(312,g.measureText(it.ref).width+90);g.fillStyle=AM;rr((W-pw)/2,702,pw,74,37);g.fill();g.fillStyle=BG;g.textAlign='center';g.fillText(it.ref,W/2,720);g.textAlign='left'}await emit();i++;continue}
+if(it.t=='c'){const lb=it.label;let ch=[],n=0;while(i<its.length&&its[i].t=='c'&&its[i].label===lb&&(!ch.length||n+its[i].tx.length<330)&&ch.length<6){ch.push(its[i].tx);n+=its[i].tx.length;i++}
+start();g.fillStyle='rgba(106,76,181,.18)';g.beginPath();g.arc(1450,50,270,0,7);g.fill();g.fillStyle='rgba(255,180,84,.12)';g.beginPath();g.arc(60,860,200,0,7);g.fill();g.fillStyle=PAN;rr(108,144,1384,636,26);g.fill();g.strokeStyle=PU;g.lineWidth=3;rr(108,144,1384,636,26);g.stroke();g.fillStyle=AM;g.fillRect(108,184,17,556);
+let y0=lb?300:200;if(lb){g.font='600 20px '+F;const w=g.measureText(lb.toUpperCase()).width+60;g.fillStyle=AM;rr(180,196,w,60,30);g.fill();g.fillStyle=BG;g.textAlign='center';g.fillText(lb.toUpperCase(),180+w/2,214);g.textAlign='left'}
+let f=fz(n),lh=Math.round(f*1.42);while(hh(ch,'400 '+f+'px '+F,1248,lh,26)>740-y0&&f>28){f-=2;lh=Math.round(f*1.42)}para(ch,180,y0,'400 '+f+'px '+F,TX,1248,lh,26);await emit();continue}
+let ch=[],n=0;while(i<its.length&&(its[i].t=='p'||its[i].t=='li')&&(!ch.length||n+its[i].tx.length<390)&&ch.length<8){ch.push(its[i]);n+=its[i].tx.length;i++}
+start();g.fillStyle=AM;g.fillRect(0,0,22,H);if(cap){g.fillStyle=AM;g.font='600 20px '+F;g.fillText(cap.toUpperCase().slice(0,70),108,54)}
+let f=fz(n);const arr=ch.map(t=>(t.t=='li'?'\u2022 ':'')+t.tx);let lh=Math.round(f*1.4),hgt=hh(arr,'400 '+f+'px '+F,912,lh,20);while(hgt>690&&f>28){f-=2;lh=Math.round(f*1.4);hgt=hh(arr,'400 '+f+'px '+F,912,lh,20)}para(arr,108,Math.max(110,126+(684-hgt)/2),'400 '+f+'px '+F,TX,912,lh,20);
+g.drawImage(art(th,468,720,si+cn,true),1074,90);g.strokeStyle=AM;g.lineWidth=3;g.strokeRect(1074,90,468,720);await emit()}}
+start();full('horizon',2);over(W,.7);drawLogo(g,W/2-78,168,156);g.fillStyle=TX;g.font='600 92px '+F;g.textAlign='center';g.fillText('Salamat',W/2,372);g.fillStyle=AM;g.font='400 34px '+F;g.fillText(title.slice(0,70),W/2,512);g.fillStyle=MU;g.font='400 22px '+F;g.fillText('BCM Notebook & Bible',W/2,790);g.textAlign='left';await emit();return out}
+
+// ---- Dugang Kasayoran sa PDF / slides ----
+function studyBlocks(k){const a=S.aic[k],u=S.sup[k],out=[],L=t=>out.push({q:0,r:[{t}],tx:t,_k:'lab'}),C=t=>out.push({q:0,r:[{t}],tx:t,_k:'c'});
+const ps=a&&(a.buot_ipasabot||a.pasabot);if(ps){L('Pasabot sa yano nga pulong');C(String(ps))}
+const pl=a?(a.pulong||[]).filter(w=>w&&w.pulong):[];if(pl.length){L('Mga pulong nga gipasabot');pl.forEach(w=>C(w.pulong+' \u2014 '+(w.pasabot||'')))}
+if(u&&u.n&&u.n.trim()){L('Akong Pasabot');u.n.split(/\n+/).forEach(t=>t.trim()&&C(t.trim()))}
+const rk=[];if(a)for(const f of a.refs||[])for(const kk of parseRef(String(f.ref||'')).slice(0,2))if(kk!=k&&!rk.some(x=>x[0]==kk))rk.push([kk,String(f.why||'')]);if(u)for(const kk of u.r||[])if(kk!=k&&!rk.some(x=>x[0]==kk))rk.push([kk,'']);
+if(rk.length){L('Kaabag nga mga verse');rk.slice(0,8).forEach(([kk,w])=>{out.push({q:0,r:[],tx:vref(kk)+' "'+vtxt(kk)+'"',_k:'v',ref:vref(kk),vt:'"'+vtxt(kk)+'"'});if(w)out.push({q:0,r:[{t:'\u21B3 '+w}],tx:'\u21B3 '+w,_k:'p'})})}
+if(a&&a.pananglit){L('Pananglit');C(String(a.pananglit))}if(a&&a.aplikasyon){L('Aplikasyon');C(String(a.aplikasyon))}return out}
+function injectStudy(list,kinds){const nl=[],nk=[];let pend=null;const inj=ref=>{const ks=parseRef(ref);if(!ks.length)return;studyBlocks(ks[0]).forEach(x=>{nl.push(x);nk.push(x._k)})},flush=()=>{if(pend){inj(pend);pend=null}};
+list.forEach((b,i)=>{const k=kinds[i];if(k=='sp'){nl.push(b);nk.push(k);return}if(pend&&k!='vt')flush();nl.push(b);nk.push(k);
+if(k=='v')inj(b.ref);else if(k=='vr')pend=b.tx;else if(k=='vt')flush();else if(k=='vq'){const ix=b.r.findIndex(r=>r.t=='\n');inj(b.r.slice(0,ix<0?1:ix).map(r=>r.t).join('').trim())}});flush();list.splice(0,list.length,...nl);kinds.splice(0,kinds.length,...nk)}
+function noteVerses(){const{list,kinds}=parseNote(($('#et').value||'').trim(),true),ks=[];list.forEach((b,i)=>{const k=kinds[i];let r=null;if(k=='v')r=b.ref;else if(k=='vr')r=b.tx;else if(k=='vq'){const ix=b.r.findIndex(x=>x.t=='\n');r=b.r.slice(0,ix<0?1:ix).map(x=>x.t).join('').trim()}if(r){const p=parseRef(r);if(p.length&&!ks.includes(p[0]))ks.push(p[0])}});return ks}
+let genStop=false;
+$('#gX').onclick=()=>{genStop=true;$('#gT').textContent='Hunongon human sa kasamtangan nga verse\u2026';if($('#gX').dataset.done)$('#m5').classList.remove('show')};
+$('#eGen').onclick=async()=>{sv(1);const ks=noteVerses();if(!ks.length)return toast('Wala makita nga verse sa note. Sulayi: Roma 8:14 "..."');const todo=ks.filter(k=>!S.aic[k]);if(!todo.length)return toast('Naa na ang dugang kasayoran sa tanang verse \u2713');
+genStop=false;$('#gE').innerHTML='';$('#gX').dataset.done='';$('#gX').textContent='Hunonga';$('#m5').classList.add('show');let ok=0,fail=false;
+for(let i=0;i<todo.length&&!genStop;i++){const k=todo[i];$('#gT').textContent='Verse '+(i+1)+' sa '+todo.length+': '+vref(k);try{const d=await aiSup(k,p=>{$('#gB').style.width=p+'%';$('#gP').textContent='Gisusi ang kasayoran\u2026 '+p+'%'});if(!d){fail=true;break}d.v=2;S.aic[k]=d;save();ok++}catch(e){$('#gE').innerHTML=errBox(e);fail=true;break}}
+if(fail){$('#gT').textContent='Napakyas. Gihuman na ang '+ok+' sa '+todo.length+'.';$('#gX').dataset.done='1';$('#gX').textContent='Isira';return}
+$('#m5').classList.remove('show');toast(genStop?'Gihunong. Naa na ang '+ok+' ka verse':'Humana! Naa na ang dugang kasayoran sa '+ok+' ka verse. Pwede na i-download.')};
+
+
+function selFmt(){const e=$('#eFmt');if(!e||!cur)return;if(cur.type=='msgr')e.value='mjpg';else if(/^m/.test(e.value))e.value='pdf'}
+// ---- Messenger GC: 1080x1440, USA RA KA PAGE (poster-style, auto-fit) ----
+async function makeMsgr(){
+try{await Promise.all(['300','400','500','600','700'].map(w=>document.fonts.load(w+' 30px Outfit')))}catch(e){}
+const W=1080,H=1440,BF=(cur&&cur.font)||SERIF,title=($('#et').value||'Walay titulo').trim(),ORG=S.set.org||'Breaking Chain Ministry';
+const{list,kinds}=parseNote(title,1);
+for(const b of list)if(b.img)b.im=await new Promise(ok=>{const i=new Image();i.onload=()=>ok(i);i.onerror=()=>ok(null);i.src=b.img.src});
+const mg=document.createElement('canvas').getContext('2d');
+const ft=(r,z,bd)=>(r.i?'italic ':'')+(bd||r.b?'600 ':'400 ')+z+'px '+BF;
+const wrap=(rs,z,bd,w)=>{const L=[];let ln=[],lx=0;const nl=()=>{L.push(ln);ln=[];lx=0};for(const r of rs){if(r.t=='\n'){nl();continue}mg.font=ft(r,z,bd);for(const tk of r.t.split(/(\s+)/)){if(!tk)continue;const tw=mg.measureText(tk).width;if(lx+tw>w&&lx>0&&tk.trim())nl();if(lx==0&&!tk.trim())continue;ln.push({t:tk,x:lx,w:tw,r});lx+=tw}}if(ln.length||!L.length)nl();return L};
+const rr=(g,x,y,w,h,r)=>{g.beginPath();g.roundRect?g.roundRect(x,y,w,h,r):g.rect(x,y,w,h)};
+const txt=(g,L,x,y,lh,z,bd,col)=>{L.forEach((ln,i)=>{for(const s of ln){g.font=ft(s.r,z,bd);if(s.r.h){g.fillStyle=s.r.h;g.fillRect(x+s.x,y+i*lh+4,s.w,lh-8)}g.fillStyle=s.r.col||col;g.fillText(s.t,x+s.x,y+i*lh+(lh-z)/2);if(s.r.u)g.fillRect(x+s.x,y+i*lh+lh-12,s.w,2)}})};
+// seeded random (lain-lain nga poster kada titulo)
+let sd=0;for(const ch of title)sd=(sd*31+ch.charCodeAt(0))%233280;sd=sd||7;const R=()=>(sd=(sd*9301+49297)%233280)/233280;
+// ---------- HEADER layout (3 ka mode: full / compact / dense) ----------
+const TT=title.toUpperCase(),TW=900;
+const MODES=[
+{n:0,tTop:214,tzs:[88,80,72,64,58,52,46,42,38],gap:40,bot:178,PX:40,CX:84,ct:54,lhm:1.55,pad:28,cg:24,pg:10},
+{n:1,tTop:150,tzs:[64,58,52,46,42,38],gap:34,bot:132,PX:40,CX:62,ct:46,lhm:1.42,pad:18,cg:14,pg:6},
+{n:2,tTop:96,tzs:[48,44,40,36],gap:30,bot:92,PX:46,CX:68,ct:40,lhm:1.34,pad:13,cg:9,pg:3}];
+const geo=m=>{let tz=m.tzs[0],tl;for(const z of m.tzs){tl=wrap([{t:TT,b:1}],z,1,TW);tz=z;if(tl.length<=(z>=60?2:3))break}tl=tl.slice(0,3);const tlh=Math.round(tz*1.1),hb=m.tTop+tl.length*tlh+14,panelTop=hb+m.gap,panelBot=H-m.bot,CWpx=W-2*m.CX,cTop=panelTop+m.ct,cBot=panelBot-(m.n?22:34);return{...m,tz,tl,tlh,hb,panelTop,panelBot,CWpx,cTop,availH:cBot-cTop,PWd:W-2*m.PX}};
+// ---------- CONTENT builder (virtual coords, scale s) ----------
+const build=(s,G)=>{const M=0,CWm=G.CWpx/s,Z=34,it=[],f=G.pad/28,LH=z=>Math.round(z*G.lhm);
+const para=(rs,z,bd,col,x0,w,gap)=>{const L=wrap(rs,z,bd,w),lh=LH(z);gap=Math.round(gap*G.pg/10);L.forEach((ln,i)=>it.push({h:lh+(i==L.length-1?gap:0),draw:(g,y)=>txt(g,[ln],x0,y,lh,z,bd,col)}))};
+const cardIt=(parts,fill,bar)=>{const x0=M+44,w=CWm-44-28,pad=G.pad,ls=parts.map(p=>({...p,L:wrap(p.rs,p.z,p.bd,w),lh:LH(p.z)})),h=ls.reduce((a,p)=>a+p.L.length*p.lh,0)+pad*2;
+it.push({h:h+G.cg,draw:(g,y)=>{g.save();g.shadowColor='rgba(60,40,100,.16)';g.shadowBlur=18;g.shadowOffsetY=5;g.fillStyle=fill;rr(g,M,y,CWm,h,22);g.fill();g.restore();g.save();rr(g,M,y,CWm,h,22);g.clip();g.fillStyle=bar;g.fillRect(M,y,10,h);g.restore();let yy=y+pad;for(const p of ls){txt(g,p.L,x0,yy,p.lh,p.z,p.bd,p.col);yy+=p.L.length*p.lh}}})};
+const keepLast=()=>{};
+for(let i=0;i<list.length;i++){const b=list[i],k=kinds[i],rs=(b.r&&b.r.length)?b.r:[{t:b.tx||''}];
+if(k=='sp'){it.push({h:Math.round(16*f)||1,draw:()=>{}});continue}
+if(k=='img'){const im=b.im;if(im&&im.naturalWidth){const sc=Math.min(CWm/im.naturalWidth,600/im.naturalHeight),dw=im.naturalWidth*sc,dh=im.naturalHeight*sc;it.push({h:dh+24,draw:(g,y)=>{g.save();rr(g,M+(CWm-dw)/2,y,dw,dh,16);g.clip();g.drawImage(im,M+(CWm-dw)/2,y,dw,dh);g.restore()}})}continue}
+if(k=='h1'){const L=wrap(rs,36,1,CWm-56),lh=Math.round(50*(.8+.2*f)),h=L.length*lh+Math.round(32*f);it.push({h:h+Math.round(22*f),draw:(g,y)=>{const gr=g.createLinearGradient(M,0,M+CWm,0);gr.addColorStop(0,'#34246e');gr.addColorStop(1,'#a8501f');g.fillStyle=gr;rr(g,M,y,CWm,h,20);g.fill();txt(g,L,M+28,y+Math.round(16*f),lh,36,1,'#fff')}});continue}
+if(k=='h2'){const L=wrap(rs,34,1,CWm-56),lh=Math.round(48*(.8+.2*f)),h=L.length*lh+Math.round(24*f);it.push({h:h+Math.round(18*f),draw:(g,y)=>{const gr=g.createLinearGradient(M,0,M+CWm,0);gr.addColorStop(0,'#ebe3fb');gr.addColorStop(1,'#fbeedd');g.fillStyle=gr;rr(g,M,y,CWm,h,16);g.fill();g.save();rr(g,M,y,CWm,h,16);g.clip();g.fillStyle='#6a4cb5';g.fillRect(M,y,12,h);g.restore();txt(g,L,M+32,y+Math.round(12*f),lh,34,1,'#34246e')}});continue}
+if(k=='lab'){para([{t:b.tx.replace(/:$/,'').toUpperCase()}],24,1,'#b4571f',M,CWm,6);continue}
+if(k=='v'){cardIt([{rs:[{t:b.ref}],z:28,bd:1,col:'#b4571f'},{rs:[{t:b.vt}],z:Z,bd:0,col:'#5a3a12'}],'#fff','#c9722e');continue}
+if(k=='vr'){para([{t:b.tx}],28,1,'#b4571f',M+30,CWm-60,2);continue}
+if(k=='vt'||k=='vq'||k=='c'){cardIt([{rs,z:Z,bd:0,col:'#5a3a12'}],'#fff','#c9722e');continue}
+if(k=='pq'){cardIt([{rs:[{t:b.tx}],z:Z,bd:0,col:'#3b2a78'}],'#f1ebfb','#6a4cb5');continue}
+if(k=='em'){cardIt([{rs,z:Z,bd:0,col:'#2a2118'}],'#fff','#e0762e');continue}
+if(k=='li'){const r2=rs.map(r=>({...r})),f=r2.find(r=>r.t.trim());if(f)f.t=f.t.replace(/^\s*[\u2022*-]\s*/,'');const L=wrap(r2,Z,0,CWm-50),lh=LH(Z);L.forEach((ln,j)=>it.push({h:lh+(j==L.length-1?Math.round(6*f):0),draw:(g,y)=>{if(j==0){g.fillStyle='#c9722e';g.beginPath();g.arc(M+16,y+lh/2,7,0,7);g.fill()}txt(g,[ln],M+50,y,lh,Z,0,'#2a2118')}}));continue}
+para(rs,Z,0,'#2a2118',M,CWm,10)}
+while(it.length&&it[0].h<=16&&!it[0].draw.length)it.shift();
+while(it.length&&it[it.length-1].h<=16)it.pop();
+let total=0,yy=0;for(const o of it){o.y=yy;yy+=o.h}total=yy;return{it,total}};
+// ---------- AUTO-FIT: usa ra ka page, pero basahon gihapon ----------
+const fitIn=G=>{const f=x=>{const r=build(x,G);return r.total*x<=G.availH?r:null};let lo=.18,hi=1.25,best=f(hi),bs=hi;if(!best){for(let k=0;k<16;k++){const mid=(lo+hi)/2,r=f(mid);if(r){best=r;bs=mid;lo=mid}else hi=mid}if(!best){bs=lo;best=build(lo,G)}}return{G,s:bs,body:best}};
+let pick=null;for(const m of MODES){const r=fitIn(geo(m));if(!pick||r.s>pick.s)pick=r;if(r.s>=(m.n==0?.92:.88)){pick=r;break}}
+const{tz,tl,tlh,tTop,hb,panelTop,panelBot,PX,PWd,CX,cTop,availH,n:MD}=pick.G;const S1=pick.s,body=pick.body;
+// ---------- DRAW ----------
+const cv=document.createElement('canvas');cv.width=W;cv.height=H;const g=cv.getContext('2d');g.textBaseline='top';
+const gold=(x0,y0,x1,y1)=>{const q=g.createLinearGradient(x0,y0,x1,y1);q.addColorStop(0,'#fff1bd');q.addColorStop(.45,'#f3b94d');q.addColorStop(1,'#b8761f');return q};
+const spaced=(t,cx,y,gap)=>{let w=0;const ws=[...t].map(c=>{const m=g.measureText(c).width;w+=m;return m});w+=gap*(ws.length-1);let x=cx-w/2;const ta=g.textAlign;g.textAlign='left';[...t].forEach((c,i)=>{g.fillText(c,x,y);x+=ws[i]+gap});g.textAlign=ta};
+const diamond=(x,y,r)=>{g.beginPath();g.moveTo(x,y-r);g.lineTo(x+r,y);g.lineTo(x,y+r);g.lineTo(x-r,y);g.closePath()};
+const dg0=()=>{const q=g.createLinearGradient(90,0,W-90,0);q.addColorStop(0,'rgba(243,185,77,0)');q.addColorStop(.5,'rgba(255,225,140,.9)');q.addColorStop(1,'rgba(243,185,77,0)');return q};
+const spark=(x,y,r,a)=>{g.save();g.globalAlpha=a;g.fillStyle='#fff3c9';g.beginPath();g.moveTo(x,y-r);g.quadraticCurveTo(x,y,x+r,y);g.quadraticCurveTo(x,y,x,y+r);g.quadraticCurveTo(x,y,x-r,y);g.quadraticCurveTo(x,y,x,y-r);g.fill();g.restore()};
+// langit
+let bg=g.createLinearGradient(0,0,0,H);bg.addColorStop(0,'#120a34');bg.addColorStop(.35,'#2c1966');bg.addColorStop(.7,'#6c2a66');bg.addColorStop(1,'#c9622b');g.fillStyle=bg;g.fillRect(0,0,W,H);
+const glow=(x,y,r,c0,c1)=>{const q=g.createRadialGradient(x,y,0,x,y,r);q.addColorStop(0,c0);q.addColorStop(1,c1);g.fillStyle=q;g.fillRect(0,0,W,H)};
+glow(W/2,120,760,'rgba(255,200,110,.60)','rgba(255,200,110,0)');glow(120,H-80,620,'rgba(255,90,140,.38)','rgba(255,90,140,0)');glow(W-60,H*.55,560,'rgba(130,90,255,.32)','rgba(130,90,255,0)');
+// silaw (light rays)
+g.save();for(let k=-9;k<=9;k++){const a=k*.115,w=.045;g.fillStyle='rgba(255,226,150,'+(.05+.03*(k%2?1:0))+')';g.beginPath();g.moveTo(W/2,70);g.lineTo(W/2+Math.tan(a-w)*1500,1570);g.lineTo(W/2+Math.tan(a+w)*1500,1570);g.closePath();g.fill()}g.restore();
+// bitoon
+for(let k=0;k<130;k++){const x=R()*W,y=R()*H,r=.7+R()*1.7;g.globalAlpha=.18+R()*.6;g.fillStyle='#fff6dc';g.beginPath();g.arc(x,y,r,0,7);g.fill()}g.globalAlpha=1;
+for(let k=0;k<9;k++)spark(40+R()*(W-80),40+R()*(hb+40),9+R()*14,.55+R()*.4);
+// header
+if(MD==0){glow(W/2,92,150,'rgba(255,214,120,.0)','rgba(255,214,120,0)');
+let hq=g.createRadialGradient(W/2,92,10,W/2,92,110);hq.addColorStop(0,'rgba(255,220,130,.75)');hq.addColorStop(1,'rgba(255,220,130,0)');g.fillStyle=hq;g.beginPath();g.arc(W/2,92,110,0,7);g.fill();
+g.save();g.shadowColor='rgba(255,200,90,.9)';g.shadowBlur=26;drawLogo(g,W/2-40,52,80);g.restore();
+g.strokeStyle=gold(W/2-44,48,W/2+44,136);g.lineWidth=3;rr(g,W/2-44,48,88,88,26);g.stroke();
+g.font='600 24px '+SANS;g.fillStyle='#ffe7ad';g.textAlign='center';spaced(ORG.toUpperCase().slice(0,34),W/2,156,7);
+// divider
+const dy=198;let dg=g.createLinearGradient(110,0,W-110,0);dg.addColorStop(0,'rgba(243,185,77,0)');dg.addColorStop(.5,'rgba(255,225,140,.95)');dg.addColorStop(1,'rgba(243,185,77,0)');g.fillStyle=dg;g.fillRect(110,dy-1,W-220,2);g.fillStyle='#ffe29a';diamond(W/2,dy,10);g.fill();g.fillStyle='#ffd37a';diamond(W/2-34,dy,5);g.fill();diamond(W/2+34,dy,5);g.fill();
+}
+else if(MD==1){let hq=g.createRadialGradient(W/2,70,6,W/2,70,80);hq.addColorStop(0,'rgba(255,220,130,.7)');hq.addColorStop(1,'rgba(255,220,130,0)');g.fillStyle=hq;g.beginPath();g.arc(W/2,70,80,0,7);g.fill();
+g.save();g.shadowColor='rgba(255,200,90,.9)';g.shadowBlur=18;drawLogo(g,W/2-30,40,60);g.restore();g.strokeStyle=gold(W/2-33,38,W/2+33,104);g.lineWidth=2.5;rr(g,W/2-31,40,62,62,18);g.stroke();
+g.font='600 20px '+SANS;g.fillStyle='#ffe7ad';g.textAlign='center';spaced(ORG.toUpperCase().slice(0,34),W/2,112,6)}
+else{g.font='600 19px '+SANS;g.fillStyle='#ffe7ad';g.textAlign='center';spaced(ORG.toUpperCase().slice(0,34),W/2,54,6);g.fillStyle='#ffe29a';diamond(W/2-250,64,5);g.fill();diamond(W/2+250,64,5);g.fill()}
+// titulo
+g.textAlign='center';g.font='700 '+tz+'px '+BF;
+tl.forEach((ln,i)=>{const t=ln.map(s=>s.t).join('').trim(),y=tTop+i*tlh;g.save();g.font='700 '+tz+'px '+BF;g.fillStyle='rgba(0,0,0,.4)';g.fillText(t,W/2+3,y+7);g.shadowColor='rgba(255,185,70,.75)';g.shadowBlur=30;g.fillStyle=gold(0,y,0,y+tz);g.fillText(t,W/2,y);g.restore()});
+g.textAlign='left';
+// kuwadro nga bulawan
+g.strokeStyle=gold(0,0,W,H);g.lineWidth=4;rr(g,20,20,W-40,H-40,36);g.stroke();g.strokeStyle='rgba(255,226,150,.55)';g.lineWidth=1.5;rr(g,34,34,W-68,H-68,26);g.stroke();
+g.fillStyle='#ffe29a';[[20,20],[W-20,20],[20,H-20],[W-20,H-20]].forEach(([x,y])=>{diamond(x,y,13);g.fill()});
+// panel
+g.save();g.shadowColor='rgba(8,2,30,.55)';g.shadowBlur=56;g.shadowOffsetY=16;let pq=g.createLinearGradient(0,panelTop,0,panelBot);pq.addColorStop(0,'#fffef8');pq.addColorStop(1,'#fff0d6');g.fillStyle=pq;rr(g,PX,panelTop,PWd,panelBot-panelTop,38);g.fill();g.restore();
+g.strokeStyle=gold(PX,panelTop,PX+PWd,panelBot);g.lineWidth=3;rr(g,PX,panelTop,PWd,panelBot-panelTop,38);g.stroke();g.strokeStyle='rgba(201,114,46,.35)';g.lineWidth=1.5;rr(g,PX+12,panelTop+12,PWd-24,panelBot-panelTop-24,28);g.stroke();
+// pill sa taas sa panel
+const dt=new Date(cur.ts).toLocaleDateString(),pt='\u{1F4AC}  MENSAHE SA GC  \u2022  '+dt.toUpperCase();g.font='600 21px '+SANS;const pw=g.measureText(pt).width+64,ph=MD==2?42:50;
+g.save();g.shadowColor='rgba(20,8,60,.5)';g.shadowBlur=16;g.shadowOffsetY=5;let pg=g.createLinearGradient(W/2-pw/2,0,W/2+pw/2,0);pg.addColorStop(0,'#2a1668');pg.addColorStop(1,'#8a3f2a');g.fillStyle=pg;rr(g,W/2-pw/2,panelTop-ph/2,pw,ph,25);g.fill();g.restore();g.strokeStyle=gold(W/2-pw/2,0,W/2+pw/2,0);g.lineWidth=2.5;rr(g,W/2-pw/2,panelTop-ph/2,pw,ph,25);g.stroke();
+g.fillStyle='#fff';g.textAlign='center';g.fillText(pt,W/2,panelTop-ph/2+13);g.textAlign='left';
+// sulod (auto-fit) - i-center sa tungatunga kung mubo
+const used=body.total*S1,off=Math.min(Math.max((availH-used)/2,0),MD?30:220);
+g.save();g.beginPath();g.rect(PX+16,panelTop+30,PWd-32,panelBot-panelTop-46);g.clip();g.translate(CX,cTop+off);g.scale(S1,S1);g.textBaseline='top';for(const o of body.it)o.draw(g,o.y);g.restore();
+// kadena nga naguba (Breaking Chain)
+if(MD<2){const cy=MD==0?H-132:H-98;g.save();if(MD==1){g.translate(0,cy);g.scale(1,.72);g.translate(0,-cy)}g.lineCap='round';
+for(let k=0;k<17;k++){const x=70+k*58.5;if(Math.abs(x-W/2)<50)continue;const flat=k%2==0,fade=Math.min(1,Math.abs(x-W/2)/180+.35);g.globalAlpha=.9*fade;g.strokeStyle=gold(x-30,cy-16,x+30,cy+16);if(flat){g.lineWidth=6;g.beginPath();g.ellipse(x,cy,34,17,0,0,7);g.stroke()}else{g.lineWidth=5;g.beginPath();g.ellipse(x,cy,17,13,0,0,7);g.stroke()}}
+g.globalAlpha=1;g.strokeStyle='#ffe29a';g.lineWidth=3.5;[[-26,-14,-14],[22,10,18],[-8,16,-30]].forEach(([dx,dy2,rot])=>{g.save();g.translate(W/2+dx,cy+dy2);g.rotate(rot*Math.PI/180);g.beginPath();g.moveTo(-12,0);g.lineTo(12,0);g.stroke();g.restore()});
+spark(W/2,cy-4,22,.95);spark(W/2-40,cy-20,9,.8);spark(W/2+42,cy+16,8,.8);g.restore()}else{g.fillStyle=dg0();g.fillRect(90,H-78,W-180,2)}
+// footer
+g.font='600 '+(MD==2?19:22)+'px '+SANS;g.fillStyle='#ffe7ad';g.textAlign='center';spaced((ORG+'  \u2022  BCM NOTEBOOK & BIBLE').toUpperCase().slice(0,60),W/2,MD==0?H-86:MD==1?H-68:H-64,3.2);g.textAlign='left';
+const b64=atob(cv.toDataURL('image/jpeg',.93).split(',')[1]),u=new Uint8Array(b64.length);for(let q=0;q<u.length;q++)u[q]=b64.charCodeAt(q);
+return[u]}
+
+const mkOut=async()=>{const f=$('#eFmt').value;if(f=='mpdf')return[mkpdf(await makeMsgr(),1080,1440,540,720),'.pdf','application/pdf'];if(f=='mjpg'){const jp=await makeMsgr();return jp.length==1?[new Blob([jp[0]],{type:'image/jpeg'}),'.jpg','image/jpeg']:[mkzip(jp.map((u,i)=>[fn()+'-gc'+(i+1)+'.jpg',u])),'.zip','application/zip']}if(f=='pptx')return[await makePptx(),'.pptx','application/vnd.openxmlformats-officedocument.presentationml.presentation'];if(f=='spdf')return[mkpdf(await makeSlides(),1600,900,960,540),'.pdf','application/pdf'];if(f=='sjpg'){const jp=await makeSlides();return[mkzip(jp.map((u,i)=>[fn()+'-slide'+(i+1)+'.jpg',u])),'.zip','application/zip']}if(f=='jpg'){const jp=await makePdf('jpg');return jp.length==1?[new Blob([jp[0]],{type:'image/jpeg'}),'.jpg','image/jpeg']:[mkzip(jp.map((u,i)=>[fn()+'-page'+(i+1)+'.jpg',u])),'.zip','application/zip']}return[await makePdf(),'.pdf','application/pdf']};
+$('#eP').onclick=async()=>{sv(1);toast('Gihimo ang file\u2026');try{const[b,x]=await mkOut();await dl(fn()+x,b)}catch(e){console.error(e);toast('Wala nahimo ang file')}};
+$('#eSh').onclick=async()=>{sv(1);try{const fv=$('#eFmt').value;if(fv=='jpg'||fv=='mjpg'){const jp=fv=='jpg'?await makePdf('jpg'):await makeMsgr(),fs=jp.map((u,i)=>new File([u],fn()+(jp.length>1?'-page'+(i+1):'')+'.jpg',{type:'image/jpeg'}));if(navigator.canShare&&navigator.canShare({files:fs})){await navigator.share({files:fs,title:$('#et').value});return}}const[b,x,m]=await mkOut(),f=new File([b],fn()+x,{type:m});if(navigator.canShare&&navigator.canShare({files:[f]}))await navigator.share({files:[f],title:$('#et').value});else await dl(f.name,f)}catch(e){if(!e||e.name!='AbortError')toast('Wala na-share')}};
+
+if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js').catch(()=>{});
+
+let bpVer='ceb',bpB=0,bpC=0,bpSel=new Set(),bpRange=null,bpErr=null,bpInit=false;
+const bpGet=()=>bpVer=='ceb'?B[bpB].c[bpC]:getCh(bpVer,bpB,bpC);
+const bpCount=()=>{$('#bpN').textContent=bpSel.size?bpSel.size+' ka verse':''};
+function bpRender(){const a=bpGet();$('#bpV').value=bpVer;relabel('#bpB',ENGV(bpVer));$('#bpB').value=bpB;$('#bpC').innerHTML=B[bpB].c.map((_,i)=>`<option value="${i}">${i+1}</option>`).join('');$('#bpC').value=bpC;
+if(!a){$('#bpL').innerHTML='<p class="mu">'+(bpErr?'\u26A0\uFE0F '+esc(bpErr):'\u23F3 Gikuha\u2026')+'</p>';bpCount();return}
+$('#bpL').innerHTML=a.map((t,v)=>t?`<div class="bv${bpSel.has(v)?' on':''}" data-v="${v}"><sup>${v+1}</sup> ${esc(t)}</div>`:'').join('');
+$$('#bpL .bv').forEach(e=>e.onclick=()=>{const v=+e.dataset.v;if(bpSel.has(v))bpSel.delete(v);else bpSel.add(v);e.classList.toggle('on');bpCount()});bpCount()}
+function bpGo(keep){if(!keep)bpSel.clear();bpErr=null;bpRender();if(bpVer!='ceb'&&!getCh(bpVer,bpB,bpC)){const k=[bpVer,bpB,bpC].join();verLoad(bpVer,bpB,bpC).then(()=>{if([bpVer,bpB,bpC].join()==k)bpRender()},e=>{bpErr=String(e.message||e);if([bpVer,bpB,bpC].join()==k)bpRender()})}}
+function openBp(){if(!bpInit){bpInit=true;bpVer=VER;bpB=bi;bpC=ci;$('#bpV').innerHTML=$('#sV').innerHTML;$('#bpB').innerHTML=$('#sB').innerHTML}$('#bp').classList.add('show');$('#ed').classList.add('bpo');bpGo(1)}
+function closeBp(){$('#bp').classList.remove('show');$('#ed').classList.remove('bpo')}
+$('#eBib').onclick=()=>$('#bp').classList.contains('show')?closeBp():openBp();$('#bpX').onclick=closeBp;$('#eb').addEventListener('click',closeBp);
+$('#bpV').onchange=e=>{bpVer=VS.includes(e.target.value)?e.target.value:'ceb';bpGo()};$('#bpB').onchange=e=>{bpB=+e.target.value;bpC=0;bpGo()};$('#bpC').onchange=e=>{bpC=+e.target.value;bpGo()};
+$('#bpAll').onclick=()=>{const a=bpGet();if(!a)return;const all=a.map((t,v)=>t?v:-1).filter(v=>v>=0);if(bpSel.size>=all.length)bpSel.clear();else all.forEach(v=>bpSel.add(v));bpRender()};
+const bpFind=()=>{const ks=parseRef($('#bpQ').value);if(!ks.length)return toast('Wala makita ang verse. Pananglit: Juan 3:16-18');const[b,c]=kp(ks[0]);bpB=b;bpC=c;bpSel.clear();ks.forEach(k=>{const t=kp(k);if(t[0]==b&&t[1]==c)bpSel.add(t[2])});bpGo(1);const f=$('#bpL .bv.on');if(f)f.scrollIntoView({block:'center'})};
+$('#bpGo').onclick=bpFind;$('#bpQ').onkeydown=e=>{if(e.key=='Enter')bpFind()};
+document.addEventListener('selectionchange',()=>{const s=getSelection();if(s.rangeCount&&$('#body').contains(s.anchorNode))bpRange=s.getRangeAt(0).cloneRange()});
+$$('#bp button').forEach(b=>b.onpointerdown=e=>e.preventDefault());
+$('#bpIns').onclick=()=>{const idx=[...bpSel].sort((a,b)=>a-b);if(!idx.length)return toast('Pili og verse una');if(!cur||cur.lock)return toast('I-unlock una ang note');const a=bpGet();if(!a)return;const runs=[];idx.forEach(v=>{const l=runs[runs.length-1];if(l&&l[l.length-1]==v-1)l.push(v);else runs.push([v])});const tag=bpVer=='ceb'?'':' ('+VSH[bpVer]+')';
+const h=runs.map(r=>{const ref=B[bpB].n+' '+(bpC+1)+':'+(r[0]+1)+(r.length>1?'-'+(r[r.length-1]+1):'');return `<blockquote><b>${esc(ref+tag)}</b><br>${r.map(v=>(r.length>1?'<sup>'+(v+1)+'</sup> ':'')+esc(a[v]||'')).join(' ')}</blockquote>`}).join('')+'<div><br></div>';
+const body=$('#body');let ok=false;try{if(bpRange&&body.contains(bpRange.startContainer)){body.focus();const s=getSelection();s.removeAllRanges();s.addRange(bpRange);ok=document.execCommand('insertHTML',false,h)}}catch(e){}if(!ok)body.insertAdjacentHTML('beforeend',h);sv(1);toast('Nadugang sa note \u2713');bpSel.clear();bpRender()};
+$('#bpCp').onclick=()=>{const a=bpGet(),idx=[...bpSel].sort((x,y)=>x-y);if(!a||!idx.length)return toast('Pili og verse una');const t=B[bpB].n+' '+(bpC+1)+':'+idx.map(v=>(v+1)).join(',')+' \u2014 '+idx.map(v=>a[v]).join(' ');navigator.clipboard.writeText(t).then(()=>toast('Na-copy \u2713'),()=>toast('Wala ma-copy'))};
+$('#eMore').onclick=()=>{$('#ed').classList.toggle('more');$('#eMore').textContent=$('#ed').classList.contains('more')?'⬇ Download ▴':'⬇ Download ▾'};
+$('#escT').onclick=()=>$('#body').scrollTo({top:0,behavior:'smooth'});$('#escB').onclick=()=>$('#body').scrollTo({top:$('#body').scrollHeight,behavior:'smooth'});
+
+// ---- Daily Devotional ----
+(()=>{
+const DAYS=['Domingo','Lunes','Martes','Miyerkules','Huwebes','Biyernes','Sabado'],MON=['Enero','Pebrero','Marso','Abril','Mayo','Hunyo','Hulyo','Agosto','Septiyembre','Oktubre','Nobyembre','Disyembre'];
+const PS=18,PR=19;
+const bn=b=>B[b].n;
+// Lumang Tugon: tanang kapitulo gikan sa Genesis hangtod Malachi, WALA ang Panultion
+const OT=[],NT=[];
+for(let b=0;b<=38;b++){if(b==PR)continue;for(let c=0;c<B[b].c.length;c++)OT.push([b,c])}
+for(let b=39;b<B.length;b++)for(let c=0;c<B[b].c.length;c++)NT.push([b,c]);
+const at=(L,b,c)=>L.findIndex(x=>x[0]==b&&x[1]==c);
+// Panit-anan: Nobyembre 23, 2026 = Salmo 26 / Panultion 23 / Buhat 25
+const A0=Date.UTC(2026,10,23)/864e5,OA=at(OT,PS,25),NA=at(NT,43,24);
+const pick=(L,a,off)=>L[(((a+off)%L.length)+L.length)%L.length];
+function plan(d){
+  const off=Math.round(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5-A0);
+  const ot=pick(OT,OA,off),nt=pick(NT,NA,off),pc=Math.min(d.getDate(),B[PR].c.length)-1;
+  return{n:Math.round(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5),ot,pr:[PR,pc],nt,
+    label:DAYS[d.getDay()]+', '+MON[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()}
+}
+const today=()=>plan(new Date());
+function mark(){const p=today();$('#bDev').classList.toggle('dn',S.devDone===p.n)}
+function openDev(){
+  const p=today();
+  $('#dvD').textContent=p.label;
+  const rows=[['Lumang Tugon',p.ot],['Panultion (adlaw '+(p.pr[1]+1)+')',p.pr],['Bag-ong Tugon',p.nt]];
+  $('#dvL').innerHTML=rows.map(([t,r],i)=>`<div class="dvR"><span><small>${t}</small><b>${esc(bn(r[0]))} ${r[1]+1}</b></span><button class="pri" data-i="${i}">Basaha ▸</button></div>`).join('');
+  $$('#dvL button').forEach(b=>b.onclick=()=>{const r=rows[+b.dataset.i][1];$('#mDev').classList.remove('show');$('nav button[data-t="read"]').click();bi=r[0];ci=r[1];clearSel();chap()});
+  $('#dvOk').textContent=S.devDone===p.n?'✅ Nabasa na (salamat sa Ginoo!)':'✅ Nabasa na nako karong adlawa';
+  $('#mDev').classList.add('show');
+}
+$('#bDev').onclick=openDev;
+$('#dvX').onclick=()=>$('#mDev').classList.remove('show');
+$('#dvOk').onclick=()=>{S.devDone=today().n;save();mark();$('#mDev').classList.remove('show');toast('Nabasa na karong adlawa ✓')};
+mark();
+// awtomatik nga mo-pop up kausa matag adlaw
+const t=today();if(S.devSeen!==t.n){S.devSeen=t.n;save();setTimeout(openDev,500)}
+window.devPlan=plan;
+})();
+</script></body></html>
