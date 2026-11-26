@@ -117,7 +117,7 @@ label{font-size:13px;color:var(--mu);display:grid;gap:4px}
 /* Daily devotional */
 nav button.dvB{flex:0 0 auto;font-size:13px;padding:8px 10px;white-space:nowrap}
 nav button.dvB.dn::after{content:" ✓";color:#3cb371}
-#mDev>div{width:min(440px,100%);text-align:center}
+#mDev>div,#mDevM>div{width:min(440px,100%);text-align:center}#mDevM h3{margin:0}#mDevM p{margin:0;line-height:1.5}#mDevM .dvB2{display:grid;gap:8px}.dvW{text-align:left;font-size:.88em;line-height:1.45;padding:10px 12px;border-radius:12px;background:rgba(180,87,31,.12);border:1px solid var(--ac)}#mDev .dvR.ok{opacity:.75;border-color:#3cb371}#mDev .dvR.ok b::before{content:'✅ '}#dvBar{position:fixed;left:0;right:0;bottom:0;z-index:25;display:none;align-items:center;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:2px solid var(--ac);box-shadow:0 -4px 16px rgba(0,0,0,.18)}#dvBar.show{display:flex}#dvBar span{flex:1;font-size:.9em}body.dvb{padding-bottom:70px}
 #mDev .dvD{font-size:.95em;opacity:.8;margin:0}
 #mDev .dvI{font-size:.92em;opacity:.85;margin:0}
 #mDev .dvR{display:flex;align-items:center;gap:10px;text-align:left;padding:10px 12px;border:1px solid var(--bd);border-radius:12px}
@@ -164,7 +164,9 @@ nav button.dvB.dn::after{content:" ✓";color:#3cb371}
 <button id="bk">⬇ Download tanang notes (backup)</button><button id="ri">⬆ I-restore gikan sa backup</button><input type="file" id="rif" accept=".json" class="hide">
 <p class="mu">Ang notes ug highlights naka-save sa imong browser. Para sa Google Drive/Gmail: i-download ang file ug i-upload o i-share (sa phone, mogawas ang share sheet).</p><button id="o_x" class="pri">Human na</button></div></div>
 <div id="vw"><div class="vh"><b id="vT"></b><span id="vP" class="mu"></span><button id="vPr" title="Nauna">◀</button><button id="vNx" title="Sunod">▶</button><button id="vZo" title="Gamay">−</button><button id="vZi" title="Dako">＋</button><button id="vDl" title="I-download">⬇</button><button id="vSh" title="Share">📤</button><button id="vX" class="pri" title="Isira">✕</button></div><div id="vB"></div></div>
-<div class="modal" id="mDev"><div><b style="font-size:1.15em">🙏 Daily Devotional</b><p class="dvD" id="dvD"></p><p class="dvI">Mao kini ang imong basahon sa Bibliya karong adlawa:</p><div id="dvL" style="display:grid;gap:8px"></div><button class="pri" id="dvOk">✅ Nabasa na nako karong adlawa</button><button id="dvX">Sirado</button></div></div>
+<div class="modal" id="mDev"><div><b style="font-size:1.15em">🙏 Daily Devotional</b><p class="dvD" id="dvD"></p><div class="dvW">🕊️ <b>Pahimangno:</b> Ayaw pag-devotion nga dili nimo sugdan sa pag-ampo. Pangayoa ang presensya sa <b>Balaang Espiritu</b>, sa ngalan ni Jesus, aron siya ang mo-giya nimo nga masabtan ang imong basahon karong adlawa.</div><p class="dvI">Mao kini ang imong basahon sa Bibliya karong adlawa (bisan asa nimo mauna):</p><div id="dvL" style="display:grid;gap:8px"></div><p class="dvI" id="dvP"></p><button id="dvX">Sirado</button></div></div>
+<div class="modal" id="mDevM"><div><h3 id="dmT"></h3><p id="dmB"></p><div class="dvB2" id="dmL"></div><button id="dmX">Sirado</button></div></div>
+<div id="dvBar"><span id="dvBt"></span><button class="pri" id="dvDone">✅ Nahuman na nako</button></div>
 <div id="toast"></div>
 <script>
 if(typeof myBibleData=='undefined'){document.body.innerHTML='<p style="padding:24px">Wala makita ang <b>cebuano_bible.js</b>. Ibutang kini sa parehas nga folder sa index.html.</p>';throw 0}
@@ -205,7 +207,7 @@ function nltParse(h){h=String(h);const m=[...h.matchAll(/<span[^>]*class="[^"]*\
 async function nltLoad(b,c){const k=b+'.'+c;if(NL[k])return;try{const q=await idb.get('nlt:'+k);if(q&&q.length){NL[k]=q;return}}catch(e){}const nm=NLTN[B[b].e]||B[b].e.replace(/^III /,'3').replace(/^II /,'2').replace(/^I /,'1').replace(/\s+/g,''),r=await fetch('https://api.nlt.to/api/passages?ref='+encodeURIComponent(nm+'.'+(c+1))+'&version=NLT&key='+encodeURIComponent(nltKey()));if(!r.ok)throw new Error('HTTP '+r.status);const a=nltParse(await r.text());if(!a||!a.some(x=>x))throw new Error('Wala mabasa ang format sa NLT');NL[k]=a;try{await idb.set('nlt:'+k,a)}catch(e){}}
 async function verLoad(ver,b,c){if(ver=='nlt')return nltLoad(b,c);await loadVer(ver);if(!getCh(ver,b,c))throw new Error('Wala pa ang '+B[b].n+' '+(c+1)+' sa '+VSH[ver])}
 function renderVs(){const a=VER!='ceb'&&getCh(VER,bi,ci),n=Math.max(B[bi].c[ci].length,a?a.length:0);let h='',hide=0;if(VER!='ceb'&&!a){if(NLE)h='<p class="mu">\u26A0\uFE0F '+esc(NLE)+'. Cebuano ang gipakita.</p>';else{h='<p class="mu">\u23F3 Gikuha ang '+VSH[VER]+'\u2026</p>';hide=1}}$('#vs').innerHTML=h+(hide?'':Array.from({length:n},(_,v)=>row(bi,ci,v)).join(''))+(VER!='ceb'&&a?'<p class="mu" style="font-size:12px;margin-top:14px">'+esc(VCR[VER]||'')+'</p>':'')}
-function chap(){window.__eng=ENGV(VER);relabel('#sB',window.__eng);$('#sC').innerHTML=B[bi].c.map((_,i)=>`<option value="${i}">${i+1}</option>`).join('');$('#sC').value=ci;$('#sB').value=bi;$('#sV').value=VER;NLE=null;renderVs();scrollTo(0,0);if(VER!='ceb'&&!getCh(VER,bi,ci)){const b0=bi,c0=ci,v0=VER;verLoad(v0,b0,c0).then(()=>{if(bi==b0&&ci==c0&&VER==v0)renderVs()},e=>{NLE=String(e.message||e);if(bi==b0&&ci==c0&&VER==v0)renderVs()})}}
+function chap(){setTimeout(()=>window.devBar&&window.devBar(),0);window.__eng=ENGV(VER);relabel('#sB',window.__eng);$('#sC').innerHTML=B[bi].c.map((_,i)=>`<option value="${i}">${i+1}</option>`).join('');$('#sC').value=ci;$('#sB').value=bi;$('#sV').value=VER;NLE=null;renderVs();scrollTo(0,0);if(VER!='ceb'&&!getCh(VER,bi,ci)){const b0=bi,c0=ci,v0=VER;verLoad(v0,b0,c0).then(()=>{if(bi==b0&&ci==c0&&VER==v0)renderVs()},e=>{NLE=String(e.message||e);if(bi==b0&&ci==c0&&VER==v0)renderVs()})}}
 $('#sV').onchange=e=>{VER=VS.includes(e.target.value)?e.target.value:'ceb';S.set.ver=VER;save();clearSel();chap()};$('#oNlt').value=S.set.nlt||'';$('#oNlt').oninput=()=>{S.set.nlt=$('#oNlt').value.trim();save()};
 $('#sB').onchange=e=>{bi=+e.target.value;ci=0;clearSel();chap()};$('#sC').onchange=e=>{ci=+e.target.value;clearSel();chap()};
 $('#nx').onclick=()=>{if(ci<B[bi].c.length-1)ci++;else if(bi<B.length-1){bi++;ci=0}clearSel();chap()};
@@ -825,9 +827,7 @@ $('#escT').onclick=()=>$('#body').scrollTo({top:0,behavior:'smooth'});$('#escB')
 // ---- Daily Devotional ----
 (()=>{
 const DAYS=['Domingo','Lunes','Martes','Miyerkules','Huwebes','Biyernes','Sabado'],MON=['Enero','Pebrero','Marso','Abril','Mayo','Hunyo','Hulyo','Agosto','Septiyembre','Oktubre','Nobyembre','Disyembre'];
-const PS=18,PR=19;
-const bn=b=>B[b].n;
-// Lumang Tugon: tanang kapitulo gikan sa Genesis hangtod Malachi, WALA ang Panultion
+const PS=18,PR=19,bn=b=>B[b].n,nm=r=>bn(r[0])+' '+(r[1]+1);
 const OT=[],NT=[];
 for(let b=0;b<=38;b++){if(b==PR)continue;for(let c=0;c<B[b].c.length;c++)OT.push([b,c])}
 for(let b=39;b<B.length;b++)for(let c=0;c<B[b].c.length;c++)NT.push([b,c]);
@@ -836,28 +836,54 @@ const at=(L,b,c)=>L.findIndex(x=>x[0]==b&&x[1]==c);
 const A0=Date.UTC(2026,10,23)/864e5,OA=at(OT,PS,25),NA=at(NT,43,24);
 const pick=(L,a,off)=>L[(((a+off)%L.length)+L.length)%L.length];
 function plan(d){
-  const off=Math.round(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5-A0);
-  const ot=pick(OT,OA,off),nt=pick(NT,NA,off),pc=Math.min(d.getDate(),B[PR].c.length)-1;
-  return{n:Math.round(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5),ot,pr:[PR,pc],nt,
+  const n=Math.round(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/864e5),off=n-Math.round(A0);
+  return{n,ot:pick(OT,OA,off),pr:[PR,Math.min(d.getDate(),B[PR].c.length)-1],nt:pick(NT,NA,off),
     label:DAYS[d.getDay()]+', '+MON[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()}
 }
 const today=()=>plan(new Date());
-function mark(){const p=today();$('#bDev').classList.toggle('dn',S.devDone===p.n)}
+const rows=p=>[['Lumang Tugon',p.ot],['Panultion (adlaw '+(p.pr[1]+1)+')',p.pr],['Bag-ong Tugon',p.nt]];
+function st(){const p=today();if(!S.dev||S.dev.n!==p.n||!Array.isArray(S.dev.r))S.dev={n:p.n,r:[0,0,0]};return S.dev}
+const cnt=()=>st().r.filter(Boolean).length;
+function mark(){$('#bDev').classList.toggle('dn',cnt()==3)}
+function goRead(r){$('#mDev').classList.remove('show');$('#mDevM').classList.remove('show');$('nav button[data-t="read"]').click();bi=r[0];ci=r[1];clearSel();chap()}
 function openDev(){
-  const p=today();
+  const p=today(),s=st();
   $('#dvD').textContent=p.label;
-  const rows=[['Lumang Tugon',p.ot],['Panultion (adlaw '+(p.pr[1]+1)+')',p.pr],['Bag-ong Tugon',p.nt]];
-  $('#dvL').innerHTML=rows.map(([t,r],i)=>`<div class="dvR"><span><small>${t}</small><b>${esc(bn(r[0]))} ${r[1]+1}</b></span><button class="pri" data-i="${i}">Basaha ▸</button></div>`).join('');
-  $$('#dvL button').forEach(b=>b.onclick=()=>{const r=rows[+b.dataset.i][1];$('#mDev').classList.remove('show');$('nav button[data-t="read"]').click();bi=r[0];ci=r[1];clearSel();chap()});
-  $('#dvOk').textContent=S.devDone===p.n?'✅ Nabasa na (salamat sa Ginoo!)':'✅ Nabasa na nako karong adlawa';
+  $('#dvL').innerHTML=rows(p).map(([t,r],i)=>`<div class="dvR${s.r[i]?' ok':''}"><span><small>${t}</small><b>${esc(nm(r))}</b></span><button class="${s.r[i]?'':'pri'}" data-i="${i}">${s.r[i]?'Basaha usab':'Basaha ▸'}</button></div>`).join('');
+  $$('#dvL button').forEach(b=>b.onclick=()=>goRead(rows(p)[+b.dataset.i][1]));
+  $('#dvP').textContent=cnt()==3?'🎉 Nahuman na nimo ang tulo ka basahon karong adlawa. Salamat sa Ginoo!':'Nahuman: '+cnt()+' sa 3. Human nimo sa matag kapitulo, pislita ang "Nahuman na nako" sa ubos.';
   $('#mDev').classList.add('show');
+}
+function devBar(){
+  const p=today(),s=st(),bar=$('#dvBar');let i=-1;
+  if(!$('#read').classList.contains('hide'))[p.ot,p.pr,p.nt].forEach((r,k)=>{if(r[0]==bi&&r[1]==ci)i=k});
+  const show=i>=0&&!s.r[i];
+  bar.classList.toggle('show',show);document.body.classList.toggle('dvb',show);
+  if(show){bar.dataset.i=i;$('#dvBt').textContent='🙏 Devotional: '+nm([p.ot,p.pr,p.nt][i])}
+}
+function showMsg(i){
+  const p=today(),s=st(),R=rows(p),left=R.map((x,k)=>[k,x[1]]).filter(x=>!s.r[x[0]]),done=nm(R[i][1]);
+  const L=$('#dmL');L.innerHTML='';
+  if(!left.length){
+    $('#dmT').textContent='🎉 Congratulations!';
+    $('#dmB').innerHTML='Nagmalampuson ka karong adlawa sa pag-devotion! Nahuman nimo ang tulo ka basahon: <b>'+R.map(x=>esc(nm(x[1]))).join(', ')+'</b>.<br><br>Tapusa kini sa <b>pag-ampo</b> 🙏 — pasalamati ang Ginoo sa Iyang pulong ug ihangyo nga mapadapat nimo kini sa imong kinabuhi.';
+    $('#dmX').textContent='Amen 🙏';
+  }else{
+    $('#dmT').textContent='👏 Maayo! Nahuman nimo ang '+nm(R[i][1]);
+    $('#dmB').innerHTML=(left.length==2?'Nahabilin pa ang <b>duha (2) ka basahon</b> nga wala nimo mabasa:':'Nahabilin na lang ang <b>usa (1) ka basahon</b> nga wala nimo mabasa:');
+    left.forEach(([k,r])=>{const b=document.createElement('button');b.className='pri';b.textContent='Basaha ▸ '+nm(r);b.onclick=()=>goRead(r);L.appendChild(b)});
+    $('#dmX').textContent='Sa ulahi na lang';
+  }
+  $('#mDevM').classList.add('show');
 }
 $('#bDev').onclick=openDev;
 $('#dvX').onclick=()=>$('#mDev').classList.remove('show');
-$('#dvOk').onclick=()=>{S.devDone=today().n;save();mark();$('#mDev').classList.remove('show');toast('Nabasa na karong adlawa ✓')};
+$('#dmX').onclick=()=>$('#mDevM').classList.remove('show');
+$('#dvDone').onclick=()=>{const i=+$('#dvBar').dataset.i,s=st();s.r[i]=1;save();mark();devBar();showMsg(i)};
+$$('nav button').forEach(b=>b.addEventListener('click',()=>setTimeout(devBar,0)));
+window.devBar=devBar;window.devPlan=plan;
 mark();
 // awtomatik nga mo-pop up kausa matag adlaw
 const t=today();if(S.devSeen!==t.n){S.devSeen=t.n;save();setTimeout(openDev,500)}
-window.devPlan=plan;
 })();
 </script></body></html>
