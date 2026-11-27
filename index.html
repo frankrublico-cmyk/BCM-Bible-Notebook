@@ -909,7 +909,7 @@ function tkShow(){
   const el=$('#dvTk'),m=TK[tkI%TK.length];tkI++;
   el.className=m.c;el.textContent=m.t;
   if(RM){return}
-  const w=el.scrollWidth,dur=(innerWidth+w)/78;
+  const w=el.scrollWidth,dur=(innerWidth+w)/38;
   el.style.animation='none';void el.offsetWidth;
   el.style.animation=`dvTk ${dur}s linear forwards,dvShim 2.4s linear infinite`;
 }
