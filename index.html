@@ -117,7 +117,25 @@ label{font-size:13px;color:var(--mu);display:grid;gap:4px}
 /* Daily devotional */
 nav button.dvB{flex:0 0 auto;font-size:13px;padding:8px 10px;white-space:nowrap}
 nav button.dvB.dn::after{content:" ✓";color:#3cb371}
-#mDev>div,#mDevM>div{width:min(440px,100%);text-align:center}#mDevM h3{margin:0}#mDevM p{margin:0;line-height:1.5}#mDevM .dvB2{display:grid;gap:8px}.dvW{text-align:left;font-size:.88em;line-height:1.45;padding:10px 12px;border-radius:12px;background:rgba(180,87,31,.12);border:1px solid var(--ac)}#mDev .dvR.ok{opacity:.75;border-color:#3cb371}#mDev .dvR.ok b::before{content:'✅ '}#dvBar{position:fixed;left:0;right:0;bottom:0;z-index:25;display:none;align-items:center;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:2px solid var(--ac);box-shadow:0 -4px 16px rgba(0,0,0,.18)}#dvBar.show{display:flex}#dvBar span{flex:1;font-size:.9em}body.dvb{padding-bottom:70px}
+#mDev>div,#mDevM>div{width:min(440px,100%);text-align:center}#mDevM h3{margin:0}#mDevM p{margin:0;line-height:1.5}#mDevM .dvB2{display:grid;gap:8px}.dvW{text-align:left;font-size:.88em;line-height:1.45;padding:10px 12px;border-radius:12px;background:rgba(180,87,31,.12);border:1px solid var(--ac)}#mDev .dvR.ok{opacity:.75;border-color:#3cb371}#mDev .dvR.ok b::before{content:'✅ '}
+/* Congratulations FX */
+#dvFx{position:fixed;inset:0;width:100%;height:100%;z-index:40;pointer-events:none;display:none}
+#mDevM.win{background:rgba(5,3,0,.78);overflow:hidden}
+#mDevM.win::before{content:"";position:absolute;left:50%;top:50%;width:260vmax;height:260vmax;margin:-130vmax 0 0 -130vmax;background:repeating-conic-gradient(from 0deg,rgba(255,214,102,.55) 0 5deg,rgba(255,214,102,0) 5deg 15deg);-webkit-mask-image:radial-gradient(circle,#000 0,rgba(0,0,0,.65) 9%,transparent 24%);mask-image:radial-gradient(circle,#000 0,rgba(0,0,0,.65) 9%,transparent 24%);animation:dvSpin 16s linear infinite;pointer-events:none}
+@keyframes dvSpin{to{transform:rotate(360deg)}}
+#mDevM.win>div{position:relative;z-index:2;background:radial-gradient(circle at 50% 0,#5a3a0c 0,#241707 70%);color:#fff4d6;border:2px solid #f5c542;box-shadow:0 0 30px #f5c542,0 0 90px rgba(255,170,0,.55),inset 0 0 40px rgba(255,200,80,.18);animation:dvPop .8s cubic-bezier(.2,1.7,.4,1) both}
+@keyframes dvPop{0%{transform:scale(.2) rotate(-8deg);opacity:0}60%{opacity:1}100%{transform:scale(1) rotate(0)}}
+#mDevM.win h3{font-size:1.7em;line-height:1.15;background:linear-gradient(90deg,#ffd76a,#fff,#ffb300,#fff,#ffd76a);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:dvShim 2.2s linear infinite;filter:drop-shadow(0 0 10px rgba(255,200,60,.9))}
+@keyframes dvShim{to{background-position:-250% 0}}
+#mDevM.win #dmB{animation:dvUp .8s .35s ease-out both}
+#mDevM.win button{animation:dvUp .8s .6s ease-out both}
+@keyframes dvUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+#mDevM .sw{display:block;position:absolute;left:50%;top:50%;width:90px;height:90px;margin:-45px 0 0 -45px;border-radius:50%;border:4px solid #ffd76a;box-shadow:0 0 24px #ffb300,inset 0 0 24px #ffb300;opacity:0;animation:dvSw 1.7s ease-out forwards;pointer-events:none;z-index:1}
+@keyframes dvSw{0%{transform:scale(.1);opacity:.95}100%{transform:scale(11);opacity:0}}
+#mDevM .fl{display:block;position:absolute;inset:0;background:#fff;opacity:0;animation:dvFl .9s ease-out;pointer-events:none;z-index:3}
+@keyframes dvFl{0%{opacity:.9}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){#mDevM.win::before,#mDevM.win h3,#mDevM .sw{animation:none}}
+#dvBar{position:fixed;left:0;right:0;bottom:0;z-index:25;display:none;align-items:center;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:2px solid var(--ac);box-shadow:0 -4px 16px rgba(0,0,0,.18)}#dvBar.show{display:flex}#dvBar span{flex:1;font-size:.9em}body.dvb{padding-bottom:70px}
 #mDev .dvD{font-size:.95em;opacity:.8;margin:0}
 #mDev .dvI{font-size:.92em;opacity:.85;margin:0}
 #mDev .dvR{display:flex;align-items:center;gap:10px;text-align:left;padding:10px 12px;border:1px solid var(--bd);border-radius:12px}
@@ -166,6 +184,7 @@ nav button.dvB.dn::after{content:" ✓";color:#3cb371}
 <div id="vw"><div class="vh"><b id="vT"></b><span id="vP" class="mu"></span><button id="vPr" title="Nauna">◀</button><button id="vNx" title="Sunod">▶</button><button id="vZo" title="Gamay">−</button><button id="vZi" title="Dako">＋</button><button id="vDl" title="I-download">⬇</button><button id="vSh" title="Share">📤</button><button id="vX" class="pri" title="Isira">✕</button></div><div id="vB"></div></div>
 <div class="modal" id="mDev"><div><b style="font-size:1.15em">🙏 Daily Devotional</b><p class="dvD" id="dvD"></p><div class="dvW">🕊️ <b>Pahimangno:</b> Ayaw pag-devotion nga dili nimo sugdan sa pag-ampo. Pangayoa ang presensya sa <b>Balaang Espiritu</b>, sa ngalan ni Jesus, aron siya ang mo-giya nimo nga masabtan ang imong basahon karong adlawa.</div><p class="dvI">Mao kini ang imong basahon sa Bibliya karong adlawa (bisan asa nimo mauna):</p><div id="dvL" style="display:grid;gap:8px"></div><p class="dvI" id="dvP"></p><button id="dvX">Sirado</button></div></div>
 <div class="modal" id="mDevM"><div><h3 id="dmT"></h3><p id="dmB"></p><div class="dvB2" id="dmL"></div><button id="dmX">Sirado</button></div></div>
+<canvas id="dvFx"></canvas>
 <div id="dvBar"><span id="dvBt"></span><button class="pri" id="dvDone">✅ Nahuman na nako</button></div>
 <div id="toast"></div>
 <script>
@@ -845,7 +864,7 @@ const rows=p=>[['Lumang Tugon',p.ot],['Panultion (adlaw '+(p.pr[1]+1)+')',p.pr],
 function st(){const p=today();if(!S.dev||S.dev.n!==p.n||!Array.isArray(S.dev.r))S.dev={n:p.n,r:[0,0,0]};return S.dev}
 const cnt=()=>st().r.filter(Boolean).length;
 function mark(){$('#bDev').classList.toggle('dn',cnt()==3)}
-function goRead(r){$('#mDev').classList.remove('show');$('#mDevM').classList.remove('show');$('nav button[data-t="read"]').click();bi=r[0];ci=r[1];clearSel();chap()}
+function goRead(r){stopFx();$('#mDev').classList.remove('show');$('#mDevM').classList.remove('show');$('nav button[data-t="read"]').click();bi=r[0];ci=r[1];clearSel();chap()}
 function openDev(){
   const p=today(),s=st();
   $('#dvD').textContent=p.label;
@@ -861,13 +880,64 @@ function devBar(){
   bar.classList.toggle('show',show);document.body.classList.toggle('dvb',show);
   if(show){bar.dataset.i=i;$('#dvBt').textContent='🙏 Devotional: '+nm([p.ot,p.pr,p.nt][i])}
 }
+
+// ---- Congratulations FX ----
+const WIN=[
+ {fx:'fw',t:'🎉 Congratulations!',b:'Nagmalampuson ka karong adlawa sa pag-devotion!',p:'Tapusa kini sa <b>pag-ampo</b> 🙏 — pasalamati ang Ginoo sa Iyang pulong ug ihangyo nga mapadapat nimo kini sa imong kinabuhi.'},
+ {fx:'conf',t:'🏆 Kampyon sa Pulong!',b:'Gipauna nimo ang Pulong sa Dios karong adlawa. Mao kana ang timaan sa matinud-anon nga tinun-an!',p:'Karon, <b>ampo</b> ta 🙏 — isulti sa Ginoo ang imong pasalamat ug pangayoa ang kusog sa pagsunod sa Iyang gisulti kanimo.'},
+ {fx:'burst',t:'🔥 Nagdilaab ang Imong Kasingkasing!',b:'Nahuman nimo ang tulo ka basahon. Ang Pulong sa Ginoo mao ang kalayo nga nagpabagang sa kasingkasing.',p:'Ayaw pag-undang dinhi — <b>pag-ampo</b> sa Ginoo 🙏 ug ipabilin ang Iyang kalayo sa imong kinabuhi.'},
+ {fx:'gold',t:'🌟 Maayo, Matinud-anon nga Sulugoon!',b:'Gisunod nimo ang Ginoo karong adlawa pinaagi sa pagpahimutang sa Iyang Pulong sa unahan.',p:'Ipadayon kini sa <b>pag-ampo</b> 🙏 — pasalamati Siya ug ihatag ngadto Kaniya ang imong tibuok adlaw.'},
+ {fx:'fwconf',t:'🙌 Hallelujah!',b:'Nahuman na! Dayega ang Ginoo, kay gisugdan nimo ang adlaw diha sa Iyang presensya.',p:'Isira kini sa <b>pag-ampo</b> 🙏 — ipasalamat ang bag-ong kahayag nga gihatag Niya kanimo karon.'},
+ {fx:'gold',t:'💎 Bililhon Kaayo Kining Adlawa',b:'Gideposito nimo ang bahandi sa Pulong sa Dios sa imong kasingkasing karong adlawa.',p:'Tagoa kini pinaagi sa <b>pag-ampo</b> 🙏 — hangyoa ang Balaang Espiritu nga ipahinumdom kanimo ang imong nabasa.'},
+ {fx:'burst',t:'⚡ Gisangkapan Ka Karong Adlawa!',b:'Nasangkapan na ang imong espiritu pinaagi sa Pulong. Adto na nga kusganon ug maisugon!',p:'Pagsiguro pinaagi sa <b>pag-ampo</b> 🙏 — pangayoa ang kaisug ug ang giya sa Balaang Espiritu.'},
+ {fx:'orbs',t:'🕊️ Kalinaw ug Kalipay!',b:'Nagpuyo ang Pulong sa imong kasingkasing. Hinaut nga mapuno ka sa kalinaw sa Ginoo.',p:'Hinay-hinay nga <b>pag-ampo</b> 🙏 — ipahulay ang imong kasingkasing diha sa Iyang presensya.'}
+];
+function winPick(){let k;do{k=Math.floor(Math.random()*WIN.length)}while(k===S.dvLast&&WIN.length>1);S.dvLast=k;save();return WIN[k]}
+let fxRaf=0;
+function stopFx(){cancelAnimationFrame(fxRaf);fxRaf=0;const cv=$('#dvFx');cv.getContext('2d').clearRect(0,0,cv.width,cv.height);cv.style.display='none';$$('#mDevM .sw,#mDevM .fl').forEach(e=>e.remove())}
+function chime(){try{const A=new(window.AudioContext||window.webkitAudioContext)(),t=A.currentTime;[523.25,659.25,783.99,1046.5,1318.5].forEach((f,i)=>{const o=A.createOscillator(),g=A.createGain();o.type='triangle';o.frequency.value=f;g.gain.setValueAtTime(0,t+i*.11);g.gain.linearRampToValueAtTime(.07,t+i*.11+.03);g.gain.exponentialRampToValueAtTime(.0001,t+i*.11+1.1);o.connect(g);g.connect(A.destination);o.start(t+i*.11);o.stop(t+i*.11+1.2)});setTimeout(()=>A.close(),2200)}catch(e){}}
+function runFx(kind){
+  const M=$('#mDevM');
+  for(let i=0;i<3;i++){const d=document.createElement('i');d.className='sw';d.style.animationDelay=(i*.35)+'s';M.appendChild(d)}
+  const fl=document.createElement('i');fl.className='fl';M.appendChild(fl);
+  try{navigator.vibrate&&navigator.vibrate([80,50,80,50,160])}catch(e){}
+  chime();
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const cv=$('#dvFx'),c=cv.getContext('2d'),W=cv.width=innerWidth,H=cv.height=innerHeight;cv.style.display='block';
+  let P=[],T0=performance.now(),last=T0,nextFw=0,rainAcc=0;const R=(a,b)=>a+Math.random()*(b-a),DUR=6500;
+  const hue=()=>R(0,360);
+  const spark=(x,y,n,sp,h,g,fr,life)=>{for(let i=0;i<n;i++){const a=R(0,6.283),v=R(.2,1)*sp;P.push({k:'s',x,y,px:x,py:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,g,fr,l:0,L:R(life*.6,life),h:h+R(-18,18),w:R(1.2,2.6)})}};
+  const cannon=(x,dir)=>{for(let i=0;i<110;i++){const a=-Math.PI/2+dir*R(.05,.65),v=R(9,20);P.push({k:'c',x,y:H,vx:Math.cos(a)*v,vy:Math.sin(a)*v,g:.28,fr:.985,rot:R(0,6.28),vr:R(-.3,.3),l:0,L:R(120,210),h:hue(),w:R(6,11),hh:R(4,8)})}};
+  const orb=()=>P.push({k:'o',x:R(0,W),y:H+30,vx:R(-.3,.3),vy:-R(.8,2.2),g:0,fr:1,l:0,L:R(260,420),h:R(35,60),r:R(10,34),ph:R(0,6.28)});
+  const gold=()=>P.push({k:'g',x:R(0,W),y:-10,vx:R(-.4,.4),vy:R(1,3.2),g:.01,fr:1,l:0,L:R(180,320),h:R(40,52),r:R(1.2,3.6),ph:R(0,6.28)});
+  if(/conf/.test(kind)){cannon(0,1);cannon(W,-1);setTimeout(()=>{cannon(0,1);cannon(W,-1)},900)}
+  if(kind=='burst'){[0,350,700].forEach((d,i)=>setTimeout(()=>spark(W/2,H*.42,200,i?15:19,i*120+30,.05,.955,95),d))}
+  function frame(now){
+    const el=now-T0,dt=Math.min(2.2,(now-last)/16.67);last=now;
+    c.clearRect(0,0,W,H);c.globalCompositeOperation='lighter';
+    if(/fw/.test(kind)&&el<DUR-1800&&el>=nextFw){nextFw=el+R(280,520);const x=R(W*.12,W*.88),y=R(H*.12,H*.5),h=hue();spark(x,y,95,R(4,7.5),h,.07,.975,R(60,90));spark(x,y,35,R(1.5,3),h+180,.05,.97,R(50,70))}
+    if(kind=='gold'&&el<DUR-2000){rainAcc+=dt*5;while(rainAcc>1){gold();rainAcc--}}
+    if(kind=='orbs'&&el<DUR-2500){rainAcc+=dt*.9;while(rainAcc>1){orb();rainAcc--}}
+    P=P.filter(q=>{q.l+=dt;if(q.l>q.L)return false;q.vx*=Math.pow(q.fr,dt);q.vy=q.vy*Math.pow(q.fr,dt)+q.g*dt;q.px=q.x;q.py=q.y;q.x+=q.vx*dt;q.y+=q.vy*dt;const f=1-q.l/q.L;
+      if(q.k=='s'){c.strokeStyle=`hsla(${q.h},100%,${55+f*25}%,${f})`;c.lineWidth=q.w;c.lineCap='round';c.beginPath();c.moveTo(q.px-q.vx*1.5,q.py-q.vy*1.5);c.lineTo(q.x,q.y);c.stroke()}
+      else if(q.k=='c'){q.rot+=q.vr*dt;c.save();c.translate(q.x,q.y);c.rotate(q.rot);c.scale(1,Math.cos(q.rot*1.7));c.fillStyle=`hsla(${q.h},95%,60%,${Math.min(1,f*2)})`;c.fillRect(-q.w/2,-q.hh/2,q.w,q.hh);c.restore()}
+      else if(q.k=='g'){const tw=.5+.5*Math.sin(q.l*.3+q.ph);q.x+=Math.sin(q.l*.05+q.ph)*.6;c.fillStyle=`hsla(${q.h},100%,${60+tw*25}%,${Math.min(1,f*3)*(.35+tw*.65)})`;c.beginPath();c.arc(q.x,q.y,q.r*(.7+tw*.6),0,6.283);c.fill();if(q.r>2.6&&tw>.8){c.strokeStyle=c.fillStyle;c.lineWidth=1;c.beginPath();c.moveTo(q.x-q.r*3,q.y);c.lineTo(q.x+q.r*3,q.y);c.moveTo(q.x,q.y-q.r*3);c.lineTo(q.x,q.y+q.r*3);c.stroke()}}
+      else if(q.k=='o'){q.x+=Math.sin(q.l*.03+q.ph)*.7;const gr=c.createRadialGradient(q.x,q.y,0,q.x,q.y,q.r);gr.addColorStop(0,`hsla(${q.h},100%,85%,${.9*Math.min(1,f*2)})`);gr.addColorStop(1,`hsla(${q.h},100%,55%,0)`);c.fillStyle=gr;c.beginPath();c.arc(q.x,q.y,q.r,0,6.283);c.fill()}
+      return true});
+    if(el<DUR||P.length)fxRaf=requestAnimationFrame(frame);else stopFx()
+  }
+  fxRaf=requestAnimationFrame(frame);
+}
 function showMsg(i){
   const p=today(),s=st(),R=rows(p),left=R.map((x,k)=>[k,x[1]]).filter(x=>!s.r[x[0]]),done=nm(R[i][1]);
-  const L=$('#dmL');L.innerHTML='';
+  const L=$('#dmL');L.innerHTML='';let win=null;
+  stopFx();$('#mDevM').classList.toggle('win',!left.length);
   if(!left.length){
-    $('#dmT').textContent='🎉 Congratulations!';
-    $('#dmB').innerHTML='Nagmalampuson ka karong adlawa sa pag-devotion! Nahuman nimo ang tulo ka basahon: <b>'+R.map(x=>esc(nm(x[1]))).join(', ')+'</b>.<br><br>Tapusa kini sa <b>pag-ampo</b> 🙏 — pasalamati ang Ginoo sa Iyang pulong ug ihangyo nga mapadapat nimo kini sa imong kinabuhi.';
+    const w=winPick();
+    $('#dmT').textContent=w.t;
+    $('#dmB').innerHTML=w.b+'<br><br>Nahuman nimo: <b>'+R.map(x=>esc(nm(x[1]))).join(', ')+'</b>.<br><br>'+w.p;
     $('#dmX').textContent='Amen 🙏';
+    win=w;
   }else{
     $('#dmT').textContent='👏 Maayo! Nahuman nimo ang '+nm(R[i][1]);
     $('#dmB').innerHTML=(left.length==2?'Nahabilin pa ang <b>duha (2) ka basahon</b> nga wala nimo mabasa:':'Nahabilin na lang ang <b>usa (1) ka basahon</b> nga wala nimo mabasa:');
@@ -875,10 +945,11 @@ function showMsg(i){
     $('#dmX').textContent='Sa ulahi na lang';
   }
   $('#mDevM').classList.add('show');
+  if(win)runFx(win.fx);
 }
 $('#bDev').onclick=openDev;
 $('#dvX').onclick=()=>$('#mDev').classList.remove('show');
-$('#dmX').onclick=()=>$('#mDevM').classList.remove('show');
+$('#dmX').onclick=()=>{stopFx();$('#mDevM').classList.remove('show')};
 $('#dvDone').onclick=()=>{const i=+$('#dvBar').dataset.i,s=st();s.r[i]=1;save();mark();devBar();showMsg(i)};
 $$('nav button').forEach(b=>b.addEventListener('click',()=>setTimeout(devBar,0)));
 window.devBar=devBar;window.devPlan=plan;
