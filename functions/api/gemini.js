@@ -50,25 +50,20 @@ export async function onRequest({ request, env }) {
     target = 'https://aiplatform.googleapis.com/v1/publishers/google/models/' + model +
       ':streamGenerateContent?alt=sse&key=' + encodeURIComponent(key);
   } else {
-    // Opsyonal: GEMINI_BASE_URL (pananglitan Cloudflare AI Gateway) kung dili suportado ang lokasyon sa server
-    let base = (env.GEMINI_BASE_URL ? String(env.GEMINI_BASE_URL) : '').trim().replace(/\/+$/, '');
-    if (!/^https:\/\//.test(base)) base = 'https://generativelanguage.googleapis.com';
+    // Kung naay GEMINI_GATEWAY_URL (Cloudflare AI Gateway), didto moagi ang request
+    // aron malikayan ang "User location is not supported".
+    const gw = (env && env.GEMINI_GATEWAY_URL ? String(env.GEMINI_GATEWAY_URL) : '').trim().replace(/\/+$/, '');
+    const base = gw || 'https://generativelanguage.googleapis.com';
     target = base + '/v1beta/models/' + model + ':streamGenerateContent?alt=sse';
     headers['x-goog-api-key'] = key;
+    if (env && env.CF_AIG_TOKEN) headers['cf-aig-authorization'] = 'Bearer ' + String(env.CF_AIG_TOKEN).trim();
   }
 
-  // Usahay "User location is not supported" ang ibalik sa Google depende sa unsang
-  // lugar gikan ang server; magsulay hangtod 3 ka beses.
   let r;
-  for (let attempt = 0; attempt < 3; attempt++) {
-    try {
-      r = await fetch(target, { method: 'POST', headers, body: JSON.stringify(payload) });
-    } catch (e) {
-      return err(502, 'Wala maabot ang serbisyo sa Google.');
-    }
-    if (r.status !== 400) break;
-    const t = await r.clone().text().catch(() => '');
-    if (!/location is not supported/i.test(t)) break;
+  try {
+    r = await fetch(target, { method: 'POST', headers, body: JSON.stringify(payload) });
+  } catch (e) {
+    return err(502, 'Wala maabot ang serbisyo sa Google.');
   }
 
   // Ipasa ang tubag (stream) balik sa browser
