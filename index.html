@@ -135,7 +135,24 @@ nav button.dvB.dn::after{content:" ✓";color:#3cb371}
 #mDevM .fl{display:block;position:absolute;inset:0;background:#fff;opacity:0;animation:dvFl .9s ease-out;pointer-events:none;z-index:3}
 @keyframes dvFl{0%{opacity:.9}100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){#mDevM.win::before,#mDevM.win h3,#mDevM .sw{animation:none}}
-#dvBar{position:fixed;left:0;right:0;bottom:0;z-index:25;display:none;align-items:center;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:2px solid var(--ac);box-shadow:0 -4px 16px rgba(0,0,0,.18)}#dvBar.show{display:flex}#dvBar span{flex:1;font-size:.9em}body.dvb{padding-bottom:70px}
+#dvDock{position:fixed;left:0;right:0;bottom:0;z-index:25;display:none}
+#dvDock.show{display:block}
+#dvBar{display:none;align-items:center;gap:10px;padding:8px 14px;background:var(--bg);border-top:2px solid var(--ac);box-shadow:0 -4px 16px rgba(0,0,0,.18)}
+#dvBar.show{display:flex}#dvBar span{flex:1;font-size:.9em}
+#dvTick{position:relative;height:32px;overflow:hidden;background:linear-gradient(90deg,#150e03,#3a2608 50%,#150e03);border-top:1px solid #f5c542;animation:dvPulse 2.4s ease-in-out infinite}
+@keyframes dvPulse{0%,100%{box-shadow:0 -2px 8px rgba(245,197,66,.25)}50%{box-shadow:0 -3px 18px rgba(255,190,50,.8)}}
+#dvTick::after{content:"";position:absolute;top:0;bottom:0;width:60px;left:-80px;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);animation:dvSweep 3.2s ease-in-out infinite;pointer-events:none}
+@keyframes dvSweep{0%{left:-80px}60%,100%{left:110%}}
+#dvTk{position:absolute;left:0;top:0;line-height:32px;white-space:nowrap;font-weight:800;font-size:.9em;letter-spacing:.2px;background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;will-change:transform;animation:dvShim 2.4s linear infinite}
+#dvTk.g{background-image:linear-gradient(90deg,#ffd76a,#fff,#ffb300,#fff,#ffd76a);filter:drop-shadow(0 0 5px rgba(255,200,60,.85))}
+#dvTk.f{background-image:linear-gradient(90deg,#ff5a36,#ffd23f,#ff2d2d,#ffd23f,#ff5a36);filter:drop-shadow(0 0 6px rgba(255,80,40,.95))}
+#dvTk.b{background-image:linear-gradient(90deg,#7df9ff,#fff,#5ab8ff,#fff,#7df9ff);filter:drop-shadow(0 0 6px rgba(90,200,255,.9))}
+@keyframes dvTk{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
+#dvTick.rm #dvTk{position:static;white-space:normal;text-align:center;padding:0 8px;line-height:32px;overflow:hidden}
+#dvPop{position:absolute;left:12px;right:12px;bottom:100%;margin-bottom:10px;padding:10px 14px;border-radius:14px;text-align:center;font-weight:700;line-height:1.35;color:#fff4d6;background:radial-gradient(circle at 50% 0,#5a3a0c,#241707 75%);border:1px solid #f5c542;box-shadow:0 0 18px rgba(245,197,66,.65);opacity:0;transform:translateY(26px) scale(.94);pointer-events:none;transition:opacity .45s,transform .55s cubic-bezier(.2,1.6,.4,1)}
+#dvPop.show{opacity:1;transform:none;animation:dvGlow 1.4s ease-in-out infinite}
+@keyframes dvGlow{0%,100%{box-shadow:0 0 14px rgba(245,197,66,.55)}50%{box-shadow:0 0 30px rgba(255,200,60,1),0 0 60px rgba(255,150,0,.45)}}
+@media (prefers-reduced-motion:reduce){#dvTick,#dvTick::after,#dvTk,#dvPop.show{animation:none}}
 #mDev .dvD{font-size:.95em;opacity:.8;margin:0}
 #mDev .dvI{font-size:.92em;opacity:.85;margin:0}
 #mDev .dvR{display:flex;align-items:center;gap:10px;text-align:left;padding:10px 12px;border:1px solid var(--bd);border-radius:12px}
@@ -185,7 +202,7 @@ nav button.dvB.dn::after{content:" ✓";color:#3cb371}
 <div class="modal" id="mDev"><div><b style="font-size:1.15em">🙏 Daily Devotional</b><p class="dvD" id="dvD"></p><div class="dvW">🕊️ <b>Pahimangno:</b> Ayaw pag-devotion nga dili nimo sugdan sa pag-ampo. Pangayoa ang presensya sa <b>Balaang Espiritu</b>, sa ngalan ni Jesus, aron siya ang mo-giya nimo nga masabtan ang imong basahon karong adlawa.</div><p class="dvI">Mao kini ang imong basahon sa Bibliya karong adlawa (bisan asa nimo mauna):</p><div id="dvL" style="display:grid;gap:8px"></div><p class="dvI" id="dvP"></p><button id="dvX">Sirado</button></div></div>
 <div class="modal" id="mDevM"><div><h3 id="dmT"></h3><p id="dmB"></p><div class="dvB2" id="dmL"></div><button id="dmX">Sirado</button></div></div>
 <canvas id="dvFx"></canvas>
-<div id="dvBar"><span id="dvBt"></span><button class="pri" id="dvDone">✅ Nahuman na nako</button></div>
+<div id="dvDock"><div id="dvPop"></div><div id="dvTick"><div id="dvTk"></div></div><div id="dvBar"><span id="dvBt"></span><button class="pri" id="dvDone">✅ Nahuman na nako</button></div></div>
 <div id="toast"></div>
 <script>
 if(typeof myBibleData=='undefined'){document.body.innerHTML='<p style="padding:24px">Wala makita ang <b>cebuano_bible.js</b>. Ibutang kini sa parehas nga folder sa index.html.</p>';throw 0}
@@ -873,14 +890,55 @@ function openDev(){
   $('#dvP').textContent=cnt()==3?'🎉 Nahuman na nimo ang tulo ka basahon karong adlawa. Salamat sa Ginoo!':'Nahuman: '+cnt()+' sa 3. Human nimo sa matag kapitulo, pislita ang "Nahuman na nako" sa ubos.';
   $('#mDev').classList.add('show');
 }
+const TK=[
+ {c:'g',t:'🎯 Pokus ug basa — ayaw paminaw sa tingog sa kaaway!'},
+ {c:'f',t:'🔥 Kung giduka ka, i-rebuke ang imong palibot karon sa ngalan ni Jesus!'},
+ {c:'b',t:'🐢 Ayaw pagpaspasa ang pagbasa — hinay-hinay aron imong masabtan.'},
+ {c:'b',t:'🕊️ Pangayoa ang Balaang Espiritu nga mo-giya nimo sa pagsabot.'},
+ {c:'g',t:'📖 Basaha ang matag bersikulo nga mahunahunaon, dili lang agi-agi.'},
+ {c:'f',t:'⚔️ Ang Pulong sa Dios mao ang espada sa Espiritu — gamita kini batok sa kasamok sa hunahuna!'},
+ {c:'b',t:'👂 Pamatii ang tingog sa Ginoo, dili ang kasaba sa kalibotan.'},
+ {c:'g',t:'💡 Pangutan-a ang imong kaugalingon: unsay gipasabot sa Ginoo kanako niini?'},
+ {c:'f',t:'🛡️ Ayaw tuguti ang distraksiyon — ang imong kasingkasing gipanalipdan sa Pulong.'},
+ {c:'g',t:'✍️ Kung naay bersikulo nga misulti kanimo, pislita kini aron ma-highlight o mahimong Note.'}
+];
+const POP=['🎯 Pokus ug basa. Ayaw paminaw sa tingog sa kaaway.','🙏 Hinay-hinay lang — pasabta una ang matag bersikulo.','🛡️ Mag-agulo ang tingog sa kaaway, apan mas kusog ang Pulong sa Dios.','👂 Paminaw sa Ginoo nga nakigsulti kanimo karon.'];
+const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let curI=-1,tkI=Math.floor(Math.random()*TK.length),popI=0,popTm=0,popRep=0,rmTm=0;
+function tkShow(){
+  const el=$('#dvTk'),m=TK[tkI%TK.length];tkI++;
+  el.className=m.c;el.textContent=m.t;
+  if(RM){return}
+  const w=el.scrollWidth,dur=(innerWidth+w)/78;
+  el.style.animation='none';void el.offsetWidth;
+  el.style.animation=`dvTk ${dur}s linear forwards,dvShim 2.4s linear infinite`;
+}
+function popShow(txt){const e=$('#dvPop');e.textContent=txt;e.classList.add('show');clearTimeout(popTm);popTm=setTimeout(()=>e.classList.remove('show'),6500)}
+function tkStart(){
+  tkStop();$('#dvTick').classList.toggle('rm',RM);tkShow();
+  if(RM)rmTm=setInterval(tkShow,8000);
+  setTimeout(()=>{if(curI>=0)popShow(POP[0])},700);
+  popI=1;popRep=setInterval(()=>{if(curI>=0){popShow(POP[popI%POP.length]);popI++}},120000);
+}
+function tkStop(){clearInterval(popRep);clearInterval(rmTm);clearTimeout(popTm);$('#dvPop').classList.remove('show');$('#dvTk').style.animation='none'}
+$('#dvTk').addEventListener('animationend',e=>{if(e.animationName=='dvTk'&&curI>=0)tkShow()});
+function layout(){
+  const act=$('#act'),dk=$('#dvDock'),a=act.classList.contains('show')?act.offsetHeight:0;
+  dk.style.bottom=a+'px';dk.style.paddingBottom=a?'0':'env(safe-area-inset-bottom,0px)';
+  document.body.style.paddingBottom=dk.classList.contains('show')?(a+dk.offsetHeight+8)+'px':'';
+}
 function devBar(){
-  const p=today(),s=st(),bar=$('#dvBar');let i=-1;
+  const p=today(),s=st(),bar=$('#dvBar'),dk=$('#dvDock');let i=-1;
   if(!$('#read').classList.contains('hide'))[p.ot,p.pr,p.nt].forEach((r,k)=>{if(r[0]==bi&&r[1]==ci)i=k});
   const show=i>=0&&!s.r[i];
-  bar.classList.toggle('show',show);document.body.classList.toggle('dvb',show);
+  bar.classList.toggle('show',show);
   if(show){bar.dataset.i=i;$('#dvBt').textContent='🙏 Devotional: '+nm([p.ot,p.pr,p.nt][i])}
+  dk.classList.toggle('show',i>=0);
+  if(i!==curI){curI=i;if(i>=0)tkStart();else tkStop()}
+  layout();
 }
-
+try{new MutationObserver(layout).observe($('#act'),{attributes:true,attributeFilter:['class']});new ResizeObserver(layout).observe($('#act'));new ResizeObserver(layout).observe($('#dvDock'))}catch(e){}
+addEventListener('resize',layout);
 // ---- Congratulations FX ----
 const WIN=[
  {fx:'fw',t:'🎉 Congratulations!',b:'Nagmalampuson ka karong adlawa sa pag-devotion!',p:'Tapusa kini sa <b>pag-ampo</b> 🙏 — pasalamati ang Ginoo sa Iyang pulong ug ihangyo nga mapadapat nimo kini sa imong kinabuhi.'},
